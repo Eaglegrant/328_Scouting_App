@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Spinner speedSpinner = (Spinner) findViewById(R.id.SpeedSpinner);
         Spinner defenseSpinner = (Spinner) findViewById(R.id.DefenseSpinner);
 
-        generateQrBtn = findViewById(R.id.idBtnGenerateQR);
-        MaterialButton openQRFolder  = findViewById(R.id.idQRFolder);
+        generateQrBtn = findViewById(R.id.fabGenerate);
+        MaterialButton openQRFolder  = findViewById(R.id.fabFolder);
         ArrayAdapter<String> DockAdapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.dockingOrder));
         DockAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dockSpinner.setAdapter(DockAdapter);
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 file.mkdir();
             }
 
-            File image =new File(imagesDir, "${System.currentTimeMillis()}.png");
+            File image =new File(imagesDir,  "M" + intEdt2.getText().toString() + " Team " + intEdt1.getText().toString()+".png");
             try {
                 fos =new FileOutputStream(image);
             } catch (FileNotFoundException e) {

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -28,6 +29,7 @@ import java.nio.file.Paths;
 public class MyAdapters extends RecyclerView.Adapter<MyAdapters.ViewHolder> {
     Context context;
     File[] filesAndFolders;
+    ImageView imageView;
     boolean success;
     private String rename = "";
     public MyAdapters(Context context, File[] filesAndFolders){
@@ -61,12 +63,9 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
             context.startActivity(intent);
         }else{
             try {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                String type = "image/*";
-                intent.setDataAndType(Uri.parse(selectFile.getAbsolutePath()),type);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                File file = new File(selectFile.getPath());
+                imageView = ((FileListActivity)context).findViewById(R.id.idIVImage);
+                imageView.setImageDrawable(Drawable.createFromPath(file.toString()));
             }catch (Exception e){
                 Toast.makeText((context.getApplicationContext()),"Cannot open the file.",Toast.LENGTH_SHORT).show();
             }

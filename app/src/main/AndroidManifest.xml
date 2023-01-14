@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gtappdevelopers.firebasestorageimage">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -10,6 +13,10 @@
         android:roundIcon="@drawable/logo_rounded"
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseStorageImage">
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login" />
         <activity
             android:name=".FileListActivity"
             android:exported="false">
@@ -25,6 +32,5 @@
             </intent-filter>
         </activity>
     </application>
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 </manifest>
