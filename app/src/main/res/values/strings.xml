@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">328 Robotics Scouting App</string>
+    <string name="qr_code">qr_code</string>
+    <string name="enter_string1">Enter String Value 1</string>
+    <string name="enter_string2">Enter String Value 2</string>
+    <string name="save_to_phone">Save to Location</string>
+    <string name="generate_qr_code">Generate QR Code</string>
+    <string-array name="DefenseSpeed">
+        <item>Best in Alliance</item>
+        <item>Second Best in Alliance</item>
+        <item>Worst in Alliance</item>
+    </string-array>
+    <string-array name="dockingOrder">
+        <item>First</item>
+        <item>Second</item>
+        <item>Third</item>
+    </string-array>
+</resources>
