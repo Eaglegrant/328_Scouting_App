@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/cardview_dark_background">
 
-    <!--We are using this image view to display our QR code-->
+<!--We are using this image view to display our QR code-->
 
 
     <!--Edit text to enter text for creating a QR code-->
@@ -24,6 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
+        android:textColor="@color/white"
+        android:shadowColor="@color/design_default_color_primary_dark"
         android:textSize="26dp"
         android:text="Create a QR Code For Any Robot" />
 

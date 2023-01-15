@@ -51,7 +51,7 @@ public class MyAdapters extends RecyclerView.Adapter<MyAdapters.ViewHolder> {
     @Override
     public void onBindViewHolder(MyAdapters.ViewHolder holder, int position) {
         File selectFile = filesAndFolders[position];
-        holder.textView.setText(selectFile.getName());
+        holder.textView.setText(selectFile.getName().replaceAll(".png"," QR Code"));
         if(selectFile.isDirectory()) {
             holder.imageView.setImageResource((R.drawable.ic_baseline_folder_24));
         }else{
@@ -120,13 +120,13 @@ holder.itemView.setOnLongClickListener(new View.OnLongClickListener(){
                                 } catch (IOException e) {
                                     File newFile = new File(selectFile.getParent(), edittext.getText().toString() + ".png");
                                     selectFile.renameTo(newFile);
-                                    Toast.makeText(context.getApplicationContext(), "RENAMED", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context.getApplicationContext(), "RENAMED2", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             else {
                                 File newFile = new File(selectFile.getParent(), edittext.getText().toString() + ".png");
                                 selectFile.renameTo(newFile);
-                                Toast.makeText(context.getApplicationContext(), "RENAMED", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context.getApplicationContext(), "RENAMED3", Toast.LENGTH_SHORT).show();
                             }
 
                             ((FileListActivity)context).recreate();
