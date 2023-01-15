@@ -111,9 +111,14 @@ holder.itemView.setOnLongClickListener(new View.OnLongClickListener(){
                                     Toast.makeText(context.getApplicationContext(), "RENAMED", Toast.LENGTH_SHORT).show();
                                 } catch (IOException e) {
                                     File newFile = new File(selectFile.getParent(), edittext.getText().toString() + ".png");
-                                    success = selectFile.renameTo(newFile);
+                                    selectFile.renameTo(newFile);
                                     Toast.makeText(context.getApplicationContext(), "RENAMED", Toast.LENGTH_SHORT).show();
                                 }
+                            }
+                            else {
+                                File newFile = new File(selectFile.getParent(), edittext.getText().toString() + ".png");
+                                selectFile.renameTo(newFile);
+                                Toast.makeText(context.getApplicationContext(), "RENAMED", Toast.LENGTH_SHORT).show();
                             }
 
                             ((FileListActivity)context).recreate();
