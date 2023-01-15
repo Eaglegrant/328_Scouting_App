@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -20,11 +21,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.lets_go_splash.CreateAnim;
+import com.app.lets_go_splash.OnAnimationListener;
+import com.app.lets_go_splash.StarterAnimation;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class MyAdapters extends RecyclerView.Adapter<MyAdapters.ViewHolder> {
     Context context;
@@ -66,6 +72,8 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
                 File file = new File(selectFile.getPath());
                 imageView = ((FileListActivity)context).findViewById(R.id.idIVImage);
                 imageView.setImageDrawable(Drawable.createFromPath(file.toString()));
+                imageView.setVisibility(View.VISIBLE);
+                imageView.startAnimation(CreateAnim.INSTANCE.createAnimation(context, R.anim.no_animaiton));
             }catch (Exception e){
                 Toast.makeText((context.getApplicationContext()),"Cannot open the file.",Toast.LENGTH_SHORT).show();
             }
