@@ -60,18 +60,50 @@
         android:layout_marginBottom="15dp"
         android:text="Auto"
         android:textSize="26dp" />
-    <EditText
-        android:id="@+id/idEdt1"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/gridHeader3"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="-1dp"
-        android:autofillHints=""
-        android:hint="Elements in Grid"
-        android:inputType="text"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginTop="105dp"
+        android:layout_marginBottom="-120dp"
+        android:text="Low"
+        android:textSize="26dp"
+        />
+    <TextView
+        android:id="@+id/gridHeader2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="-85dp"
+        android:text="Mid"
+        android:textSize="26dp"
+        />
+    <TextView
+        android:id="@+id/gridHeader1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-40dp"
+        android:layout_gravity="left|center_vertical"
+        android:text="Top"
         android:textSize="26dp" />
 
+    <GridView
+        android:id="@+id/gridView1"
+        android:layout_width="fill_parent"
+        android:layout_height="140dp"
+        android:columnWidth="15dp"
+        android:gravity="center"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="20dp"
+        android:numColumns="9"
+        android:textAlignment="center"
+        android:scrollbars="none"
+        android:background="@color/red"
+        >
+
+    </GridView>
     <EditText
         android:id="@+id/idEdt2"
         android:layout_width="match_parent"
@@ -89,6 +121,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:textSize="29dp"
+        android:visibility="gone"
         android:layout_marginTop="15dp"/>
     <Spinner
         android:id="@+id/DefenseSpinner"
@@ -97,8 +130,15 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:textSize="29dp"
+        android:visibility="gone"
         android:layout_marginTop="15dp"/>
-
+    <TextView
+        android:id="@+id/header2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Docking"
+        android:textSize="26dp" />
     <Spinner
         android:id="@+id/DockingSpinner"
         android:layout_width="match_parent"
@@ -112,13 +152,14 @@
         android:id="@+id/fabGenerate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:layout_gravity="center_horizontal"
         android:layout_marginStart="20dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="25dp"
-        android:text="      Create QR Code"
+        android:text="Create QR Code"
         android:textSize="25dp"
+        android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -126,12 +167,13 @@
         android:id="@+id/fabFolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:layout_gravity="center_horizontal"
         android:layout_marginStart="20dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="20dp"
-        android:text=" Open QR Code Folder"
+        android:text="Open QR Code"
         android:textSize="25dp"
+        android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

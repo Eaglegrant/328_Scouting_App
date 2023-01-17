@@ -9,7 +9,10 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,9 +25,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -35,19 +41,26 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
      EditText dataEdt1;
-     EditText dataEdt2;
     EditText intEdt1;
     EditText intEdt2;
     Button generateQrBtn;
     Bitmap bitmap;
     QRGEncoder qrgEncoder;
     String Hang = "Not On Bot";
+    GridView gridView;
+    ArrayList<Integer> gridQR = new ArrayList<Integer>();
+    static final String[] numbers = new String[] {
+            "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜",
+            "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜",
+            "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜",};
     private boolean checkPermission(){
         int result = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if(result == PackageManager.PERMISSION_GRANTED) {
@@ -74,13 +87,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        for (int i = 0; i < 27; i++) {
+            gridQR.add(i,0);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //initializing all variables.
-        dataEdt1 = findViewById(R.id.idEdt1);
         intEdt1 = findViewById(R.id.idInt1);
         intEdt2 = findViewById(R.id.idInt2);
-        dataEdt2 = findViewById(R.id.idEdt2);
+        dataEdt1 = findViewById(R.id.idEdt2);
         Spinner dockSpinner = (Spinner) findViewById(R.id.DockingSpinner);
         Spinner speedSpinner = (Spinner) findViewById(R.id.SpeedSpinner);
         Spinner defenseSpinner = (Spinner) findViewById(R.id.DefenseSpinner);
@@ -104,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
 
-                if (TextUtils.isEmpty(dataEdt1.getText().toString()) || (TextUtils.isEmpty(dataEdt2.getText().toString())) ||
+                if ((TextUtils.isEmpty(dataEdt1.getText().toString())) ||
                         (TextUtils.isEmpty(intEdt1.getText().toString())) || (TextUtils.isEmpty(intEdt2.getText().toString()))){
                     //if the edittext inputs are empty then execute this method showing a toast message.
                     Toast.makeText(MainActivity.this, "Enter Values in Everything.", Toast.LENGTH_SHORT).show();
@@ -126,8 +141,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         //setting this dimensions inside our qr code encoder to generate our qr code.
 
                         String allDataWithLine = intEdt1.getText().toString() + System.lineSeparator() + intEdt2.getText().toString()
-                                + System.lineSeparator() + dataEdt1.getText().toString() + System.lineSeparator() +
-                                dataEdt2.getText().toString() + System.lineSeparator() + Hang;
+                                + System.lineSeparator() +
+                                dataEdt1.getText().toString() + System.lineSeparator()+ gridQR.toString() + System.lineSeparator() + Hang;
                         qrgEncoder = new QRGEncoder(allDataWithLine, null, QRGContents.Type.TEXT, dimen);
                         try {
                             //getting our qrcode in the form of bitmap.
@@ -162,8 +177,49 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
             }
     });
-    }
+        gridView = (GridView) findViewById(R.id.gridView1);
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, numbers);
+        gridView.setHorizontalSpacing(2);
+        gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                if (getBackgroundColor(v) == Color.parseColor("#FFFFFF")){
+                    v.setBackgroundColor(Color.parseColor("#FF0000"));
+                    gridQR.set(position, 0);
+
+                }else{
+                    v.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    gridQR.set(position, 1);
+
+                }
+            }
+
+        });
+    }
+    public static int getBackgroundColor(View view) {
+        Drawable drawable = view.getBackground();
+        if (drawable instanceof ColorDrawable) {
+            ColorDrawable colorDrawable = (ColorDrawable) drawable;
+            if (Build.VERSION.SDK_INT >= 11) {
+                return colorDrawable.getColor();
+            }
+            try {
+                Field field = colorDrawable.getClass().getDeclaredField("mState");
+                field.setAccessible(true);
+                Object object = field.get(colorDrawable);
+                field = object.getClass().getDeclaredField("mUseColor");
+                field.setAccessible(true);
+                return field.getInt(object);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
     private boolean saveImage(Bitmap bitmap) throws IOException {
         boolean saved;
         OutputStream fos=null;

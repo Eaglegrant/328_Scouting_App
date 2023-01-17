@@ -7,21 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.lets_go_splash.CreateAnim;
-import com.app.lets_go_splash.OnAnimationListener;
-import com.app.lets_go_splash.StarterAnimation;
-import com.google.android.material.button.MaterialButton;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.w3c.dom.Text;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class FileListActivity extends AppCompatActivity {
     @Override
