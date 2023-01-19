@@ -33,7 +33,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.lets_go_splash.CreateAnim;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.zxing.WriterException;
 
 import java.io.File;
@@ -196,6 +198,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
             }
 
+        });
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this,SplashActivity.class);
+                    startActivity(intent);
+            }
         });
     }
     public static int getBackgroundColor(View view) {

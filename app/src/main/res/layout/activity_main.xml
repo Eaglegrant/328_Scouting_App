@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,173 +9,188 @@
 
 <!--We are using this image view to display our QR code-->
 
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="@color/teal_700"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/baseline_arrow_back_24" />
     <!--Edit text to enter text for creating a QR code-->
-
-    <!--Button for creating a QR code-->
-<LinearLayout
+<ScrollView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="center"
-    >
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+    <!--Button for creating a QR code-->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:textColor="@color/white"
-        android:shadowColor="@color/design_default_color_primary_dark"
-        android:textSize="26dp"
-        android:text="Create a QR Code For Any Robot" />
-
-    <EditText
-        android:id="@+id/idInt1"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:textSize="26dp"
-        android:autofillHints=""
-        android:hint="Team Number"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/idInt2"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="Match Number"
-        android:inputType="number"
-        android:textSize="26dp" />
-    <TextView
-        android:id="@+id/header1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Auto"
-        android:textSize="26dp" />
-    <TextView
-        android:id="@+id/gridHeader3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|center_vertical"
-        android:layout_marginTop="105dp"
-        android:layout_marginBottom="-120dp"
-        android:text="Low"
-        android:textSize="26dp"
-        />
-    <TextView
-        android:id="@+id/gridHeader2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|center_vertical"
-        android:layout_marginTop="35dp"
-        android:layout_marginBottom="-85dp"
-        android:text="Mid"
-        android:textSize="26dp"
-        />
-    <TextView
-        android:id="@+id/gridHeader1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="-40dp"
-        android:layout_gravity="left|center_vertical"
-        android:text="Top"
-        android:textSize="26dp" />
-
-    <GridView
-        android:id="@+id/gridView1"
-        android:layout_width="fill_parent"
-        android:layout_height="140dp"
-        android:columnWidth="15dp"
+        android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="20dp"
-        android:numColumns="9"
-        android:textAlignment="center"
-        android:scrollbars="none"
-        android:background="@color/red"
         >
 
-    </GridView>
-    <EditText
-        android:id="@+id/idEdt2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:autofillHints=""
-        android:hint="Comments about Auto"
-        android:inputType="text"
-        android:textSize="26dp" />
-    <Spinner
-        android:id="@+id/SpeedSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textSize="29dp"
-        android:visibility="gone"
-        android:layout_marginTop="15dp"/>
-    <Spinner
-        android:id="@+id/DefenseSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textSize="29dp"
-        android:visibility="gone"
-        android:layout_marginTop="15dp"/>
-    <TextView
-        android:id="@+id/header2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Docking"
-        android:textSize="26dp" />
-    <Spinner
-        android:id="@+id/DockingSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textSize="29dp"
-        android:layout_marginTop="15dp"/>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/design_default_color_primary_dark"
+            android:textSize="26dp"
+            android:text="Create a QR Code For Any Robot" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fabGenerate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="25dp"
-        android:text="Create QR Code"
-        android:textSize="25dp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fabFolder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="20dp"
-        android:text="Open QR Code"
-        android:textSize="25dp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/idInt1"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:textSize="26dp"
+            android:autofillHints=""
+            android:hint="Team Number"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/idInt2"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Match Number"
+            android:inputType="number"
+            android:textSize="26dp" />
+        <TextView
+            android:id="@+id/header1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="Auto"
+            android:textSize="26dp" />
+        <TextView
+            android:id="@+id/gridHeader3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginTop="105dp"
+            android:layout_marginBottom="-120dp"
+            android:text="Low"
+            android:textSize="26dp"
+            />
+        <TextView
+            android:id="@+id/gridHeader2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="-85dp"
+            android:text="Mid"
+            android:textSize="26dp"
+            />
+        <TextView
+            android:id="@+id/gridHeader1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-40dp"
+            android:layout_gravity="left|center_vertical"
+            android:text="Top"
+            android:textSize="26dp" />
+
+        <GridView
+            android:id="@+id/gridView1"
+            android:layout_width="fill_parent"
+            android:layout_height="140dp"
+            android:columnWidth="15dp"
+            android:gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:numColumns="9"
+            android:textAlignment="center"
+            android:scrollbars="none"
+            android:background="@color/red"
+            >
+
+        </GridView>
+        <EditText
+            android:id="@+id/idEdt2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:autofillHints=""
+            android:hint="Comments about Auto"
+            android:inputType="text"
+            android:textSize="26dp" />
+        <Spinner
+            android:id="@+id/SpeedSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="29dp"
+            android:visibility="gone"
+            android:layout_marginTop="15dp"/>
+        <Spinner
+            android:id="@+id/DefenseSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="29dp"
+            android:visibility="gone"
+            android:layout_marginTop="15dp"/>
+        <TextView
+            android:id="@+id/header2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="Docking"
+            android:textSize="26dp" />
+        <Spinner
+            android:id="@+id/DockingSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="29dp"
+            android:layout_marginTop="15dp"/>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fabGenerate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="25dp"
+            android:text="Create QR Code"
+            android:textSize="25dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fabFolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="20dp"
+            android:text="Open QR Code"
+            android:textSize="25dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </LinearLayout>
 </ScrollView>
+</RelativeLayout>
