@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frameLayout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
+    tools:context=".BeforeMatchFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--Button for creating a QR code-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="200dp"
+                android:shadowColor="@color/design_default_color_primary_dark"
+                android:text="Before Match"
+                android:textColor="@color/white"
+                android:textSize="52dp" />
+
+            <EditText
+                android:id="@+id/idInt1"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="50dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="Team Number"
+                android:inputType="number"
+                android:textSize="26dp" />
+
+            <EditText
+                android:id="@+id/idInt2"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="Match Number"
+                android:inputType="number"
+                android:textSize="26dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>

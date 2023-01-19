@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
+    tools:context=".Auto">
+
+    <!--We are using this image view to display our QR code-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="@color/teal_700"
+        android:src="@drawable/baseline_arrow_back_24" />
+    <!--Edit text to enter text for creating a QR code-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--Button for creating a QR code-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:shadowColor="@color/design_default_color_primary_dark"
+                android:text="Auto"
+                android:textColor="@color/white"
+                android:textSize="52dp" />
+
+            <TextView
+                android:id="@+id/gridHeader3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginTop="205dp"
+                android:layout_marginBottom="-220dp"
+                android:text="Low"
+                android:textSize="26dp" />
+
+            <TextView
+                android:id="@+id/gridHeader2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginTop="135dp"
+                android:layout_marginBottom="-185dp"
+                android:text="Mid"
+                android:textSize="26dp" />
+
+            <TextView
+                android:id="@+id/gridHeader1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="-140dp"
+                android:text="Top"
+                android:textSize="26dp" />
+
+            <GridView
+                android:id="@+id/gridView1"
+                android:layout_width="fill_parent"
+                android:layout_height="140dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="100dp"
+                android:background="@color/red"
+                android:columnWidth="15dp"
+                android:gravity="center"
+                android:numColumns="9"
+                android:scrollbars="none"
+                android:textAlignment="center">
+
+            </GridView>
+
+            <EditText
+                android:id="@+id/idEdt2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:autofillHints=""
+                android:hint="Comments about Auto"
+                android:inputType="text"
+                android:layout_marginTop="150dp"
+                android:textSize="26dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>
