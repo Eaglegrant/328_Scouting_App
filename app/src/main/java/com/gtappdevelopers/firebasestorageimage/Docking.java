@@ -40,20 +40,12 @@ public class Docking extends Fragment implements AdapterView.OnItemSelectedListe
     String balance = "Not Balanced";
     Spinner dockSpinner;
     Context context;
-    FloatingActionButton fab;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TransitionInflater inflater = TransitionInflater.from(requireContext());
         setExitTransition(inflater.inflateTransition(R.transition.fade_f));
         setEnterTransition(inflater.inflateTransition(R.transition.slide_right_f));
-        getParentFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
-                String result = bundle.getString("bundleKey");
-            }
-        });
-
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -86,6 +78,7 @@ public class Docking extends Fragment implements AdapterView.OnItemSelectedListe
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
         Fragment childFragment = new childFab();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.replace(R.id.child_fragment_container, childFragment).commit();

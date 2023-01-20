@@ -178,9 +178,6 @@ public class EndGame extends Fragment implements View.OnClickListener {
                 String balance = result.getString("Balance");
                 String name = result.getString("Name");
                 //TODO: Add the balance and name to the QR code
-
-
-
                 WindowManager manager = (WindowManager) requireActivity().getSystemService(Context.WINDOW_SERVICE);
                 //initializing a variable for default display.
                 Display display = manager.getDefaultDisplay();
