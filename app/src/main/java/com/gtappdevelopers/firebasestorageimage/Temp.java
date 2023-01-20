@@ -91,45 +91,7 @@ public class Temp {
 
         END
 
-            private boolean checkPermission(){
-        int result = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if(result == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }else{
-            return false;
 
-        }
-    }
-    private void requestPermission(){
-        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Toast.makeText(MainActivity.this,"Storage permission is required, please allow it from settings.",Toast.LENGTH_SHORT).show();
-        }else{
-            ActivityCompat.requestPermissions(MainActivity.this,new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},111);
-        }
-    }
-
-            public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-         Hang = parent.getItemAtPosition(pos).toString();
-    }
-        ON CREATE: for (int i = 0; i < 27; i++) {
-            gridQR.add(i,0);
-        }
-
-        Button generateQrBtn;
-    Bitmap bitmap;
-    QRGEncoder qrgEncoder;
-    String Hang = "Not On Bot";
-     public void onNothingSelected(AdapterView<?> parent) {
-        Hang = "Not On Bot";
-    }
-                Spinner dockSpinner = (Spinner) findViewById(R.id.DockingSpinner);
-        generateQrBtn = findViewById(R.id.fabGenerate);
-        MaterialButton openQRFolder  = findViewById(R.id.fabFolder);
-        ArrayAdapter<String> DockAdapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.dockingOrder));
-        DockAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dockSpinner.setAdapter(DockAdapter);
-        dockSpinner.setOnItemSelectedListener(this);
         String imagesDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
                 generateQrBtn.setOnClickListener(new View.OnClickListener() {
