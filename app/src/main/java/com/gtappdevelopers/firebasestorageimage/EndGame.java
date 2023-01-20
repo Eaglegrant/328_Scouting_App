@@ -13,6 +13,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.window.layout.WindowMetricsCalculator;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -26,11 +27,15 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.WindowManager;
+import android.view.WindowMetrics;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -46,6 +51,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
@@ -62,7 +68,6 @@ public class EndGame extends Fragment implements View.OnClickListener {
     }
 
 
-    // TODO: Rename and change types and number of parameters
     public static EndGame newInstance() {
         EndGame fragment = new EndGame();
         Bundle args = new Bundle();
@@ -76,13 +81,10 @@ public class EndGame extends Fragment implements View.OnClickListener {
     QRGEncoder qrgEncoder;
     Context context;
     String imagesDir;
-    GridView gridView;
     ArrayList<Integer> gridQR = new ArrayList<Integer>();
-    static final String[] numbers = new String[] {
-            "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜",
-            "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜",
-            "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜",};
-
+    EditText intEdt1;
+    EditText intEdt2;
+    EditText dataEdt1;
     public static int getBackgroundColor(View view) {
         Drawable drawable = view.getBackground();
         if (drawable instanceof ColorDrawable) {
@@ -110,7 +112,7 @@ public class EndGame extends Fragment implements View.OnClickListener {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             ContentValues contentValues =new  ContentValues();
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" );
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + intEdt2.getText().toString() + " Team " + intEdt1.getText().toString());
             contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
             contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "QR");
             Uri imageUri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
@@ -123,8 +125,7 @@ public class EndGame extends Fragment implements View.OnClickListener {
             String imagesDir = Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
 
-            File file =new File(imagesDir);
-
+            File file =new File(imagesDir,  "M" + intEdt2.getText().toString() + " Team " + intEdt1.getText().toString()+".png");
             if (!file.exists()) {
                 file.mkdir();
             }
@@ -162,11 +163,8 @@ public class EndGame extends Fragment implements View.OnClickListener {
         context = container.getContext();
        generateQrBtn = (MaterialButton) root.findViewById(R.id.fabGenerate);
         openQRFolder  = (MaterialButton) root.findViewById(R.id.fabFolder);
-
-        fab = (FloatingActionButton) root.findViewById(R.id.fab);
         generateQrBtn.setOnClickListener(this);
         openQRFolder.setOnClickListener(this);
-        fab.setOnClickListener(this);
       //  gridView = gridView.findViewById(R.id.gridView1);
         return root;
     }
@@ -174,48 +172,26 @@ public class EndGame extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fabGenerate:
-                Bundle result = new Bundle();
-                String balance = result.getString("Balance");
-                String name = result.getString("Name");
-                //TODO: Add the balance and name to the QR code
-                WindowManager manager = (WindowManager) requireActivity().getSystemService(Context.WINDOW_SERVICE);
-                //initializing a variable for default display.
-                Display display = manager.getDefaultDisplay();
-                //creating a variable for point which is to be displayed in QR Code.
-                Point point = new Point();
-                display.getSize(point);
-                //getting width and height of a point
-                int width = point.x;
-                int height = point.y;
-                //generating dimension from width and height.
-                int dimen = width < height ? width : height;
-                dimen = dimen * 3 / 4;
-                //setting this dimensions inside our qr code encoder to generate our qr code.
+                qrgEncoder = new QRGEncoder(((MainActivity)getActivity()).getAllData(), null, QRGContents.Type.TEXT, ((MainActivity)getActivity()).getDimen());
+    try {
+        //getting our qrcode in the form of bitmap.
+        bitmap = qrgEncoder.encodeAsBitmap();
+        saveImage(bitmap);
+        // the bitmap is set inside our image view using .setimagebitmap method.
+    } catch (WriterException e) {
+        //this method is called for exception handling.
+        Toast.makeText(context, "Error!", Toast.LENGTH_SHORT).show();
+    } catch (IOException e) {
+        Toast.makeText(context, "Error!", Toast.LENGTH_SHORT).show();
+    }
+    Toast.makeText(context, "Complete! When you're done entering QR's, hit Open QR Code Folder", Toast.LENGTH_LONG).show();
 
-                String allDataWithLine =  gridQR.toString();
-                qrgEncoder = new QRGEncoder(allDataWithLine, null, QRGContents.Type.TEXT, dimen);
-                try {
-                    //getting our qrcode in the form of bitmap.
-                    bitmap = qrgEncoder.encodeAsBitmap();
-                    saveImage(bitmap);
-                    // the bitmap is set inside our image view using .setimagebitmap method.
-                } catch (WriterException e) {
-                    //this method is called for exception handling.
-                    Log.e("Tag", e.toString());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Toast.makeText(context, "Complete! When you're done entering QR's, hit Open QR Code Folder", Toast.LENGTH_LONG).show();
                 break;
-                case R.id.fabFolder:
-                    Intent intent = new Intent(context,FileListActivity.class);
-                    intent.putExtra("path",imagesDir);
-                    startActivity(intent);
-                    break;
-            case R.id.fab:
-                intent = new Intent(context,SplashActivity.class);
+            case R.id.fabFolder:
+                Intent intent = new Intent(context,FileListActivity.class);
+                intent.putExtra("path",imagesDir);
                 startActivity(intent);
-                break;
+                    break;
         }
     }
 }

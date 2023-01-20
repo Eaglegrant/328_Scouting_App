@@ -25,9 +25,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  * create an instance of this fragment.
  */
 public class Docking extends Fragment implements AdapterView.OnItemSelectedListener {
-    private OnFragmentInteractionListener mListener;
-
-
     public Docking() {
         // Required empty public constructor
     }
@@ -75,33 +72,5 @@ public class Docking extends Fragment implements AdapterView.OnItemSelectedListe
            dockSpinner.setOnItemSelectedListener(this);
 
         return root;
-    }
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-
-        Fragment childFragment = new childFab();
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.replace(R.id.child_fragment_container, childFragment).commit();
-    }
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-
-    public interface OnFragmentInteractionListener {
-        void messageFromParentFragment(Uri uri);
     }
 }

@@ -8,27 +8,60 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gtappdevelopers.firebasestorageimage.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityMainBinding binding;
     FloatingActionButton fab;
+    String balance = "NA";
+    int match = -1;
+    int team = -1;
+    String autoC = "NA";
+    public int dimen;
+    ArrayList<Integer> grid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new BeforeMatchFragment());
+        replaceFragment(new BeforeMatchFragment(),"before");
         fab = findViewById(R.id.fab);
+
+
+
+        //TODO: Fix this. It's not working, specifically when dimen is called.
+        WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        //initializing a variable for default display.
+        Display display = manager.getDefaultDisplay();
+        //creating a variable for point which is to be displayed in QR Code.
+        Point point = new Point();
+        display.getSize(point);
+        //getting width and height of a point
+        int width = point.x;
+        int height = point.y;
+        //generating dimension from width and height.
+        dimen = Math.min(width, height);
+        dimen = dimen * 3 / 4;
+        Toast.makeText(MainActivity.this,dimen,Toast.LENGTH_SHORT).show();
+
+
+
+
         fab.setOnClickListener(this);
         while (!checkPermission()) {
             requestPermission();
@@ -37,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             switch (item.getItemId()) {
                 case R.id.before:
                     replaceFragment(new BeforeMatchFragment(),"before");
-                   break;
+                    break;
                 case R.id.auto:
                     replaceFragment(new Auto(),"auto");
                     break;
@@ -53,27 +86,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             return true;
         });
-        }
 
+    }
     @Override
     public void onClick(View view) {
-        EndGame myFragment = (EndGame) getSupportFragmentManager().findFragmentByTag("MY_FRAGMENT");
+
         switch (view.getId()) {
             case R.id.fab:
-                if (EndGame.newInstance().isAdded()){
-                    replaceFragment(new TeleOp(),"tele");
-                } else if (Docking.newInstance().isAdded()){
-                    replaceFragment(new EndGame(),"end");
-                }else if (TeleOp.newInstance().isAdded()){
-                    replaceFragment(new Auto(),"auto");
-                }else if (Auto.newInstance().isAdded()){
-                    replaceFragment(new BeforeMatchFragment(),"before");
-                }else if (BeforeMatchFragment.newInstance().isAdded()){
+                BeforeMatchFragment beforeFrag = (BeforeMatchFragment)getSupportFragmentManager().findFragmentByTag("before");
+                EndGame endFrag = (EndGame)getSupportFragmentManager().findFragmentByTag("end");
+                Auto autoFrag = (Auto)getSupportFragmentManager().findFragmentByTag("auto");
+                TeleOp teleFrag = (TeleOp)getSupportFragmentManager().findFragmentByTag("tele");
+                Docking dockFrag = (Docking)getSupportFragmentManager().findFragmentByTag("docking");
+
+                if (beforeFrag != null && beforeFrag.isVisible()) {
                     Intent intent = new Intent(MainActivity.this,SplashActivity.class);
                     startActivity(intent);
-                }else {
-                    Toast.makeText(MainActivity.this,"error.",Toast.LENGTH_SHORT).show();
-
+                }else if (autoFrag != null && autoFrag.isVisible()) {
+                    replaceFragment(new BeforeMatchFragment(), "before");
+                }else if (teleFrag != null && teleFrag.isVisible()) {
+                    replaceFragment(new Auto(), "auto");
+                }else if (endFrag != null && endFrag.isVisible()) {
+                    replaceFragment(new Docking(), "docking");
+                }else if (dockFrag != null && dockFrag.isVisible()) {
+                    replaceFragment(new TeleOp(), "tele");
                 }
                 break;
         }
@@ -106,5 +142,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else{
             ActivityCompat.requestPermissions(MainActivity.this,new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},111);
         }
+    }
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
+    public void setMatch(int match) {
+        this.match = match;
+    }
+    public void setTeam(int team) {
+        this.team = team;
+    }
+    public void setAutoC(String autoC) {
+        this.autoC = autoC;
+    }
+    public void setGrid( ArrayList<Integer> grid) {
+        this.grid = grid;
+    }
+    public int getDimen() {
+        return dimen;
+    }
+    public final String getAllData(){
+        return match + "\n" + team + "\n" + autoC + "\n" + grid + "\n" + balance;
     }
 }
