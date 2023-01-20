@@ -35,24 +35,15 @@
         android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/header2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:textAlignment="center"
-        android:text="Docking"
-        android:textSize="52dp" />
+        <TextView
+            android:id="@+id/header2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:textAlignment="center"
+            android:text="Review"
+            android:textSize="52dp" />
 
-    <Spinner
-        android:id="@+id/DockingSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="100dp"
-        android:textSize="29dp" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabGenerate"

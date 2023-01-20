@@ -9,12 +9,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.gtappdevelopers.firebasestorageimage.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements childFab.OnFragmentInteractionListener{
     ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.end:
                     replaceFragment(new EndGame());
+                    break;
+                case R.id.dock:
+                    replaceFragment(new Docking());
                     break;
             }
             return true;
@@ -70,6 +74,26 @@ private void replaceFragment(Fragment fragment) {
             Toast.makeText(MainActivity.this,"Storage permission is required, please allow it from settings.",Toast.LENGTH_SHORT).show();
         }else{
             ActivityCompat.requestPermissions(MainActivity.this,new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},111);
+        }
+    }
+    @Override
+    public void messageFromChildFragment(Uri uri) {
+        switch (uri.toString()){
+            case "before":
+                replaceFragment(new BeforeMatchFragment());
+                break;
+            case "auto":
+                replaceFragment(new Auto());
+                break;
+            case "tele":
+                replaceFragment(new TeleOp());
+                break;
+            case "end":
+                replaceFragment(new EndGame());
+                break;
+            case "dock":
+                replaceFragment(new Docking());
+                break;
         }
     }
 }

@@ -10,7 +10,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -53,7 +55,7 @@ import androidmads.library.qrgenearator.QRGEncoder;
  * Use the {@link EndGame#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EndGame extends Fragment implements View.OnClickListener{// implements AdapterView.OnItemSelectedListener{
+public class EndGame extends Fragment implements View.OnClickListener {
 
     public EndGame() {
         // Required empty public constructor
@@ -70,10 +72,8 @@ public class EndGame extends Fragment implements View.OnClickListener{// impleme
     MaterialButton generateQrBtn;
     Bitmap bitmap;
     MaterialButton openQRFolder;
-    Spinner dockSpinner;
     FloatingActionButton fab;
     QRGEncoder qrgEncoder;
-    String Hang = "Not On Bot";
     Context context;
     String imagesDir;
     GridView gridView;
@@ -82,14 +82,7 @@ public class EndGame extends Fragment implements View.OnClickListener{// impleme
             "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜",
             "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜",
             "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜",};
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        Hang = parent.getItemAtPosition(pos).toString();
-    }
 
-    public void onNothingSelected(AdapterView<?> parent) {
-        Hang = "Not On Bot";
-    }
     public static int getBackgroundColor(View view) {
         Drawable drawable = view.getBackground();
         if (drawable instanceof ColorDrawable) {
@@ -167,12 +160,9 @@ public class EndGame extends Fragment implements View.OnClickListener{// impleme
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_end_game, container,false);
         context = container.getContext();
-       //dockSpinner = (Spinner) root.findViewById(R.id.DockingSpinner);
        generateQrBtn = (MaterialButton) root.findViewById(R.id.fabGenerate);
         openQRFolder  = (MaterialButton) root.findViewById(R.id.fabFolder);
-    //    ArrayAdapter<String> DockAdapter = new ArrayAdapter<String>(context,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.dockingOrder));
-      //  DockAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-     //   dockSpinner.setAdapter(DockAdapter);
+
         fab = (FloatingActionButton) root.findViewById(R.id.fab);
         generateQrBtn.setOnClickListener(this);
         openQRFolder.setOnClickListener(this);
@@ -184,6 +174,13 @@ public class EndGame extends Fragment implements View.OnClickListener{// impleme
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fabGenerate:
+                Bundle result = new Bundle();
+                String balance = result.getString("Balance");
+                String name = result.getString("Name");
+                //TODO: Add the balance and name to the QR code
+
+
+
                 WindowManager manager = (WindowManager) requireActivity().getSystemService(Context.WINDOW_SERVICE);
                 //initializing a variable for default display.
                 Display display = manager.getDefaultDisplay();
@@ -198,7 +195,7 @@ public class EndGame extends Fragment implements View.OnClickListener{// impleme
                 dimen = dimen * 3 / 4;
                 //setting this dimensions inside our qr code encoder to generate our qr code.
 
-                String allDataWithLine =  gridQR.toString() + System.lineSeparator() + Hang;
+                String allDataWithLine =  gridQR.toString();
                 qrgEncoder = new QRGEncoder(allDataWithLine, null, QRGContents.Type.TEXT, dimen);
                 try {
                     //getting our qrcode in the form of bitmap.
