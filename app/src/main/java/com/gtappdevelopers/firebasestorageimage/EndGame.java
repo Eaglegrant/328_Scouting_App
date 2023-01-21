@@ -1,6 +1,7 @@
 package com.gtappdevelopers.firebasestorageimage;
 
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,34 +11,16 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
-import androidx.window.layout.WindowMetricsCalculator;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.transition.TransitionInflater;
-import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.WindowMetrics;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.GridView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -51,7 +34,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Objects;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
@@ -106,16 +88,22 @@ public class EndGame extends Fragment implements View.OnClickListener {
         }
         return 0;
     }
-    private void saveImage(Bitmap bitmap) throws IOException {
+    private boolean saveImage(Bitmap bitmap) throws IOException {
         boolean saved;
         OutputStream fos=null;
-
+        int teamNumber = MainActivity.getTeam();
+        int matchNumber = MainActivity.getMatch();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
             ContentValues contentValues =new  ContentValues();
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + intEdt2.getText().toString() + " Team " + intEdt1.getText().toString());
+            Toast.makeText(context, "QR Generated Successfully1", Toast.LENGTH_SHORT).show();
+
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + matchNumber + " Team " + teamNumber);
             contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
             contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "QR");
+
             Uri imageUri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+
             try {
                 fos = context.getContentResolver().openOutputStream(imageUri);
             } catch (FileNotFoundException e) {
@@ -125,12 +113,12 @@ public class EndGame extends Fragment implements View.OnClickListener {
             String imagesDir = Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
 
-            File file =new File(imagesDir,  "M" + intEdt2.getText().toString() + " Team " + intEdt1.getText().toString()+".png");
+            File file =new File(imagesDir);
             if (!file.exists()) {
                 file.mkdir();
             }
 
-            File image =new File(imagesDir,  "M" +".png");
+            File image =new File(imagesDir,  "M" + matchNumber + " Team " + teamNumber+".png");
             try {
                 fos =new FileOutputStream(image);
             } catch (FileNotFoundException e) {
@@ -143,6 +131,7 @@ public class EndGame extends Fragment implements View.OnClickListener {
         assert fos != null;
         fos.flush();
         fos.close();
+        return saved;
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -168,23 +157,26 @@ public class EndGame extends Fragment implements View.OnClickListener {
       //  gridView = gridView.findViewById(R.id.gridView1);
         return root;
     }
+    String data;
+    int dimen;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fabGenerate:
-                qrgEncoder = new QRGEncoder(((MainActivity)getActivity()).getAllData(), null, QRGContents.Type.TEXT, ((MainActivity)getActivity()).getDimen());
-    try {
-        //getting our qrcode in the form of bitmap.
-        bitmap = qrgEncoder.encodeAsBitmap();
-        saveImage(bitmap);
-        // the bitmap is set inside our image view using .setimagebitmap method.
-    } catch (WriterException e) {
-        //this method is called for exception handling.
-        Toast.makeText(context, "Error!", Toast.LENGTH_SHORT).show();
-    } catch (IOException e) {
-        Toast.makeText(context, "Error!", Toast.LENGTH_SHORT).show();
-    }
-    Toast.makeText(context, "Complete! When you're done entering QR's, hit Open QR Code Folder", Toast.LENGTH_LONG).show();
+                Activity activity = getActivity();
+                if (activity != null && activity instanceof MainActivity) {
+                    data = MainActivity.getAllData(); //error here
+                    dimen = MainActivity.getDimen();
+                }
+
+                qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, dimen);
+                try {
+                    bitmap = qrgEncoder.encodeAsBitmap();
+                    saveImage(bitmap);
+                    Toast.makeText(context, "QR Generated Successfully", Toast.LENGTH_SHORT).show();
+                } catch (WriterException | IOException e) {
+                    e.printStackTrace();
+                }
 
                 break;
             case R.id.fabFolder:

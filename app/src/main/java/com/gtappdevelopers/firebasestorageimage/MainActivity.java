@@ -28,12 +28,12 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityMainBinding binding;
     FloatingActionButton fab;
-    String balance = "NA";
-    int match = -1;
-    int team = -1;
-    String autoC = "NA";
-    public int dimen;
-    ArrayList<Integer> grid;
+    static String balance = "NA";
+    static int match = -1;
+    static int team = -1;
+    static String autoC = "NA";
+    public static int dimen;
+    static ArrayList<Integer> grid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         //TODO: Fix this. It's not working, specifically when dimen is called.
-        WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        WindowManager manager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
         //initializing a variable for default display.
         Display display = manager.getDefaultDisplay();
         //creating a variable for point which is to be displayed in QR Code.
@@ -57,9 +57,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //generating dimension from width and height.
         dimen = Math.min(width, height);
         dimen = dimen * 3 / 4;
-        Toast.makeText(MainActivity.this,dimen,Toast.LENGTH_SHORT).show();
-
-
 
 
         fab.setOnClickListener(this);
@@ -144,24 +141,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     public void setBalance(String balance) {
-        this.balance = balance;
+        MainActivity.balance = balance;
     }
     public void setMatch(int match) {
-        this.match = match;
+        MainActivity.match = match;
     }
     public void setTeam(int team) {
-        this.team = team;
+        MainActivity.team = team;
     }
     public void setAutoC(String autoC) {
-        this.autoC = autoC;
+        MainActivity.autoC = autoC;
     }
     public void setGrid( ArrayList<Integer> grid) {
-        this.grid = grid;
+        MainActivity.grid = grid;
     }
-    public int getDimen() {
+    public static int getDimen() {
         return dimen;
     }
-    public final String getAllData(){
-        return match + "\n" + team + "\n" + autoC + "\n" + grid + "\n" + balance;
+    public static int getMatch() {
+        return match;
+    }
+    public static int getTeam() {
+        return team;
+    }
+    public static String getAllData(){
+        return String.valueOf(match) + "\n" + String.valueOf(team) + "\n" + autoC + "\n" + "NA" + "\n" + balance;
     }
 }
