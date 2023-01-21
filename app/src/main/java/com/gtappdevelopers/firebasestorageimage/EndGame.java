@@ -64,30 +64,6 @@ public class EndGame extends Fragment implements View.OnClickListener {
     Context context;
     String imagesDir;
     ArrayList<Integer> gridQR = new ArrayList<Integer>();
-    EditText intEdt1;
-    EditText intEdt2;
-    EditText dataEdt1;
-    public static int getBackgroundColor(View view) {
-        Drawable drawable = view.getBackground();
-        if (drawable instanceof ColorDrawable) {
-            ColorDrawable colorDrawable = (ColorDrawable) drawable;
-            if (Build.VERSION.SDK_INT >= 11) {
-                return colorDrawable.getColor();
-            }
-            try {
-                Field field = colorDrawable.getClass().getDeclaredField("mState");
-                field.setAccessible(true);
-                Object object = field.get(colorDrawable);
-                assert object != null;
-                field = object.getClass().getDeclaredField("mUseColor");
-                field.setAccessible(true);
-                return field.getInt(object);
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        return 0;
-    }
     private boolean saveImage(Bitmap bitmap) throws IOException {
         boolean saved;
         OutputStream fos=null;
@@ -139,8 +115,6 @@ public class EndGame extends Fragment implements View.OnClickListener {
         TransitionInflater inflater = TransitionInflater.from(requireContext());
         setExitTransition(inflater.inflateTransition(R.transition.fade_f));
         setEnterTransition(inflater.inflateTransition(R.transition.slide_right_f));
-        //initializing all variables.
-        //intializing onclick listner for button.
         imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
     }
 

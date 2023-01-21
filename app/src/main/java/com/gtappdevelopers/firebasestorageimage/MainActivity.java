@@ -19,12 +19,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gtappdevelopers.firebasestorageimage.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+//Todo: Add Grid Back in, and save Grid. Then Add some new feature! (Maybe a timer?)
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityMainBinding binding;
     FloatingActionButton fab;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static String autoC = "NA";
     public static int dimen;
     static ArrayList<Integer> grid;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         replaceFragment(new BeforeMatchFragment(),"before");
         fab = findViewById(R.id.fab);
 
-
-
-        //TODO: Fix this. It's not working, specifically when dimen is called.
         WindowManager manager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
         //initializing a variable for default display.
         Display display = manager.getDefaultDisplay();
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //generating dimension from width and height.
         dimen = Math.min(width, height);
         dimen = dimen * 3 / 4;
-
 
         fab.setOnClickListener(this);
         while (!checkPermission()) {
@@ -90,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (view.getId()) {
             case R.id.fab:
+
                 BeforeMatchFragment beforeFrag = (BeforeMatchFragment)getSupportFragmentManager().findFragmentByTag("before");
                 EndGame endFrag = (EndGame)getSupportFragmentManager().findFragmentByTag("end");
                 Auto autoFrag = (Auto)getSupportFragmentManager().findFragmentByTag("auto");
@@ -100,12 +100,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Intent intent = new Intent(MainActivity.this,SplashActivity.class);
                     startActivity(intent);
                 }else if (autoFrag != null && autoFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.before);
                     replaceFragment(new BeforeMatchFragment(), "before");
                 }else if (teleFrag != null && teleFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.auto);
+
                     replaceFragment(new Auto(), "auto");
                 }else if (endFrag != null && endFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.dock);
                     replaceFragment(new Docking(), "docking");
                 }else if (dockFrag != null && dockFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.tele);
                     replaceFragment(new TeleOp(), "tele");
                 }
                 break;
@@ -140,19 +145,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ActivityCompat.requestPermissions(MainActivity.this,new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},111);
         }
     }
-    public void setBalance(String balance) {
+    public static void setBalance(String balance) {
         MainActivity.balance = balance;
     }
-    public void setMatch(int match) {
+    public static void setMatch(int match) {
         MainActivity.match = match;
     }
-    public void setTeam(int team) {
+    public static void setTeam(int team) {
         MainActivity.team = team;
     }
-    public void setAutoC(String autoC) {
+    public static void setAutoC(String autoC) {
         MainActivity.autoC = autoC;
     }
-    public void setGrid( ArrayList<Integer> grid) {
+    public static void setGrid( ArrayList<Integer> grid) {
         MainActivity.grid = grid;
     }
     public static int getDimen() {
@@ -163,6 +168,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public static int getTeam() {
         return team;
+    }
+    public static String getAutoC() {
+        return autoC;
+    }
+    public static String getBalance() {
+        return balance;
+    }
+    public static ArrayList<Integer> getGrid() {
+        return grid;
     }
     public static String getAllData(){
         return String.valueOf(match) + "\n" + String.valueOf(team) + "\n" + autoC + "\n" + "NA" + "\n" + balance;
