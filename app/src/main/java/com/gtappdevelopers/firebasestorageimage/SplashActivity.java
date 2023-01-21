@@ -26,7 +26,6 @@ public class SplashActivity extends AppCompatActivity {
         animList.add(CreateAnim.INSTANCE.createAnimation(getApplicationContext(), R.anim.fade_in));
         return animList;
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

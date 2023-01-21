@@ -9,17 +9,17 @@
     android:orientation="vertical"
     android:background="@color/cardview_dark_background">
 
-        <TextView
-            android:id="@+id/fullscreen_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:gravity="top|center_horizontal"
-            android:keepScreenOn="true"
-            android:text="Scouting Data Collection"
-            android:textSize="50sp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top|center_horizontal"
+        android:keepScreenOn="true"
+        android:text="Scouting Data Collection"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
