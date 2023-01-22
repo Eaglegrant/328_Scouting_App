@@ -137,9 +137,10 @@ public class EndGame extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fabGenerate:
+                //DO NOT TOUCH THIS. IT WORKS. I SWEAR.
                 Activity activity = getActivity();
                 if (activity != null && activity instanceof MainActivity) {
-                    data = MainActivity.getAllData(); //error here
+                    data = MainActivity.getAllData();
                     dimen = MainActivity.getDimen();
                 }
 
@@ -153,6 +154,7 @@ public class EndGame extends Fragment implements View.OnClickListener {
                 }
 
                 break;
+                //Okay you can touch stuff from here.
             case R.id.fabFolder:
                 Intent intent = new Intent(context,FileListActivity.class);
                 intent.putExtra("path",imagesDir);

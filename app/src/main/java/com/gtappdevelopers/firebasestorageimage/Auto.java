@@ -12,16 +12,22 @@ import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.GridView;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Auto#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Auto extends Fragment implements View.OnClickListener{
+public class Auto extends Fragment implements View.OnClickListener{//, GridView.OnItemClickListener{
 
     public Auto() {
         // Required empty public constructor
@@ -72,6 +78,23 @@ public class Auto extends Fragment implements View.OnClickListener{
         View root = inflater.inflate(R.layout.fragment_auto, container,false);
         context = container.getContext();
         dataEdt1 = root.findViewById(R.id.textComment);
+     //   GridView gridView = (GridView) root.findViewById(R.id.gridView1);
+        /*
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                if (getBackgroundColor(v) == Color.parseColor("#FFFFFF")){
+                    v.setBackgroundColor(Color.parseColor("#FF0000"));
+                    gridQR.set(position, 0);
+
+                }else{
+                    v.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    gridQR.set(position, 1);
+
+                }
+            }
+
+        });
+         */
         dataEdt1.setOnClickListener(this);
         dataEdt1.setText(MainActivity.getAutoC());
         return root;
@@ -81,6 +104,7 @@ public class Auto extends Fragment implements View.OnClickListener{
         MainActivity.setAutoC(dataEdt1.getText().toString());
         super.onStop();
     }
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.textComment:
