@@ -8,23 +8,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gtappdevelopers.firebasestorageimage.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 //Todo: Add Grid Back in, and save Grid. Then Add some new feature! (Maybe a timer?)
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityMainBinding binding;
