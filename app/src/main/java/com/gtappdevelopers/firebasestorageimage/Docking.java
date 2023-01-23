@@ -70,6 +70,7 @@ public class Docking extends Fragment implements AdapterView.OnItemSelectedListe
            dockSpinner.setAdapter(DockAdapter);
            dockSpinner.setOnItemSelectedListener(this);
            balance = MainActivity.getBalance();
+           dockSpinner.setSelection(DockAdapter.getPosition(balance));
         return root;
     }
 }

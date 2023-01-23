@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/backgroundColor"
     tools:context=".BeforeMatchFragment">
 
     <ScrollView
@@ -22,9 +22,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="200dp"
-                android:shadowColor="@color/design_default_color_primary_dark"
+                android:shadowColor="@color/black"
                 android:text="Before Match"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="52dp" />
 
             <EditText
@@ -36,6 +36,7 @@
                 android:layout_marginBottom="50dp"
                 android:autofillHints=""
                 android:ems="10"
+                android:textColor="@color/black"
                 android:hint="Team Number"
                 android:inputType="number"
                 android:textSize="26dp" />
@@ -47,6 +48,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:autofillHints=""
+                android:textColor="@color/black"
                 android:ems="10"
                 android:hint="Match Number"
                 android:inputType="number"

@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/backgroundColor"
     tools:context=".TeleOp">
     <ScrollView
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:shadowColor="@color/design_default_color_primary_dark"
                 android:text="Tele Op"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="52dp"
 
                 app:layout_constraintEnd_toEndOf="parent"
@@ -563,6 +563,7 @@
                 android:autofillHints=""
                 android:hint="Comments about Tele Op:"
                 android:inputType="text"
+                android:textColor="@color/black"
                 android:textSize="26dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rightGrid"

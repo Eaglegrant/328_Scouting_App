@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".Docking">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Docking"
+        android:textColor="@color/black"
         android:textAlignment="center"
         android:textSize="52dp"
         app:layout_constraintStart_toStartOf="parent"

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/backgroundColor"
     tools:context=".EndGame">
 
     <!--We are using this image view to display our QR code-->
@@ -28,6 +28,7 @@
             android:layout_marginBottom="60dp"
             android:textAlignment="center"
             android:text="Review"
+            android:textColor="@color/black"
             android:textSize="52dp" />
 
 

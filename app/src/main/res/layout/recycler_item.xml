@@ -22,6 +22,6 @@ android:layout_centerVertical="true"
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/cardview_shadow_start_color"
+        android:background="@color/backgroundColor"
         android:layout_below="@id/file_name_text_view"/>
 </RelativeLayout>
