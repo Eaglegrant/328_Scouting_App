@@ -29,8 +29,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static int match = -1;
     static int team = -1;
     static String autoC = "NA";
+    static String teleC = "NA";
     public static int dimen;
     static ArrayList<Integer> grid;
+    static ArrayList<Integer> teleGrid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,8 +153,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static void setAutoC(String autoC) {
         MainActivity.autoC = autoC;
     }
+    public static void setTeleC(String teleC) {
+        MainActivity.teleC = teleC;
+    }
     public static void setGrid( ArrayList<Integer> grid) {
         MainActivity.grid = grid;
+    }
+    public static void setTeleGrid( ArrayList<Integer> teleGrid) {
+        MainActivity.teleGrid = teleGrid;
     }
     public static int getDimen() {
         return dimen;
@@ -166,13 +174,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String getAutoC() {
         return autoC;
     }
+    public static String getTeleC() {
+        return teleC;
+    }
+
     public static String getBalance() {
         return balance;
     }
     public static ArrayList<Integer> getGrid() {
         return grid;
     }
+    public static ArrayList<Integer> getTeleGrid() {
+        return teleGrid;
+    }
     public static String getAllData(){
-        return String.valueOf(match) + "\n" + String.valueOf(team) + "\n" + autoC + "\n" + "NA" + "\n" + balance;
+        return String.valueOf(match) + "\n" + String.valueOf(team) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString() + "\n" + balance;
+    }
+    public static void clearData(){
+        match = -1;
+        team = -1;
+        autoC = "NA";
+        grid = new ArrayList<Integer>();
+        for (int i = 0; i < 27; i++) {
+            grid.add(i,0);
+        }
+        teleC = "NA";
+        teleGrid = new ArrayList<Integer>();
+        for (int i = 0; i < 27; i++) {
+            teleGrid.add(i,0);
+        }
+        balance = "NA";
     }
 }

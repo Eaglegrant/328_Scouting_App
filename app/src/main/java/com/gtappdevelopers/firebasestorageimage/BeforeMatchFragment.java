@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link BeforeMatchFragment#newInstance} factory method to
@@ -35,7 +37,8 @@ public class BeforeMatchFragment extends Fragment implements View.OnClickListene
         super.onCreate(savedInstanceState);
 
     }
-
+ArrayList<Integer> gridQR = new ArrayList<>();
+    ArrayList<Integer> teleQR = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,6 +49,13 @@ public class BeforeMatchFragment extends Fragment implements View.OnClickListene
         match = root.findViewById(R.id.matchID);
         team.setOnClickListener(this);
         match.setOnClickListener(this);
+        for (int i = 0; i < 27; i++) {
+            gridQR.add(i,0);
+            teleQR.add(i,0);
+        }
+
+        MainActivity.setGrid(gridQR);
+        MainActivity.setTeleGrid(teleQR);
         if (MainActivity.getTeam() == -1 && MainActivity.getMatch() == -1) {
             team.setText("");
             match.setText("");

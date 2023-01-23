@@ -48,12 +48,15 @@ public class Docking extends Fragment implements AdapterView.OnItemSelectedListe
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         balance = parent.getItemAtPosition(pos).toString();
-        ((MainActivity)getActivity()).setBalance(balance);
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
         balance = "Not Balanced";
-        ((MainActivity)getActivity()).setBalance(balance);
+    }
+    @Override
+    public void onStop() {
+        MainActivity.setBalance(balance);
+        super.onStop();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,7 +69,7 @@ public class Docking extends Fragment implements AdapterView.OnItemSelectedListe
           DockAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
            dockSpinner.setAdapter(DockAdapter);
            dockSpinner.setOnItemSelectedListener(this);
-
+           balance = MainActivity.getBalance();
         return root;
     }
 }

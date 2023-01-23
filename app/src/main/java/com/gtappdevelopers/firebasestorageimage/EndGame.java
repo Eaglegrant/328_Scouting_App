@@ -152,7 +152,7 @@ public class EndGame extends Fragment implements View.OnClickListener {
                 } catch (WriterException | IOException e) {
                     e.printStackTrace();
                 }
-
+                MainActivity.clearData();
                 break;
                 //Okay you can touch stuff from here.
             case R.id.fabFolder:

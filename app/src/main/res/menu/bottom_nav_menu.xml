@@ -9,10 +9,11 @@
         android:id="@+id/auto" />
     <item android:title="Tele-Op" android:icon="@drawable/ic_baseline_home_24"
         android:id="@+id/tele" />
-    <item android:title="End Game"
-        android:icon="@drawable/ic_baseline_send_24"
-        android:id="@+id/end" />
     <item android:title="Docking"
         android:icon="@drawable/ic_baseline_balance_24"
         android:id="@+id/dock" />
+    <item android:title="End Game"
+        android:icon="@drawable/ic_baseline_send_24"
+        android:id="@+id/end" />
+
 </menu>

@@ -11,10 +11,10 @@
         <item>Worst in Alliance</item>
     </string-array>
     <string-array name="dockingOrder">
+        <item>Not Balanced</item>
         <item>First</item>
         <item>Second</item>
         <item>Third</item>
-        <item>Not Balanced</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
