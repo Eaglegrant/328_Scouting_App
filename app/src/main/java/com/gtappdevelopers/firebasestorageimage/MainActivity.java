@@ -1,28 +1,39 @@
 package com.gtappdevelopers.firebasestorageimage;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import android.Manifest;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.gtappdevelopers.firebasestorageimage.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
-//Todo: Add Grid Back in, and save Grid. Then Add some new feature! (Maybe a timer?)
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     ActivityMainBinding binding;
     FloatingActionButton fab;
     static String balance = "NA";
@@ -33,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static int dimen;
     static ArrayList<Integer> grid;
     static ArrayList<Integer> teleGrid;
+    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private AppBarConfiguration mAppBarConfiguration;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +56,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         replaceFragment(new BeforeMatchFragment(),"before");
         fab = findViewById(R.id.fab);
 
-        WindowManager manager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
+
+        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+         WindowManager manager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
         //initializing a variable for default display.
         Display display = manager.getDefaultDisplay();
         //creating a variable for point which is to be displayed in QR Code.
@@ -78,7 +102,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             return true;
         });
-
+    }
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.newTeam:
+                Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.FileViewer:
+                Intent intent1= new Intent(MainActivity.this,FileListActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.NightMode:
+                SplashActivity.setNight();
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
     }
     @Override
     public void onClick(View view) {
@@ -205,4 +250,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         balance = "NA";
     }
+
+
+
 }

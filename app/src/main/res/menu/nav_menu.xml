@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Options">
+        <menu>
+            <item android:id="@+id/NightMode"
+                android:title="Enable Dark Mode"
+                android:icon="@drawable/baseline_lightbulb_24"
+                />
+
+        </menu>
+    </item>
+    <item
+        android:title="Actions">
+        <menu>
+
+    <item android:id="@+id/newTeam"
+        android:title="Scout A New Robot"
+        android:icon="@drawable/baseline_backspace_24"
+        />
+    <item android:id="@+id/FileViewer"
+        android:title="Open QR Code Viewer"
+        android:icon="@drawable/baseline_qr_code_24"
+        />
+        </menu>
+    </item>
+    <item
+        android:title="About">
+        <menu>
+            <item android:id="@+id/faq"
+                android:title="How do I use this?"
+                />
+            <item android:id="@+id/author"
+                android:title="Made by Penn Robotics Team 328"
+                />
+            <item android:id="@+id/share"
+                android:title="Rate Us!"
+                />
+            <item android:id="@+id/version"
+                android:title="Version: 1.0.0"
+                />
+        </menu>
+    </item>
+</menu>

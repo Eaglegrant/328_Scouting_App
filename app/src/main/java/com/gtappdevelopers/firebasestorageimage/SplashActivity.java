@@ -30,6 +30,33 @@ public class SplashActivity extends AppCompatActivity {
         return animList;
     }
     private Button btnToggleDark;
+    public SharedPreferences sharedPreferences;
+    public static SharedPreferences.Editor editor;
+    public static boolean isDarkModeOn;
+    static public String setNight(){
+        if (isDarkModeOn) {
+            AppCompatDelegate
+                    .setDefaultNightMode(
+                            AppCompatDelegate
+                                    .MODE_NIGHT_YES);
+
+            editor.putBoolean(
+                    "isDarkModeOn", false);
+            editor.apply();
+            return "Disable Dark Mode";
+
+        }
+        else {
+            AppCompatDelegate
+                    .setDefaultNightMode(
+                            AppCompatDelegate
+                                    .MODE_NIGHT_NO);
+            editor.putBoolean(
+                    "isDarkModeOn", true);
+            editor.apply();
+            return "Enable Dark Mode";
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -43,15 +70,12 @@ public class SplashActivity extends AppCompatActivity {
         MaterialButton fabAlliance  = findViewById(R.id.fabAlliance);
         MaterialButton fabRobot  = findViewById(R.id.fabRobot);
         btnToggleDark = findViewById(R.id.fabDarkLight);
-        SharedPreferences sharedPreferences
+        sharedPreferences
                 = getSharedPreferences(
                 "sharedPrefs", MODE_PRIVATE);
-        final SharedPreferences.Editor editor
-                = sharedPreferences.edit();
-        final boolean isDarkModeOn
-                = sharedPreferences
-                .getBoolean(
-                        "isDarkModeOn", false);
+
+        editor = sharedPreferences.edit();
+        isDarkModeOn = sharedPreferences.getBoolean("isDarkModeOn", false);
 
         // When user reopens the app
         // after applying dark/light mode
