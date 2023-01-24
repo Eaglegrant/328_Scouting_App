@@ -3,6 +3,7 @@ package com.gtappdevelopers.firebasestorageimage;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -17,21 +18,31 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.Display;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 import com.gtappdevelopers.firebasestorageimage.databinding.ActivityMainBinding;
 
+import java.io.File;
 import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     ActivityMainBinding binding;
@@ -46,8 +57,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static ArrayList<Integer> teleGrid;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    private AppBarConfiguration mAppBarConfiguration;
+    private static NavigationView navigationView;
+    private NavigationMenuItemView night;
+    Menu menu;
+    static View headerView;
+    static TextView TeamText;
+    static TextView MatchText;
+    String imagesDir;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,17 +71,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(binding.getRoot());
         replaceFragment(new BeforeMatchFragment(),"before");
         fab = findViewById(R.id.fab);
-
-
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        night = drawerLayout.findViewById(R.id.NightMode);
+        navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
-        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-         WindowManager manager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
+        WindowManager manager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
         //initializing a variable for default display.
         Display display = manager.getDefaultDisplay();
         //creating a variable for point which is to be displayed in QR Code.
@@ -77,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //generating dimension from width and height.
         dimen = Math.min(width, height);
         dimen = dimen * 3 / 4;
-
         fab.setOnClickListener(this);
         while (!checkPermission()) {
             requestPermission();
@@ -102,25 +118,85 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             return true;
         });
+        headerView = navigationView.inflateHeaderView(R.layout.nav_header_layout);
+        navigationView.removeHeaderView(navigationView.getHeaderView(0));
+        TeamText = headerView.findViewById(R.id.teamNum);
+        MatchText = headerView.findViewById(R.id.matchNum);
+        MatchText.setText("Match: NA");
+        TeamText.setText("Team:\n NA");
+    }
+    @SuppressLint("RestrictedApi")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        night = drawerLayout.findViewById(R.id.NightMode);
+        if (night != null) {
+            if (SplashActivity.isDarkModeOn) {
+                night.setTitle("Disable Dark Mode");
+            } else {
+                night.setTitle("Enable Dark Mode");
+            }
+        }else {
+            Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
+        }
+        return true;
     }
     @Override
+    @SuppressLint("RestrictedApi")
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id){
             case R.id.newTeam:
+                clearData();
                 Intent intent = new Intent(MainActivity.this,MainActivity.class);
                 startActivity(intent);
                 break;
             case R.id.FileViewer:
-                Intent intent1= new Intent(MainActivity.this,FileListActivity.class);
+                Intent intent1 = new Intent(MainActivity.this,FileListActivity.class);
+                intent1.putExtra("path",imagesDir);
                 startActivity(intent1);
                 break;
+            case R.id.share:
+                rateApp();
+                break;
+            case R.id.faq:
+              //TODO  Intent intent2 = new Intent(MainActivity.this,FAQActivity.class);
+            //    startActivity(intent2);
+                break;
             case R.id.NightMode:
-                SplashActivity.setNight();
+                night = drawerLayout.findViewById(R.id.NightMode);
+                if (night != null){
+                    if (SplashActivity.isDarkModeOn) {
+                        night.setTitle("Disable Dark Mode");
+                        SplashActivity.editor.putBoolean(
+                                "isDarkModeOn", false);
+                        SplashActivity.editor.apply();
+                        AppCompatDelegate
+                                .setDefaultNightMode(
+                                        AppCompatDelegate
+                                                .MODE_NIGHT_NO);
+                        night.setTitle("Disable Dark Mode");
+
+                    }
+                    else {
+                        night.setTitle("Enable Dark Mode");
+                        SplashActivity.editor.putBoolean(
+                                "isDarkModeOn", true);
+                        SplashActivity.editor.apply();
+                        AppCompatDelegate
+                                .setDefaultNightMode(
+                                        AppCompatDelegate
+                                                .MODE_NIGHT_YES);
+                        night.setTitle("Enable Dark Mode");
+                    }
+                }
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     public void onBackPressed(){
         super.onBackPressed();
@@ -154,6 +230,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     binding.bottomNavigationView.setSelectedItemId(R.id.tele);
                     replaceFragment(new TeleOp(), "tele");
                 }
+
                 break;
         }
     }
@@ -185,6 +262,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else{
             ActivityCompat.requestPermissions(MainActivity.this,new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},111);
         }
+    }
+    public static void setTeamName(String teamName) {
+        TeamText = headerView.findViewById(R.id.teamNum);
+        TeamText.setText("Team:\n" + teamName);
+    }
+    public void rateApp()
+    {
+        try
+        {
+            Intent rateIntent = rateIntentForUrl("market://details");
+            startActivity(rateIntent);
+        }
+        catch (ActivityNotFoundException e)
+        {
+            Intent rateIntent = rateIntentForUrl("https://play.google.com/store/apps/details");
+            startActivity(rateIntent);
+        }
+    }
+
+    private Intent rateIntentForUrl(String url)
+    {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.format("%s?id=%s", url, getPackageName())));
+        int flags = Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_MULTIPLE_TASK;
+        if (Build.VERSION.SDK_INT >= 21)
+        {
+            flags |= Intent.FLAG_ACTIVITY_NEW_DOCUMENT;
+        }
+        else
+        {
+            //noinspection deprecation
+            flags |= Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET;
+        }
+        intent.addFlags(flags);
+        return intent;
+    }
+    public static void setMatchNum(String matchNum) {
+        MatchText = headerView.findViewById(R.id.matchNum);
+        MatchText.setText("Match:\n" + matchNum);
     }
     public static void setBalance(String balance) {
         MainActivity.balance = balance;

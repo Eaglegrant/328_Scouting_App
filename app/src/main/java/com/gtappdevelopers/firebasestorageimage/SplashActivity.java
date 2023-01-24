@@ -57,6 +57,8 @@ public class SplashActivity extends AppCompatActivity {
             return "Enable Dark Mode";
         }
     }
+    ArrayList<Integer> gridQR = new ArrayList<>();
+    ArrayList<Integer> teleQR = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -65,6 +67,13 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
         WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash2);
+        for (int i = 0; i < 27; i++) {
+            gridQR.add(i,0);
+            teleQR.add(i,0);
+        }
+
+        MainActivity.setGrid(gridQR);
+        MainActivity.setTeleGrid(teleQR);
         ImageView imageView = findViewById(R.id.imageView);
         ImageView imageViewB = findViewById(R.id.imageViewB);
         MaterialButton fabAlliance  = findViewById(R.id.fabAlliance);

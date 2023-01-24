@@ -37,8 +37,7 @@ public class BeforeMatchFragment extends Fragment implements View.OnClickListene
         super.onCreate(savedInstanceState);
 
     }
-ArrayList<Integer> gridQR = new ArrayList<>();
-    ArrayList<Integer> teleQR = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,13 +48,7 @@ ArrayList<Integer> gridQR = new ArrayList<>();
         match = root.findViewById(R.id.matchID);
         team.setOnClickListener(this);
         match.setOnClickListener(this);
-        for (int i = 0; i < 27; i++) {
-            gridQR.add(i,0);
-            teleQR.add(i,0);
-        }
 
-        MainActivity.setGrid(gridQR);
-        MainActivity.setTeleGrid(teleQR);
         if (MainActivity.getTeam() == -1 && MainActivity.getMatch() == -1) {
             team.setText("");
             match.setText("");
@@ -87,8 +80,9 @@ ArrayList<Integer> gridQR = new ArrayList<>();
                     int teamValue = Integer.parseInt(teamText);
                     MainActivity.setMatch(matchValue);
                     MainActivity.setTeam(teamValue);
+                    MainActivity.setTeamName(String.valueOf(teamValue));
+                    MainActivity.setMatchNum(String.valueOf(matchValue));
                 } catch (NumberFormatException e) {
-                    MainActivity.setMatch(0);
                     MainActivity.setTeam(0);
                 }
             }
