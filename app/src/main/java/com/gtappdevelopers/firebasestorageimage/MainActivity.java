@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static String autoC = "NA";
     static String teleC = "NA";
     public static int dimen;
+    static int mins =0;
+    static int secs =0;
+    static int millis =0;
+    static String time="00:00.00";
     static ArrayList<Integer> grid;
     static ArrayList<Integer> teleGrid;
     private Toolbar toolbar;
@@ -322,6 +326,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static void setTeleGrid( ArrayList<Integer> teleGrid) {
         MainActivity.teleGrid = teleGrid;
     }
+    public static void setTime(int mins,int secs,int millis) {
+        MainActivity.mins = mins;
+        MainActivity.secs = secs;
+        MainActivity.millis = millis;
+        MainActivity.time = "0"+String.valueOf(mins) + ":" + String.valueOf(secs) + "." + String.valueOf(millis);
+    }
     public static int getDimen() {
         return dimen;
     }
@@ -347,8 +357,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static ArrayList<Integer> getTeleGrid() {
         return teleGrid;
     }
+    public static int getTimeMin() {
+        return mins;
+    }
+    public static int getTimeSec() {
+        return secs;
+    }
+    public static int getTimeMillis() {
+        return millis;
+    }
     public static String getAllData(){
-        return String.valueOf(match) + "\n" + String.valueOf(team) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString() + "\n" + balance;
+        return String.valueOf(match) + "\n" + String.valueOf(team) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString() + "\n" + balance+"\n"+time;
     }
     public static void clearData(){
         match = -1;

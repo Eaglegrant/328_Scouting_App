@@ -18,21 +18,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/header3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Were they first, second, or third to dock?"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/fabStopWatch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header2" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabStopWatch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Timer"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/timerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header3" />
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabReset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset Timer"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/timerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fabStopWatch" />
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0:00:00"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="36dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/header4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fabReset" />
+    <TextView
+        android:id="@+id/header4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Were they first, second, or third to dock?"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="26dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/DockingSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerText" />
+
     <Spinner
         android:id="@+id/DockingSpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:textSize="100sp"
+        android:background="@drawable/bg_spinner"
         app:layout_constraintBottom_toBottomOf="@+id/child_fragment_container"
         app:layout_constraintEnd_toEndOf="@+id/child_fragment_container"
         app:layout_constraintStart_toStartOf="@+id/child_fragment_container"
-        app:layout_constraintTop_toTopOf="@+id/header2" />
-
+        android:layout_marginBottom="100dp"
+        />
     <FrameLayout
+        android:id="@+id/child_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/child_fragment_container">
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
