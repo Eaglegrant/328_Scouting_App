@@ -3,11 +3,19 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+        storeFile file('C:\\Users\\grant\\OneDrive\\Desktop\\EagleGrant - Chrome.lnk')
+            storePassword 'Pennwillwin'
+            keyAlias 'release'
+            keyPassword 'Pennwillwin'
+        }
+    }
     compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.gtappdevelopers.firebasestorageimage"
+        applicationId "com.current.files"
         minSdkVersion 19
         targetSdkVersion 33
         versionCode 1
@@ -19,6 +27,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -29,7 +38,7 @@ android {
     buildFeatures {
         viewBinding true
     }
-    namespace 'com.gtappdevelopers.firebasestorageimage'
+    namespace 'robotics.scouting.current'
 }
 allprojects {
     repositories {

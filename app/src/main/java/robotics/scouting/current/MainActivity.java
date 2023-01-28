@@ -1,4 +1,4 @@
-package com.gtappdevelopers.firebasestorageimage;
+package robotics.scouting.current;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,15 +12,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
-import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
@@ -28,7 +23,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,10 +34,12 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
-import com.gtappdevelopers.firebasestorageimage.databinding.ActivityMainBinding;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import robotics.scouting.current.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     ActivityMainBinding binding;
     FloatingActionButton fab;
@@ -68,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static TextView TeamText;
     static TextView MatchText;
     String imagesDir;
+    static String event;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+        event = faqActivityMain.sharedPreferences.getString("event","");
         WindowManager manager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
         //initializing a variable for default display.
         Display display = manager.getDefaultDisplay();
@@ -99,25 +97,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dimen = Math.min(width, height);
         dimen = dimen * 3 / 4;
         fab.setOnClickListener(this);
-        while (!checkPermission()) {
+        if (!checkPermission()) {
             requestPermission();
         }
+        getSupportActionBar().setTitle("Before Match");
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.before:
                     replaceFragment(new BeforeMatchFragment(),"before");
+                    getSupportActionBar().setTitle("Before Match");
                     break;
                 case R.id.auto:
                     replaceFragment(new Auto(),"auto");
+                    getSupportActionBar().setTitle("Auto");
                     break;
                 case R.id.tele:
                     replaceFragment(new TeleOp(),"tele");
+                    getSupportActionBar().setTitle("Tele-Operative");
                     break;
                 case R.id.end:
                     replaceFragment(new EndGame(),"end");
+                    getSupportActionBar().setTitle("Review");
                     break;
                 case R.id.dock:
                     replaceFragment(new Docking(),"docking");
+                    getSupportActionBar().setTitle("Docking/End Game");
                     break;
             }
             return true;
@@ -141,8 +145,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } else {
                 night.setTitle("Enable Dark Mode");
             }
-        }else {
-            Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
@@ -165,8 +167,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 rateApp();
                 break;
             case R.id.faq:
-              //TODO  Intent intent2 = new Intent(MainActivity.this,FAQActivity.class);
-            //    startActivity(intent2);
+                Intent intent2 = new Intent(MainActivity.this,faqActivityMain.class);
+                startActivity(intent2);
                 break;
             case R.id.NightMode:
                 night = drawerLayout.findViewById(R.id.NightMode);
@@ -367,7 +369,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return millis;
     }
     public static String getAllData(){
-        return String.valueOf(match) + "\n" + String.valueOf(team) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString() + "\n" + balance+"\n"+time;
+        return event + "\n" + String.valueOf(match) + "\n" + String.valueOf(team) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString() + "\n" + balance+"\n"+time;
     }
     public static void clearData(){
         match = -1;

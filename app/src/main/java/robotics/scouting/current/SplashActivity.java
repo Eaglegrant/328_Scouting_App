@@ -1,4 +1,4 @@
-package com.gtappdevelopers.firebasestorageimage;
+package robotics.scouting.current;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -33,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
     public SharedPreferences sharedPreferences;
     public static SharedPreferences.Editor editor;
     public static boolean isDarkModeOn;
+    public static String event;
     static public String setNight(){
         if (isDarkModeOn) {
             AppCompatDelegate
@@ -78,13 +79,14 @@ public class SplashActivity extends AppCompatActivity {
         ImageView imageViewB = findViewById(R.id.imageViewB);
         MaterialButton fabAlliance  = findViewById(R.id.fabAlliance);
         MaterialButton fabRobot  = findViewById(R.id.fabRobot);
-        btnToggleDark = findViewById(R.id.fabDarkLight);
+        MaterialButton fabSettings = findViewById(R.id.fabSettings);
         sharedPreferences
                 = getSharedPreferences(
                 "sharedPrefs", MODE_PRIVATE);
 
         editor = sharedPreferences.edit();
         isDarkModeOn = sharedPreferences.getBoolean("isDarkModeOn", false);
+        event = sharedPreferences.getString("event","");
 
         // When user reopens the app
         // after applying dark/light mode
@@ -93,66 +95,15 @@ public class SplashActivity extends AppCompatActivity {
                     .setDefaultNightMode(
                             AppCompatDelegate
                                     .MODE_NIGHT_YES);
-            btnToggleDark.setText(
-                    "Disable Dark Mode");
         }
         else {
             AppCompatDelegate
                     .setDefaultNightMode(
                             AppCompatDelegate
                                     .MODE_NIGHT_NO);
-            btnToggleDark
-                    .setText(
-                            "Enable Dark Mode");
         }
 
-        btnToggleDark.setOnClickListener(
-                new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View view)
-                    {
-                        // When user taps the enable/disable
-                        // dark mode button
-                        if (isDarkModeOn) {
-
-                            // if dark mode is on it
-                            // will turn it off
-                            AppCompatDelegate
-                                    .setDefaultNightMode(
-                                            AppCompatDelegate
-                                                    .MODE_NIGHT_NO);
-                            // it will set isDarkModeOn
-                            // boolean to false
-                            editor.putBoolean(
-                                    "isDarkModeOn", false);
-                            editor.apply();
-
-                            // change text of Button
-                            btnToggleDark.setText(
-                                    "Enable Dark Mode");
-                        }
-                        else {
-
-                            // if dark mode is off
-                            // it will turn it on
-                            AppCompatDelegate
-                                    .setDefaultNightMode(
-                                            AppCompatDelegate
-                                                    .MODE_NIGHT_YES);
-
-                            // it will set isDarkModeOn
-                            // boolean to true
-                            editor.putBoolean(
-                                    "isDarkModeOn", true);
-                            editor.apply();
-
-                            // change text of Button
-                            btnToggleDark.setText(
-                                    "Disable Dark Mode");
-                        }
-                    }
-                });
         new StarterAnimation(getAnimList(), new OnAnimationListener() {
             @Override
             public void onStartAnim() { // TODO::
@@ -180,6 +131,13 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        fabSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SplashActivity.this,faqActivityMain.class);
                 startActivity(intent);
             }
         });

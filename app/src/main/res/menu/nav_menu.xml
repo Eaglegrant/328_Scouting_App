@@ -32,7 +32,7 @@
                 android:title="How do I use this?"
                 />
             <item android:id="@+id/author"
-                android:title="Made by Penn Robotics Team 328"
+                android:title="Made by Penn Robotics"
                 />
             <item android:id="@+id/share"
                 android:title="Rate Us!"

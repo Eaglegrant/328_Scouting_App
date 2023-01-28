@@ -1,4 +1,4 @@
-package com.gtappdevelopers.firebasestorageimage;
+package robotics.scouting.current;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.gtappdevelopers.firebasestorageimage", appContext.getPackageName());
+        assertEquals("com.current.current", appContext.getPackageName());
     }
 }

@@ -1,13 +1,9 @@
-package com.gtappdevelopers.firebasestorageimage;
+package robotics.scouting.current;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Handler;
 import android.transition.TransitionInflater;
@@ -20,9 +16,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.

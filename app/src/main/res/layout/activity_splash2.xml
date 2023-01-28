@@ -66,10 +66,10 @@
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent" />
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fabDarkLight"
+        android:id="@+id/fabSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enable Dark Mode"
+        android:text="FAQ and Settings"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25dp"

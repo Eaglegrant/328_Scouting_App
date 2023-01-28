@@ -1,4 +1,4 @@
-package com.gtappdevelopers.firebasestorageimage;
+package robotics.scouting.current;
 
 
 import android.app.AlertDialog;
@@ -6,14 +6,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -22,15 +19,12 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.lets_go_splash.CreateAnim;
-import com.app.lets_go_splash.OnAnimationListener;
-import com.app.lets_go_splash.StarterAnimation;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class MyAdapters extends RecyclerView.Adapter<MyAdapters.ViewHolder> {
     Context context;

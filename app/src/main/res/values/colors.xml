@@ -10,5 +10,5 @@
     <color name="red">#FF0000</color>
     <color name="blue">#0000FF</color>
     <color name="backgroundColor">#7993ab</color>
-
+    <color name="secondaryColor">#232b2b</color>
 </resources>
