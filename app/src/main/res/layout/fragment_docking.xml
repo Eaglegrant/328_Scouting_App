@@ -81,6 +81,7 @@
         android:layout_height="50dp"
         android:textSize="100sp"
         android:background="@drawable/bg_spinner"
+        android:popupBackground="@drawable/bg_spinner"
         app:layout_constraintBottom_toBottomOf="@+id/child_fragment_container"
         app:layout_constraintEnd_toEndOf="@+id/child_fragment_container"
         app:layout_constraintStart_toStartOf="@+id/child_fragment_container"

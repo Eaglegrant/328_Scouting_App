@@ -32,7 +32,7 @@ public class Docking extends Fragment implements AdapterView.OnItemSelectedListe
         fragment.setArguments(args);
         return fragment;
     }
-    String balance = "Not Balanced";
+    String balance = "Did Not Dock";
     Spinner dockSpinner;
     Context context;
     private int seconds = 0;
@@ -57,7 +57,7 @@ public class Docking extends Fragment implements AdapterView.OnItemSelectedListe
     }
 Handler handler;
     public void onNothingSelected(AdapterView<?> parent) {
-        balance = "Not Balanced";
+        balance = "Did Not Dock";
     }
     private void runTimer() {
         handler.post(new Runnable() {
@@ -66,8 +66,8 @@ Handler handler;
             public void run()
             {
                 if (running) {
-                    milliseconds++;
-                    if (milliseconds %10 == 0){
+                    milliseconds+=4;
+                    if (milliseconds %100 == 0){
                         milliseconds = 0;
                         seconds++;
                         if (seconds %60 == 0){
@@ -78,10 +78,10 @@ Handler handler;
 
                 }
 
-                updateTime("0"+String.valueOf(minutes) + ": " + String.valueOf(seconds) + "." + String.valueOf(milliseconds)+"0");
+                updateTime(String.valueOf(seconds) + "." + String.valueOf(milliseconds)+" Seconds");
                 // Post the code again
                 // with a delay of 1 second.
-                handler.postDelayed(this, 100);
+                handler.postDelayed(this, 40);
             }
         });
     }
@@ -115,7 +115,6 @@ Handler handler;
                     setStartButton("Start Timer");
                 } else{
                 running = true;
-                runTimer();
                 setStartButton("Stop Timer");
                 }
                 break;
@@ -125,7 +124,7 @@ Handler handler;
                 minutes = 0;
                 milliseconds = 0;
                 MainActivity.setTime(minutes,seconds,milliseconds);
-                updateTime("0"+String.valueOf(minutes) + ": " + String.valueOf(seconds) + "." + String.valueOf(milliseconds)+"0");
+                updateTime( String.valueOf(seconds) + "." + String.valueOf(milliseconds) + " Seconds");
                 setStartButton("Start Timer");
                 break;
         }
@@ -139,12 +138,16 @@ MaterialButton startButton;
         View root = inflater.inflate(R.layout.fragment_docking, container,false);
         context = container.getContext();
         dockSpinner = (Spinner) root.findViewById(R.id.DockingSpinner);
-            ArrayAdapter<String> DockAdapter = new ArrayAdapter<String>(context,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.dockingOrder));
-          DockAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-           dockSpinner.setAdapter(DockAdapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                context,
+                R.layout.view_spinner_item,
+                getResources().getStringArray(R.array.dockingOrder)
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dockSpinner.setAdapter(adapter);
            dockSpinner.setOnItemSelectedListener(this);
            balance = MainActivity.getBalance();
-           dockSpinner.setSelection(DockAdapter.getPosition(balance));
+           dockSpinner.setSelection(adapter.getPosition(balance));
            startButton = root.findViewById(R.id.fabStopWatch);
            handler = new Handler();
            startButton.setOnClickListener(this);
@@ -154,7 +157,8 @@ MaterialButton startButton;
               minutes = MainActivity.getTimeMin();
                 seconds = MainActivity.getTimeSec();
                 milliseconds = MainActivity.getTimeMillis();
-                updateTime("0"+String.valueOf(minutes) + ": " + String.valueOf(seconds) + "." + String.valueOf(milliseconds)+"0");
+                updateTime(String.valueOf(seconds) + "." + String.valueOf(milliseconds)+" Seconds");
+        runTimer();
         return root;
     }
     public void updateTime(String newText){

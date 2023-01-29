@@ -106,12 +106,12 @@ public class SplashActivity extends AppCompatActivity {
 
         new StarterAnimation(getAnimList(), new OnAnimationListener() {
             @Override
-            public void onStartAnim() { // TODO::
+            public void onStartAnim() {
 
             }
 
             @Override
-            public void onRepeat() { // TODO::
+            public void onRepeat() {
             }
 
             @Override
@@ -125,6 +125,8 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                       //  <!-- TODO: Create the Alliance Menu/Scouting Menu -->
+                Intent intent = new Intent(SplashActivity.this,AllianceActivity.class);
+                startActivity(intent);
             }
         });
         fabRobot.setOnClickListener(new View.OnClickListener() {

@@ -38,10 +38,9 @@ import com.google.android.material.navigation.NavigationView;
 import java.io.File;
 import java.util.ArrayList;
 
-import robotics.scouting.current.databinding.ActivityMainBinding;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
-    ActivityMainBinding binding;
+import robotics.scouting.current.databinding.ActivityAllianceBinding;
+public class AllianceActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+    ActivityAllianceBinding binding;
     FloatingActionButton fab;
     static String balance = "NA";
     static int match = -1;
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityAllianceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new BeforeMatchFragment(),"before");
         fab = findViewById(R.id.fab);
@@ -157,11 +156,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (id){
             case R.id.newTeam:
                 clearData();
-                Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                Intent intent = new Intent(AllianceActivity.this,AllianceActivity.class);
                 startActivity(intent);
                 break;
             case R.id.FileViewer:
-                Intent intent1 = new Intent(MainActivity.this,FileListActivity.class);
+                Intent intent1 = new Intent(AllianceActivity.this,FileListActivity.class);
                 intent1.putExtra("path",imagesDir);
                 startActivity(intent1);
                 break;
@@ -169,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 rateApp();
                 break;
             case R.id.faq:
-                Intent intent2 = new Intent(MainActivity.this,faqActivityMain.class);
+                Intent intent2 = new Intent(AllianceActivity.this,faqActivityMain.class);
                 startActivity(intent2);
                 break;
             case R.id.NightMode:
@@ -222,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Docking dockFrag = (Docking)getSupportFragmentManager().findFragmentByTag("docking");
 
                 if (beforeFrag != null && beforeFrag.isVisible()) {
-                    Intent intent = new Intent(MainActivity.this,SplashActivity.class);
+                    Intent intent = new Intent(AllianceActivity.this,SplashActivity.class);
                     startActivity(intent);
                 }else if (autoFrag != null && autoFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.before);
@@ -244,19 +243,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void replaceFragment(Fragment fragment,String title) {
-    FragmentManager fragmentManager = getSupportFragmentManager();
-    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.slide_in,
-                            R.anim.fade_out,
-                            R.anim.fade_in,
-                            R.anim.slide_out)
-            .setReorderingAllowed(true)
-            .replace(R.id.frameLayout, fragment,title)
-            .addToBackStack(null);
-    fragmentTransaction.commit();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_in,
+                        R.anim.fade_out,
+                        R.anim.fade_in,
+                        R.anim.slide_out)
+                .setReorderingAllowed(true)
+                .replace(R.id.frameLayout, fragment,title)
+                .addToBackStack(null);
+        fragmentTransaction.commit();
     }
     public boolean checkPermission(){
-        int result = ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int result = ContextCompat.checkSelfPermission(AllianceActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if(result == PackageManager.PERMISSION_GRANTED) {
             return true;
         }else{
@@ -265,10 +264,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     private void requestPermission(){
-        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Toast.makeText(MainActivity.this,"Storage permission is required, please allow it from settings.",Toast.LENGTH_SHORT).show();
+        if (ActivityCompat.shouldShowRequestPermissionRationale(AllianceActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(AllianceActivity.this,"Storage permission is required, please allow it from settings.",Toast.LENGTH_SHORT).show();
         }else{
-            ActivityCompat.requestPermissions(MainActivity.this,new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},111);
+            ActivityCompat.requestPermissions(AllianceActivity.this,new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},111);
         }
     }
     public static void setTeamName(String teamName) {
@@ -310,31 +309,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MatchText.setText("Match:\n" + matchNum);
     }
     public static void setBalance(String balance) {
-        MainActivity.balance = balance;
+        AllianceActivity.balance = balance;
     }
     public static void setMatch(int match) {
-        MainActivity.match = match;
+        AllianceActivity.match = match;
     }
     public static void setTeam(int team) {
-        MainActivity.team = team;
+        AllianceActivity.team = team;
     }
     public static void setAutoC(String autoC) {
-        MainActivity.autoC = autoC;
+        AllianceActivity.autoC = autoC;
     }
     public static void setTeleC(String teleC) {
-        MainActivity.teleC = teleC;
+        AllianceActivity.teleC = teleC;
     }
     public static void setGrid( ArrayList<Integer> grid) {
-        MainActivity.grid = grid;
+        AllianceActivity.grid = grid;
     }
     public static void setTeleGrid( ArrayList<Integer> teleGrid) {
-        MainActivity.teleGrid = teleGrid;
+        AllianceActivity.teleGrid = teleGrid;
     }
     public static void setTime(int mins,int secs,int millis) {
-        MainActivity.mins = mins;
-        MainActivity.secs = secs;
-        MainActivity.millis = millis;
-        MainActivity.time = String.valueOf(secs) + "." + String.valueOf(millis);
+        AllianceActivity.mins = mins;
+        AllianceActivity.secs = secs;
+        AllianceActivity.millis = millis;
+        AllianceActivity.time = String.valueOf(secs) + "." + String.valueOf(millis);
     }
     public static int getDimen() {
         return dimen;
@@ -388,7 +387,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         balance = "NA";
     }
-
-
-
 }

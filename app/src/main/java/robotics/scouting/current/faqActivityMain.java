@@ -136,19 +136,23 @@ public class faqActivityMain extends AppCompatActivity implements View.OnClickLi
 
         switch (view.getId()) {
             case R.id.fab:
-                Intent intent = new Intent(faqActivityMain.this,MainActivity.class);
-                intent.putExtra("event",event.getText().toString());
+                Intent intent = new Intent(faqActivityMain.this,SplashActivity.class);
                 startActivity(intent);
                 break;
             case R.id.cardView1:
                 int v = (dataText1.getVisibility() == View.GONE)?View.VISIBLE:View.GONE;
                 TransitionManager.beginDelayedTransition(dataLayout1, new android.transition.AutoTransition());
                 dataText1.setVisibility(v);
+                TextView textChange = findViewById(R.id.HeaderText1);
+                textChange.setText((v == View.VISIBLE)?"Individual User            ▲":"Individual User            ▼");
                 break;
             case R.id.cardView2:
                 int v2 = (dataText2.getVisibility() == View.GONE)?View.VISIBLE:View.GONE;
                 TransitionManager.beginDelayedTransition(dataLayout2, new android.transition.AutoTransition());
                 dataText2.setVisibility(v2);
+                TextView textChange2 = findViewById(R.id.HeaderText2);
+                textChange2.setText((v2 == View.VISIBLE)?"How do I use this?      ▲":"How do I use this?      ▼");
+
                 break;
         }
     }

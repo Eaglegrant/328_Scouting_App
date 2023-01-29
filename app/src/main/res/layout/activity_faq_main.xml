@@ -88,7 +88,7 @@
                             android:id="@+id/HeaderText1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Individual User"
+                            android:text="Individual User            ▼"
                             android:textColor="@color/white"
                             android:textSize="32sp"
                             android:textStyle="bold"
@@ -133,7 +133,7 @@
                             android:id="@+id/HeaderText2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Run User"
+                            android:text="How do I use this?      ▼"
                             android:textColor="@color/white"
                             android:textSize="32sp"
                             android:textStyle="bold"
@@ -144,8 +144,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="25dp"
                             android:visibility="gone"
-                            android:text="While not explicity made for one person, this app can be used by one person. You can use this app to track your own bot's progress and see how you are doing.
-                    Alternatively, you could attempt to get some of the best bots in the game and see how you compare to them. "
+                            android:autoLink="web"
+                            android:text="@string/website"
                             android:textColor="@color/white"
                             android:textSize="25dp"
                             android:layout_marginBottom="50dp"
@@ -167,6 +167,6 @@
         android:layout_marginTop="25dp"
         android:backgroundTint="@color/teal_700"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="25dp"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
