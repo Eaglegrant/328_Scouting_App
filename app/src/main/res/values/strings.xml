@@ -19,8 +19,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <string name="Dark_Mode"></string>
     <string name="website">For a step by step guide on how to use the app, please visit our website at
         <a href="https://www.pennrobotics.org/scouting.html">pennrobotics.org/scouting</a></string>
-
 </resources>

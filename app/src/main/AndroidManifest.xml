@@ -8,7 +8,7 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
+    <!-- dont mess with this -->
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -17,6 +17,8 @@
         android:roundIcon="@drawable/logo_rounded"
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseStorageImage">
+        <!-- this is a comment -->
+
         <activity
             android:name=".CameraScanner"
             android:exported="false" />

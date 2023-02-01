@@ -383,7 +383,6 @@
             app:layout_constraintBottom_toTopOf="@id/textComment"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="50dp"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/coopGrid">
             <ImageView

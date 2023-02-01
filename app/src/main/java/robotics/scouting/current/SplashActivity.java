@@ -41,8 +41,7 @@ public class SplashActivity extends AppCompatActivity {
                             AppCompatDelegate
                                     .MODE_NIGHT_YES);
 
-            editor.putBoolean(
-                    "isDarkModeOn", false);
+            editor.putBoolean("isDarkModeOn", false);
             editor.apply();
             return "Disable Dark Mode";
 
