@@ -25,6 +25,7 @@ public class FileListActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         TextView noFilesText = findViewById(R.id.nofiles_textview);
         String path = getIntent().getStringExtra("path");
+        boolean sendBack = getIntent().getBooleanExtra("sendBack",true);
         File root = new File(path);
         ImageView imageView = findViewById(R.id.idIVImage);
         File[] filesAndFolders = root.listFiles();
@@ -35,11 +36,15 @@ public class FileListActivity extends AppCompatActivity {
                 if (imageView.getVisibility() == View.VISIBLE){
                     imageView.startAnimation(CreateAnim.INSTANCE.createAnimation(getApplicationContext(), R.anim.fade_in));
                     imageView.setVisibility(View.GONE);
-                }else{
-                    Intent intent = new Intent(FileListActivity.this,MainActivity.class);
-                    startActivity(intent);
+                }else {
+                    if (sendBack) {
+                        Intent intent = new Intent(FileListActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(FileListActivity.this, AllianceActivity.class);
+                        startActivity(intent);
+                    }
                 }
-
             }
         });
         if (filesAndFolders == null || filesAndFolders.length == 0) {

@@ -110,15 +110,15 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                     break;
                 case R.id.auto:
                     replaceFragment(new Auto(),"auto");
-                    getSupportActionBar().setTitle("Auto");
+                    getSupportActionBar().setTitle("Auto ALLIANCE");
                     break;
                 case R.id.tele:
                     replaceFragment(new TeleOp(),"tele");
-                    getSupportActionBar().setTitle("Tele-Operative");
+                    getSupportActionBar().setTitle("Tele-Operative ALLIANCE");
                     break;
                 case R.id.end:
-                    replaceFragment(new EndGame(),"end");
-                    getSupportActionBar().setTitle("Review");
+                    replaceFragment(new EndGameAlliance(),"end");
+                    getSupportActionBar().setTitle("Review ALLIANCE");
                     break;
                 case R.id.dock:
                     replaceFragment(new Docking(),"docking");
@@ -162,6 +162,7 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
             case R.id.FileViewer:
                 Intent intent1 = new Intent(AllianceActivity.this,FileListActivity.class);
                 intent1.putExtra("path",imagesDir);
+                intent1.putExtra("sendBack",true);
                 startActivity(intent1);
                 break;
             case R.id.share:
@@ -215,7 +216,7 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
             case R.id.fab:
 
                 BeforeMatchFragment beforeFrag = (BeforeMatchFragment)getSupportFragmentManager().findFragmentByTag("before");
-                EndGame endFrag = (EndGame)getSupportFragmentManager().findFragmentByTag("end");
+                EndGameAlliance endFrag = (EndGameAlliance) getSupportFragmentManager().findFragmentByTag("end");
                 Auto autoFrag = (Auto)getSupportFragmentManager().findFragmentByTag("auto");
                 TeleOp teleFrag = (TeleOp)getSupportFragmentManager().findFragmentByTag("tele");
                 Docking dockFrag = (Docking)getSupportFragmentManager().findFragmentByTag("docking");
@@ -225,10 +226,9 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(intent);
                 }else if (autoFrag != null && autoFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.before);
-                    replaceFragment(new BeforeMatchFragment(), "before");
+              //TODO      replaceFragment(new BeforeMatchFragmentAlliance(), "before");
                 }else if (teleFrag != null && teleFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.auto);
-
                     replaceFragment(new Auto(), "auto");
                 }else if (endFrag != null && endFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.dock);
