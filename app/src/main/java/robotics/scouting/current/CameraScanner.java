@@ -5,21 +5,38 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.hardware.Camera;
+import android.hardware.camera2.CameraCharacteristics;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.widget.Toast;
-
 import com.google.zxing.Result;
+import com.google.zxing.WriterException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class CameraScanner extends AppCompatActivity implements ZXingScannerView.ResultHandler{
+    //TODO FIX SCANNER FOR ALLIANCE AUTO READ, IT IS NOT WORKING.
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
-    private static int cam = Camera.CameraInfo.CAMERA_FACING_BACK;
+    private static int cam = CameraCharacteristics.LENS_FACING_BACK;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,24 +115,85 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
                 .create()
                 .show();
     }
+    private boolean saveImage(Bitmap bitmap) throws IOException {
+        boolean saved;
+        OutputStream fos=null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+            ContentValues contentValues =new  ContentValues();
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + matchNumber + " Team " + allianceNum);
+            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
+            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "QR");
+
+            Uri imageUri = getApplicationContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+
+            try {
+                fos = getApplicationContext().getContentResolver().openOutputStream(imageUri);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            String imagesDir = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
+
+            File file =new File(imagesDir);
+            if (!file.exists()) {
+                file.mkdir();
+            }
+
+            File image =new File(imagesDir,  "M" + matchNumber + " Team " + allianceNum+".png");
+            try {
+                fos =new FileOutputStream(image);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        saved = bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        assert fos != null;
+        fos.flush();
+        fos.close();
+        return saved;
+    }
+    int dimen;
+    QRGEncoder qrgEncoder;
+    Bitmap bitmap;
+    int allianceNum;
+    int matchNumber;
+    private void saveData(String data){
+        dimen = AllianceActivity.getDimen();
+        String[] splitData = data.split("\n");
+        matchNumber = Integer.parseInt(splitData[1]);
+        allianceNum = Integer.parseInt(splitData[2]);
+        qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, dimen);
+        try {
+            bitmap = qrgEncoder.encodeAsBitmap();
+            saveImage(bitmap);
+        } catch (WriterException | IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void handleResult(Result result) {
         final String rawResult = result.getText();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Scan Result");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Scan Another?", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 scannerView.resumeCameraPreview(CameraScanner.this);
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("End Scanning", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                onDestroy();
+                Intent intent = new Intent(CameraScanner.this,AllianceActivity.class);
+                startActivity(intent);
             }
         });
-        builder.setMessage(rawResult);
+        saveData(rawResult);
+        builder.setMessage(rawResult + "\nSCANNNED AND SAVED");
         AlertDialog alert1 = builder.create();
         alert1.show();
         }

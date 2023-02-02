@@ -5,7 +5,7 @@
         android:title="Options">
         <menu>
             <item android:id="@+id/NightMode"
-                android:title="@string/Dark_Mode"
+                android:title=""
                 android:icon="@drawable/baseline_lightbulb_24"
                 />
 

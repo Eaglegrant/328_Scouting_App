@@ -68,8 +68,6 @@ public class EndGame extends Fragment implements View.OnClickListener {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
             ContentValues contentValues =new  ContentValues();
-            Toast.makeText(context, "QR Generated Successfully1", Toast.LENGTH_SHORT).show();
-
             contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + matchNumber + " Team " + teamNumber);
             contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
             contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "QR");

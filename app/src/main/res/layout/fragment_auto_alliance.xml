@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".Auto">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <!--We are using this image view to display our QR code-->
+
+    <!--Edit text to enter text for creating a QR code-->
+        <!--Button for creating a QR code-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/SubHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/teal_200"
+            android:text="Select the spot where ANY robot placed a cube or cone. For hybrid, it will automatically select the cube/cone. "
+           android:padding="25dp"
+            android:textSize="23dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/LeftGridIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/teal_200"
+            android:text="Left Grid"
+            android:textSize="25dp"
+            android:textAlignment="center"
+            app:layout_constraintWidth="match_constraint"
+            app:layout_constraintEnd_toStartOf="@id/leftGrid"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/leftGrid"
+            app:layout_constraintTop_toTopOf="@id/leftGrid" />
+        <GridLayout
+            android:id="@+id/leftGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/coopGrid"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="2dp"
+            android:layout_marginStart="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SubHeader">
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:src="@drawable/tile000" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:src="@drawable/tile001" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:src="@drawable/tile002" />
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="3"
+                android:src="@drawable/tile003" />
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="4"
+                android:src="@drawable/tile004" />
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:src="@drawable/tile005" />
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:src="@drawable/tile006" />
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="2"
+                android:src="@drawable/tile007" />
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="3"
+                android:src="@drawable/tile008" />
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="4"
+                android:src="@drawable/tile009" />
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:src="@drawable/tile010" />
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:src="@drawable/tile011" />
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="2"
+                android:src="@drawable/tile012" />
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="3"
+                android:src="@drawable/tile013" />
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="4"
+                android:src="@drawable/tile014" />
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="0"
+                android:src="@drawable/tile015" />
+            <ImageView
+                android:id="@+id/imageView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="1"
+                android:src="@drawable/tile016" />
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="2"
+                android:src="@drawable/tile017" />
+            <ImageView
+                android:id="@+id/imageView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="3"
+                android:src="@drawable/tile018" />
+            <ImageView
+                android:id="@+id/imageView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="4"
+                android:src="@drawable/tile019" />
+        </GridLayout>
+        <TextView
+            android:id="@+id/CoopGridIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/teal_200"
+            android:text="Coop Grid"
+            android:textSize="25dp"
+            android:textAlignment="center"
+            app:layout_constraintWidth="match_constraint"
+            app:layout_constraintEnd_toStartOf="@id/coopGrid"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/coopGrid"
+            app:layout_constraintTop_toTopOf="@id/coopGrid" />
+        <GridLayout
+            android:id="@+id/coopGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/rightGrid"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="2dp"
+            android:layout_marginStart="50dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/leftGrid">
+            <ImageView
+                android:id="@+id/CimageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:src="@drawable/tile000" />
+
+            <ImageView
+                android:id="@+id/CimageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:src="@drawable/tile001" />
+            <ImageView
+                android:id="@+id/CimageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:src="@drawable/tile002" />
+            <ImageView
+                android:id="@+id/CimageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="3"
+                android:src="@drawable/tile003" />
+            <ImageView
+                android:id="@+id/CimageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="4"
+                android:src="@drawable/tile004" />
+            <ImageView
+                android:id="@+id/CimageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:src="@drawable/tile005" />
+            <ImageView
+                android:id="@+id/CimageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:src="@drawable/tile006" />
+            <ImageView
+                android:id="@+id/CimageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="2"
+                android:src="@drawable/tile007" />
+            <ImageView
+                android:id="@+id/CimageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="3"
+                android:src="@drawable/tile008" />
+            <ImageView
+                android:id="@+id/CimageView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="4"
+                android:src="@drawable/tile009" />
+            <ImageView
+                android:id="@+id/CimageView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:src="@drawable/tile010" />
+            <ImageView
+                android:id="@+id/CimageView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:src="@drawable/tile011" />
+            <ImageView
+                android:id="@+id/CimageView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="2"
+                android:src="@drawable/tile012" />
+            <ImageView
+                android:id="@+id/CimageView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="3"
+                android:src="@drawable/tile013" />
+            <ImageView
+                android:id="@+id/CimageView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="4"
+                android:src="@drawable/tile014" />
+            <ImageView
+                android:id="@+id/CimageView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="0"
+                android:src="@drawable/tile015" />
+            <ImageView
+                android:id="@+id/CimageView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="1"
+                android:src="@drawable/tile016" />
+            <ImageView
+                android:id="@+id/CimageView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="2"
+                android:src="@drawable/tile017" />
+            <ImageView
+                android:id="@+id/CimageView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="3"
+                android:src="@drawable/tile018" />
+            <ImageView
+                android:id="@+id/CimageView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="4"
+                android:src="@drawable/tile019" />
+        </GridLayout>
+        <TextView
+            android:id="@+id/RightGridIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/teal_200"
+            android:text="Right Grid"
+            android:textSize="25dp"
+            android:textAlignment="center"
+            app:layout_constraintWidth="match_constraint"
+            app:layout_constraintEnd_toStartOf="@id/rightGrid"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/rightGrid"
+            app:layout_constraintTop_toTopOf="@id/rightGrid" />
+        <GridLayout
+            android:id="@+id/rightGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/textComment"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/coopGrid">
+            <ImageView
+                android:id="@+id/RimageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:src="@drawable/tile000" />
+
+            <ImageView
+                android:id="@+id/RimageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:src="@drawable/tile001" />
+            <ImageView
+                android:id="@+id/RimageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:src="@drawable/tile002" />
+            <ImageView
+                android:id="@+id/RimageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="3"
+                android:src="@drawable/tile003" />
+            <ImageView
+                android:id="@+id/RimageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="4"
+                android:src="@drawable/tile004" />
+            <ImageView
+                android:id="@+id/RimageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:src="@drawable/tile005" />
+            <ImageView
+                android:id="@+id/RimageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:src="@drawable/tile006" />
+            <ImageView
+                android:id="@+id/RimageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="2"
+                android:src="@drawable/tile007" />
+            <ImageView
+                android:id="@+id/RimageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="3"
+                android:src="@drawable/tile008" />
+            <ImageView
+                android:id="@+id/RimageView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="4"
+                android:src="@drawable/tile009" />
+            <ImageView
+                android:id="@+id/RimageView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:src="@drawable/tile010" />
+            <ImageView
+                android:id="@+id/RimageView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:src="@drawable/tile011" />
+            <ImageView
+                android:id="@+id/RimageView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="2"
+                android:src="@drawable/tile012" />
+            <ImageView
+                android:id="@+id/RimageView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="3"
+                android:src="@drawable/tile013" />
+            <ImageView
+                android:id="@+id/RimageView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="4"
+                android:src="@drawable/tile014" />
+            <ImageView
+                android:id="@+id/RimageView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="0"
+                android:src="@drawable/tile015" />
+            <ImageView
+                android:id="@+id/RimageView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="1"
+                android:src="@drawable/tile016" />
+            <ImageView
+                android:id="@+id/RimageView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="2"
+                android:src="@drawable/tile017" />
+            <ImageView
+                android:id="@+id/RimageView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="3"
+                android:src="@drawable/tile018" />
+            <ImageView
+                android:id="@+id/RimageView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="4"
+                android:src="@drawable/tile019" />
+        </GridLayout>
+        <TextView
+            android:id="@+id/CommentHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/teal_200"
+            android:text="Any Comments?"
+            android:textSize="25dp"
+            android:textAlignment="center"
+            app:layout_constraintWidth="match_constraint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textComment"
+            app:layout_constraintTop_toBottomOf="@id/rightGrid" />
+        <EditText
+            android:id="@+id/textComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:autofillHints=""
+            android:hint="Comments about Alliance"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="26dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rightGrid"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>

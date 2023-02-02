@@ -12,5 +12,15 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="colorControlActivated">#cf2913</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#144299
+        </item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#bcc9e0
+        </item>
     </style>
 </resources>

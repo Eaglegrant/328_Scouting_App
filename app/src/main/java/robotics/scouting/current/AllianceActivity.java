@@ -44,7 +44,6 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
     FloatingActionButton fab;
     static String balance = "NA";
     static int match = -1;
-    static int team = -1;
     static String autoC = "NA";
     static String teleC = "NA";
     public static int dimen;
@@ -60,16 +59,17 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
     private NavigationMenuItemView night;
     Menu menu;
     static View headerView;
-    static TextView TeamText;
+    static TextView allianceText;
     static TextView MatchText;
     String imagesDir;
     static String event;
+    static String alliance = "Blue";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAllianceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new BeforeMatchFragment(),"before");
+        replaceFragment(new BeforeMatchFragmentAlliance(),"before");
         fab = findViewById(R.id.fab);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
@@ -105,15 +105,15 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.before:
-                    replaceFragment(new BeforeMatchFragment(),"before");
-                    getSupportActionBar().setTitle("Before Match");
+                    replaceFragment(new BeforeMatchFragmentAlliance(),"before");
+                    getSupportActionBar().setTitle("Before Match ALLIANCE");
                     break;
                 case R.id.auto:
-                    replaceFragment(new Auto(),"auto");
+                    replaceFragment(new AutoAlliance(),"auto");
                     getSupportActionBar().setTitle("Auto ALLIANCE");
                     break;
                 case R.id.tele:
-                    replaceFragment(new TeleOp(),"tele");
+                    replaceFragment(new TeleOpAlliance(),"tele");
                     getSupportActionBar().setTitle("Tele-Operative ALLIANCE");
                     break;
                 case R.id.end:
@@ -127,12 +127,12 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
             }
             return true;
         });
-        headerView = navigationView.inflateHeaderView(R.layout.nav_header_layout);
+        headerView = navigationView.inflateHeaderView(R.layout.nav_header_layout_alliance);
         navigationView.removeHeaderView(navigationView.getHeaderView(0));
-        TeamText = headerView.findViewById(R.id.teamNum);
+        allianceText = headerView.findViewById(R.id.allianceNum);
         MatchText = headerView.findViewById(R.id.matchNum);
         MatchText.setText("Match: NA");
-        TeamText.setText("Team:\n NA");
+        allianceText.setText("Alliance:\n Blue");
     }
     @SuppressLint("RestrictedApi")
     @Override
@@ -215,7 +215,7 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
         switch (view.getId()) {
             case R.id.fab:
 
-                BeforeMatchFragment beforeFrag = (BeforeMatchFragment)getSupportFragmentManager().findFragmentByTag("before");
+                BeforeMatchFragmentAlliance beforeFrag = (BeforeMatchFragmentAlliance)getSupportFragmentManager().findFragmentByTag("before");
                 EndGameAlliance endFrag = (EndGameAlliance) getSupportFragmentManager().findFragmentByTag("end");
                 Auto autoFrag = (Auto)getSupportFragmentManager().findFragmentByTag("auto");
                 TeleOp teleFrag = (TeleOp)getSupportFragmentManager().findFragmentByTag("tele");
@@ -226,16 +226,16 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(intent);
                 }else if (autoFrag != null && autoFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.before);
-              //TODO      replaceFragment(new BeforeMatchFragmentAlliance(), "before");
+                  replaceFragment(new BeforeMatchFragmentAlliance(), "before");
                 }else if (teleFrag != null && teleFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.auto);
-                    replaceFragment(new Auto(), "auto");
+                    replaceFragment(new AutoAlliance(), "auto");
                 }else if (endFrag != null && endFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.dock);
                     replaceFragment(new Docking(), "docking");
                 }else if (dockFrag != null && dockFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.tele);
-                    replaceFragment(new TeleOp(), "tele");
+                    replaceFragment(new TeleOpAlliance(), "tele");
                 }
 
                 break;
@@ -270,9 +270,9 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
             ActivityCompat.requestPermissions(AllianceActivity.this,new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},111);
         }
     }
-    public static void setTeamName(String teamName) {
-        TeamText = headerView.findViewById(R.id.teamNum);
-        TeamText.setText("Team:\n" + teamName);
+    public static void setAllianceName(String allianceName) {
+        allianceText= headerView.findViewById(R.id.allianceNum);
+        allianceText.setText("Alliance:\n" + allianceName);
     }
     public void rateApp()
     {
@@ -314,9 +314,6 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
     public static void setMatch(int match) {
         AllianceActivity.match = match;
     }
-    public static void setTeam(int team) {
-        AllianceActivity.team = team;
-    }
     public static void setAutoC(String autoC) {
         AllianceActivity.autoC = autoC;
     }
@@ -335,14 +332,14 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
         AllianceActivity.millis = millis;
         AllianceActivity.time = String.valueOf(secs) + "." + String.valueOf(millis);
     }
+    public static void setAlliance(String alliance) {
+        AllianceActivity.alliance = alliance;
+    }
     public static int getDimen() {
         return dimen;
     }
     public static int getMatch() {
         return match;
-    }
-    public static int getTeam() {
-        return team;
     }
     public static String getAutoC() {
         return autoC;
@@ -369,12 +366,15 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
     public static int getTimeMillis() {
         return millis;
     }
+    public static String getAlliance(){
+        return alliance;
+    }
     public static String getAllData(){
-        return event + "\n" + String.valueOf(match) + "\n" + String.valueOf(team) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString() + "\n" + balance+"\n"+time;
+        return event + "\n" + String.valueOf(match) + "\n" + String.valueOf(alliance) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString() + "\n" + balance+"\n"+time;
     }
     public static void clearData(){
         match = -1;
-        team = -1;
+        alliance = "Blue";
         autoC = "NA";
         grid = new ArrayList<Integer>();
         for (int i = 0; i < 27; i++) {

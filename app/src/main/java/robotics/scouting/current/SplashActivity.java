@@ -59,6 +59,8 @@ public class SplashActivity extends AppCompatActivity {
     }
     ArrayList<Integer> gridQR = new ArrayList<>();
     ArrayList<Integer> teleQR = new ArrayList<>();
+    ArrayList<Integer> AgridQR = new ArrayList<>();
+    ArrayList<Integer> AteleQR = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -70,10 +72,14 @@ public class SplashActivity extends AppCompatActivity {
         for (int i = 0; i < 27; i++) {
             gridQR.add(i,0);
             teleQR.add(i,0);
+            AgridQR.add(i,0);
+            AteleQR.add(i,0);
         }
 
         MainActivity.setGrid(gridQR);
         MainActivity.setTeleGrid(teleQR);
+        AllianceActivity.setGrid(AgridQR);
+        AllianceActivity.setTeleGrid(AteleQR);
         ImageView imageView = findViewById(R.id.imageView);
         ImageView imageViewB = findViewById(R.id.imageViewB);
         MaterialButton fabAlliance  = findViewById(R.id.fabAlliance);
@@ -123,7 +129,6 @@ public class SplashActivity extends AppCompatActivity {
         fabAlliance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                      //  <!-- TODO: Create the Alliance Menu/Scouting Menu -->
                 Intent intent = new Intent(SplashActivity.this,AllianceActivity.class);
                 startActivity(intent);
             }

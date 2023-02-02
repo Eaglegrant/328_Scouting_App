@@ -21,4 +21,5 @@
     <string name="close">Close</string>
     <string name="website">For a step by step guide on how to use the app, please visit our website at
         <a href="https://www.pennrobotics.org/scouting.html">pennrobotics.org/scouting</a></string>
+    <string name="alliance_number">Alliance:\n <span>Blue</span></string>
 </resources>

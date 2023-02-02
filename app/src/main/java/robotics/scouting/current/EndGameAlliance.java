@@ -63,14 +63,12 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
     private boolean saveImage(Bitmap bitmap) throws IOException {
         boolean saved;
         OutputStream fos=null;
-        int teamNumber = AllianceActivity.getTeam();
+        String alliance = AllianceActivity.getAlliance();
         int matchNumber = AllianceActivity.getMatch();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
             ContentValues contentValues =new  ContentValues();
-            Toast.makeText(context, "QR Generated Successfully1", Toast.LENGTH_SHORT).show();
-
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + matchNumber + " Team " + teamNumber);
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + matchNumber + " Team " + alliance);
             contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
             contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "QR");
 
@@ -90,7 +88,7 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
                 file.mkdir();
             }
 
-            File image =new File(imagesDir,  "M" + matchNumber + " Team " + teamNumber+".png");
+            File image =new File(imagesDir,  "M" + matchNumber + " Team " + alliance+".png");
             try {
                 fos =new FileOutputStream(image);
             } catch (FileNotFoundException e) {
@@ -141,7 +139,7 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
                     data = AllianceActivity.getAllData();
                     dimen = AllianceActivity.getDimen();
                 }
-
+                Toast.makeText(context, data, Toast.LENGTH_LONG).show();
                 qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, dimen);
                 try {
                     bitmap = qrgEncoder.encodeAsBitmap();

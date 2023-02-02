@@ -11,4 +11,7 @@
     <color name="blue">#0000FF</color>
     <color name="backgroundColor">#7993ab</color>
     <color name="secondaryColor">#232b2b</color>
+    <color name="disable_foreground_grey">#bcc9e0</color>
+    <color name="disable_thumb_grey">#144299</color>
+    <color name="enable_thumb_green">#cf2913</color>
 </resources>
