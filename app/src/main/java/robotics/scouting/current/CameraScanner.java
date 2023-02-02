@@ -36,7 +36,7 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
     //TODO FIX SCANNER FOR ALLIANCE AUTO READ, IT IS NOT WORKING.
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
-    private static int cam = CameraCharacteristics.LENS_FACING_BACK;
+    private static int cam = Camera.CameraInfo.CAMERA_FACING_BACK; //New Version: CameraCharacteristics.LENS_FACING_BACK
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +107,8 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
         scannerView.stopCamera();
         scannerView = null;
     }
+    String allianceNum;
+    int matchNumber;
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener){
         new AlertDialog.Builder(CameraScanner.this)
                 .setMessage(message)
@@ -121,10 +123,9 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
             ContentValues contentValues =new  ContentValues();
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + matchNumber + " Team " + allianceNum);
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + matchNumber + " Alliance " + allianceNum);
             contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
             contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "QR");
-
             Uri imageUri = getApplicationContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
 
             try {
@@ -141,7 +142,7 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
                 file.mkdir();
             }
 
-            File image =new File(imagesDir,  "M" + matchNumber + " Team " + allianceNum+".png");
+            File image =new File(imagesDir,  "M" + matchNumber + " Alliance " + allianceNum+".png");
             try {
                 fos =new FileOutputStream(image);
             } catch (FileNotFoundException e) {
@@ -159,13 +160,11 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
     int dimen;
     QRGEncoder qrgEncoder;
     Bitmap bitmap;
-    int allianceNum;
-    int matchNumber;
     private void saveData(String data){
         dimen = AllianceActivity.getDimen();
         String[] splitData = data.split("\n");
         matchNumber = Integer.parseInt(splitData[1]);
-        allianceNum = Integer.parseInt(splitData[2]);
+        allianceNum = splitData[2];
         qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, dimen);
         try {
             bitmap = qrgEncoder.encodeAsBitmap();
