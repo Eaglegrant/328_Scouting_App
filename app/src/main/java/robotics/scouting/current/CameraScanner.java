@@ -22,12 +22,16 @@ import android.provider.MediaStore;
 import android.widget.Toast;
 import com.google.zxing.Result;
 import com.google.zxing.WriterException;
+import com.opencsv.CSVWriter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
@@ -160,6 +164,34 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
     int dimen;
     QRGEncoder qrgEncoder;
     Bitmap bitmap;
+    public static void writeDataAtOnce(String filePath,String dataRaw)
+    {
+        // first create file object for file placed at location
+        // specified by filepath
+        File file = new File(filePath);
+
+        try {
+            // create FileWriter object with file as parameter
+            FileWriter outputfile = new FileWriter(file);
+
+            // create CSVWriter with '|' as separator
+            CSVWriter writer = new CSVWriter(outputfile, '|',
+                    CSVWriter.NO_QUOTE_CHARACTER,
+                    CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+                    CSVWriter.DEFAULT_LINE_END);
+
+            // create a List which contains String array
+            List<String[]> data = new ArrayList<String[]>();
+            data.add(new String[] { "Event", "Match", "Alliance", "Auto Comments", "Auto Grid", "Teleop Comments", "Teleop Grid", "Balance", "Time To Balance"});
+            data.add(dataRaw.split("\n"));
+            writer.writeAll(data);
+            writer.close();
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
     private void saveData(String data){
         dimen = AllianceActivity.getDimen();
         String[] splitData = data.split("\n");
@@ -172,6 +204,8 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
         } catch (WriterException | IOException e) {
             e.printStackTrace();
         }
+        String imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR" + File.separator + allianceNum+".csv";
+        writeDataAtOnce(imagesDir,data);
     }
     @Override
     public void handleResult(Result result) {
@@ -184,10 +218,10 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
                 scannerView.resumeCameraPreview(CameraScanner.this);
             }
         });
-        builder.setNegativeButton("End Scanning", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("View Data", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(CameraScanner.this,AllianceActivity.class);
+                Intent intent = new Intent(CameraScanner.this,GridActivity.class);
                 startActivity(intent);
             }
         });

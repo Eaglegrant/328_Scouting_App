@@ -69,7 +69,6 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         binding = ActivityAllianceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new BeforeMatchFragmentAlliance(),"before");
         fab = findViewById(R.id.fab);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
@@ -101,7 +100,6 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
         if (!checkPermission()) {
             requestPermission();
         }
-        getSupportActionBar().setTitle("Before Match");
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.before:
@@ -120,10 +118,6 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                     replaceFragment(new EndGameAlliance(),"end");
                     getSupportActionBar().setTitle("Review ALLIANCE");
                     break;
-                case R.id.dock:
-                    replaceFragment(new Docking(),"docking");
-                    getSupportActionBar().setTitle("Docking/End Game");
-                    break;
             }
             return true;
         });
@@ -133,6 +127,16 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
         MatchText = headerView.findViewById(R.id.matchNum);
         MatchText.setText("Match: NA");
         allianceText.setText("Alliance:\n Blue");
+        boolean locationGo = getIntent().getBooleanExtra("local",false);
+        if (locationGo){
+            replaceFragment(new EndGameAlliance(),"end");
+            getSupportActionBar().setTitle("Review ALLIANCE");
+            binding.bottomNavigationView.setSelectedItemId(R.id.end);
+        }else {
+            replaceFragment(new BeforeMatchFragmentAlliance(),"before");
+            getSupportActionBar().setTitle("Before Match ALLIANCE");
+            binding.bottomNavigationView.setSelectedItemId(R.id.before);
+        }
     }
     @SuppressLint("RestrictedApi")
     @Override
@@ -217,9 +221,8 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
 
                 BeforeMatchFragmentAlliance beforeFrag = (BeforeMatchFragmentAlliance)getSupportFragmentManager().findFragmentByTag("before");
                 EndGameAlliance endFrag = (EndGameAlliance) getSupportFragmentManager().findFragmentByTag("end");
-                Auto autoFrag = (Auto)getSupportFragmentManager().findFragmentByTag("auto");
-                TeleOp teleFrag = (TeleOp)getSupportFragmentManager().findFragmentByTag("tele");
-                Docking dockFrag = (Docking)getSupportFragmentManager().findFragmentByTag("docking");
+                AutoAlliance autoFrag = (AutoAlliance) getSupportFragmentManager().findFragmentByTag("auto");
+                TeleOpAlliance teleFrag = (TeleOpAlliance) getSupportFragmentManager().findFragmentByTag("tele");
 
                 if (beforeFrag != null && beforeFrag.isVisible()) {
                     Intent intent = new Intent(AllianceActivity.this,SplashActivity.class);
@@ -231,13 +234,9 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                     binding.bottomNavigationView.setSelectedItemId(R.id.auto);
                     replaceFragment(new AutoAlliance(), "auto");
                 }else if (endFrag != null && endFrag.isVisible()) {
-                    binding.bottomNavigationView.setSelectedItemId(R.id.dock);
-                    replaceFragment(new Docking(), "docking");
-                }else if (dockFrag != null && dockFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.tele);
                     replaceFragment(new TeleOpAlliance(), "tele");
                 }
-
                 break;
         }
     }

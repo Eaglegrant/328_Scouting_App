@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Before Match"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:id="@+id/before" />
+    <item android:title="Auto"
+        android:icon="@drawable/ic_baseline_autorenew_24"
+        android:id="@+id/auto" />
+    <item android:title="Tele-Op" android:icon="@drawable/ic_baseline_home_24"
+        android:id="@+id/tele" />
+    <item android:title="End Game"
+        android:icon="@drawable/ic_baseline_send_24"
+        android:id="@+id/end" />
+
+</menu>

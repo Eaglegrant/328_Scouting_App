@@ -139,7 +139,6 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
                     data = AllianceActivity.getAllData();
                     dimen = AllianceActivity.getDimen();
                 }
-                Toast.makeText(context, data, Toast.LENGTH_LONG).show();
                 qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, dimen);
                 try {
                     bitmap = qrgEncoder.encodeAsBitmap();

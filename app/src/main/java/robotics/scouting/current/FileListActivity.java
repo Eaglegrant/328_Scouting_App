@@ -42,6 +42,7 @@ public class FileListActivity extends AppCompatActivity {
                         startActivity(intent);
                     } else {
                         Intent intent = new Intent(FileListActivity.this, AllianceActivity.class);
+                        intent.putExtra("local",true);
                         startActivity(intent);
                     }
                 }
