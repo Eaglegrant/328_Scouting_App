@@ -1,5 +1,6 @@
 package robotics.scouting.current;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -24,9 +25,11 @@ import com.google.zxing.Result;
 import com.google.zxing.WriterException;
 import com.opencsv.CSVWriter;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -164,48 +167,89 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
     int dimen;
     QRGEncoder qrgEncoder;
     Bitmap bitmap;
-    public static void writeDataAtOnce(String filePath,String dataRaw)
-    {
-        // first create file object for file placed at location
-        // specified by filepath
-        File file = new File(filePath);
+    String imagesDir;
+    ContentValues contentValues;
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private void saveFileToExternalStorage(String content) {
+        Uri externalUri = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
 
-        try {
-            // create FileWriter object with file as parameter
+        String relativeLocation = Environment.DIRECTORY_DOCUMENTS;
+        File csvFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
+        if (csvFile.exists()){
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(csvFile));
+                StringBuilder text = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    text.append(line);
+                    text.append('\n');
+                }
+                String data = text.toString();
+                OutputStream outputStream =  getContentResolver().openOutputStream(Uri.fromFile(csvFile));
+                outputStream.write(data.getBytes());
+                outputStream.write(content.getBytes());
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            contentValues = new ContentValues();
+            contentValues.put(MediaStore.Files.FileColumns.DISPLAY_NAME, "file.csv");
+            contentValues.put(MediaStore.Files.FileColumns.MIME_TYPE, "application/text");
+            contentValues.put(MediaStore.Files.FileColumns.TITLE, "file");
+            contentValues.put(MediaStore.Files.FileColumns.DATE_ADDED, System.currentTimeMillis() / 1000);
+            contentValues.put(MediaStore.Files.FileColumns.RELATIVE_PATH, relativeLocation);
+            contentValues.put(MediaStore.Files.FileColumns.DATE_TAKEN, System.currentTimeMillis());
+            Uri fileUri = getContentResolver().insert(externalUri, contentValues);
+            try {
+                OutputStream outputStream =  getContentResolver().openOutputStream(fileUri);
+                String header = "Event;Match;Team Or Alliance;Auto Comment;Auto Grid;Teleop Comment; Teleop Grid;Docking;Time To Dock\n";
+                outputStream.write(header.getBytes());
+                outputStream.write(content.getBytes());
+                outputStream.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    private boolean saveImage(String dataRaw) throws IOException {
+        imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR" + File.separator;
+        String content = dataRaw.replace("\n", ";");
+        content = content.replace("|", "\n");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            saveFileToExternalStorage(content);
+        } else {
+            File file = new File(imagesDir, "file.csv");
             FileWriter outputfile = new FileWriter(file);
-
-            // create CSVWriter with '|' as separator
-            CSVWriter writer = new CSVWriter(outputfile, '|',
-                    CSVWriter.NO_QUOTE_CHARACTER,
-                    CSVWriter.DEFAULT_ESCAPE_CHARACTER,
-                    CSVWriter.DEFAULT_LINE_END);
-
-            // create a List which contains String array
+            CSVWriter writer = new CSVWriter(outputfile);
             List<String[]> data = new ArrayList<String[]>();
-            data.add(new String[] { "Event", "Match", "Alliance", "Auto Comments", "Auto Grid", "Teleop Comments", "Teleop Grid", "Balance", "Time To Balance"});
-            data.add(dataRaw.split("\n"));
+            data.add(content.split(";"));
             writer.writeAll(data);
             writer.close();
         }
-        catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        return true;
+    }
+    private void writeDataAtOnce(String dataRaw)
+    {
+        try {
+            saveImage(dataRaw);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
-    private void saveData(String data){
+    private void saveData(String dataRaw){
         dimen = AllianceActivity.getDimen();
-        String[] splitData = data.split("\n");
+        String[] splitData = dataRaw.split("\n");
         matchNumber = Integer.parseInt(splitData[1]);
         allianceNum = splitData[2];
-        qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, dimen);
+        qrgEncoder = new QRGEncoder(dataRaw, null, QRGContents.Type.TEXT, dimen);
         try {
             bitmap = qrgEncoder.encodeAsBitmap();
             saveImage(bitmap);
         } catch (WriterException | IOException e) {
             e.printStackTrace();
         }
-        String imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR" + File.separator + allianceNum+".csv";
-        writeDataAtOnce(imagesDir,data);
+        writeDataAtOnce(dataRaw);
     }
     @Override
     public void handleResult(Result result) {
@@ -221,7 +265,11 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
         builder.setNegativeButton("View Data", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(CameraScanner.this,GridActivity.class);
+                Intent intent = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                    intent = new Intent(CameraScanner.this, GridActivity.class);
+                    intent.putExtra("csv", contentValues);
+                }
                 startActivity(intent);
             }
         });
