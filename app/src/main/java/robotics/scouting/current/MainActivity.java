@@ -43,6 +43,7 @@ import robotics.scouting.current.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     ActivityMainBinding binding;
     FloatingActionButton fab;
+    FloatingActionButton fab2;
     static String balance = "NA";
     static int match = -1;
     static int team = -1;
@@ -70,8 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new BeforeMatchFragment(),"before");
         fab = findViewById(R.id.fab);
+        fab2 = findViewById(R.id.fab2);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
@@ -99,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dimen = Math.min(width, height);
         dimen = dimen * 3 / 4;
         fab.setOnClickListener(this);
+        fab2.setOnClickListener(this);
         if (!checkPermission()) {
             requestPermission();
         }
@@ -134,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MatchText = headerView.findViewById(R.id.matchNum);
         MatchText.setText("Match: NA");
         TeamText.setText("Team:\n NA");
+        replaceFragment(new BeforeMatchFragment(),"before");
     }
     @SuppressLint("RestrictedApi")
     @Override
@@ -240,6 +243,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 break;
+            case R.id.fab2:
+
+                 beforeFrag = (BeforeMatchFragment)getSupportFragmentManager().findFragmentByTag("before");
+                 autoFrag = (Auto)getSupportFragmentManager().findFragmentByTag("auto");
+                 teleFrag = (TeleOp)getSupportFragmentManager().findFragmentByTag("tele");
+                 dockFrag = (Docking)getSupportFragmentManager().findFragmentByTag("docking");
+
+                if (beforeFrag != null && beforeFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.auto);
+                    replaceFragment(new Auto(), "auto");
+                }else if (autoFrag != null && autoFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.tele);
+                    replaceFragment(new TeleOp(), "tele");
+                }else if (teleFrag != null && teleFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.dock);
+                    replaceFragment(new Docking(), "docking");
+                }else if (dockFrag != null && dockFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.end);
+                    replaceFragment(new EndGame(), "end");
+                }
+
+                break;
         }
     }
 
@@ -254,6 +279,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             .replace(R.id.frameLayout, fragment,title)
             .addToBackStack(null);
     fragmentTransaction.commit();
+        if (title.equals("end")){
+            fab2.setVisibility(View.GONE);
+        }
+        else{
+            fab2.setVisibility(View.VISIBLE);
+        }
     }
     public boolean checkPermission(){
         int result = ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);

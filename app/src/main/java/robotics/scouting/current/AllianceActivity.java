@@ -42,6 +42,7 @@ import robotics.scouting.current.databinding.ActivityAllianceBinding;
 public class AllianceActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     ActivityAllianceBinding binding;
     FloatingActionButton fab;
+    FloatingActionButton fab2;
     static String balance = "NA";
     static int match = -1;
     static String autoC = "NA";
@@ -70,6 +71,7 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
         binding = ActivityAllianceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         fab = findViewById(R.id.fab);
+        fab2 = findViewById(R.id.fab2);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
@@ -97,6 +99,7 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
         dimen = Math.min(width, height);
         dimen = dimen * 3 / 4;
         fab.setOnClickListener(this);
+        fab2.setOnClickListener(this);
         if (!checkPermission()) {
             requestPermission();
         }
@@ -238,6 +241,25 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                     replaceFragment(new TeleOpAlliance(), "tele");
                 }
                 break;
+            case R.id.fab2:
+
+                beforeFrag = (BeforeMatchFragmentAlliance) getSupportFragmentManager().findFragmentByTag("before");
+                autoFrag = (AutoAlliance) getSupportFragmentManager().findFragmentByTag("auto");
+                teleFrag = (TeleOpAlliance) getSupportFragmentManager().findFragmentByTag("tele");
+                endFrag = (EndGameAlliance)getSupportFragmentManager().findFragmentByTag("end");
+
+                if (beforeFrag != null && beforeFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.auto);
+                    replaceFragment(new AutoAlliance(), "auto");
+                }else if (autoFrag != null && autoFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.tele);
+                    replaceFragment(new TeleOpAlliance(), "tele");
+                }else if (teleFrag != null && teleFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.end);
+                    replaceFragment(new EndGameAlliance(), "end");
+                    view.setVisibility(View.GONE);
+                }
+                break;
         }
     }
 
@@ -252,6 +274,11 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                 .replace(R.id.frameLayout, fragment,title)
                 .addToBackStack(null);
         fragmentTransaction.commit();
+        if (title.equals("end")){
+            fab2.setVisibility(View.GONE);
+        }else{
+            fab2.setVisibility(View.VISIBLE);
+        }
     }
     public boolean checkPermission(){
         int result = ContextCompat.checkSelfPermission(AllianceActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);

@@ -35,8 +35,7 @@ import java.util.List;
 public class QRCodeScanner extends AppCompatActivity implements  View.OnClickListener{
     MaterialButton scanBtn;
     MaterialButton scanBtnAlliance;
-    MaterialButton openQRFolder1;
-    MaterialButton openQRFolder2;
+    MaterialButton openQRFolder;
     MaterialButton GridButton;
     FloatingActionButton fab;
     String imagesDir;
@@ -45,15 +44,13 @@ public class QRCodeScanner extends AppCompatActivity implements  View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode_scanner);
         scanBtn = (MaterialButton) findViewById(R.id.scanBtnSuper);
-        openQRFolder1 = (MaterialButton) findViewById(R.id.fabFolder2);
-        openQRFolder2 = (MaterialButton) findViewById(R.id.fabFolder1);
+        openQRFolder = (MaterialButton) findViewById(R.id.fabFolder);
         scanBtnAlliance = (MaterialButton) findViewById(R.id.scanBtnAlliance);
         GridButton = (MaterialButton) findViewById(R.id.GridButton);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         scanBtn.setOnClickListener(this);
         scanBtnAlliance.setOnClickListener(this);
-        openQRFolder1.setOnClickListener(this);
-        openQRFolder2.setOnClickListener(this);
+        openQRFolder.setOnClickListener(this);
         GridButton.setOnClickListener(this);
         fab.setOnClickListener(this);
 
@@ -70,8 +67,7 @@ public class QRCodeScanner extends AppCompatActivity implements  View.OnClickLis
                 Intent intent2 = new Intent(QRCodeScanner.this, CameraScannerAlliance.class);
                 startActivity(intent2);
                 break;
-            case R.id.fabFolder2:
-            case R.id.fabFolder1:
+            case R.id.fabFolder:
                 imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
                 Intent intent1 = new Intent(QRCodeScanner.this, FileListActivity.class);
                 intent1.putExtra("path", imagesDir);
