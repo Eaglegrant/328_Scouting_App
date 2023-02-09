@@ -39,7 +39,7 @@ import java.util.List;
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-public class CameraScannerAlliance extends AppCompatActivity implements ZXingScannerView.ResultHandler{
+public class GroupReader extends AppCompatActivity implements ZXingScannerView.ResultHandler{
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
     private static int cam = Camera.CameraInfo.CAMERA_FACING_BACK; //New Version: CameraCharacteristics.LENS_FACING_BACK
@@ -62,7 +62,7 @@ public class CameraScannerAlliance extends AppCompatActivity implements ZXingSca
         return (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
     }
     private void requestPermission(){
-        ActivityCompat.requestPermissions(CameraScannerAlliance.this,new String[] {android.Manifest.permission.CAMERA},REQUEST_CAMERA);
+        ActivityCompat.requestPermissions(GroupReader.this,new String[] {android.Manifest.permission.CAMERA},REQUEST_CAMERA);
     }
     public void onRequestPermissionResult(int requestCode, String permissions[], int[] grantResult){
         switch (requestCode){
@@ -116,7 +116,7 @@ public class CameraScannerAlliance extends AppCompatActivity implements ZXingSca
     String allianceNum;
     int matchNumber;
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener){
-        new AlertDialog.Builder(CameraScannerAlliance.this)
+        new AlertDialog.Builder(GroupReader.this)
                 .setMessage(message)
                 .setPositiveButton("OK",okListener)
                 .setNegativeButton("Cancel",null)
@@ -187,7 +187,7 @@ public class CameraScannerAlliance extends AppCompatActivity implements ZXingSca
         builder.setPositiveButton("Scan Another?", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                scannerView.resumeCameraPreview(CameraScannerAlliance.this);
+                scannerView.resumeCameraPreview(GroupReader.this);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

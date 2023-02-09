@@ -81,12 +81,16 @@ public class QRCodeScanner extends AppCompatActivity implements  View.OnClickLis
                 }
                 startActivity(intent3);
                 break;
-            case R.id.fab:
-                Intent intent4 = new Intent(QRCodeScanner.this, AllianceActivity.class);
-                intent4.putExtra("local",true);
-                imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
-                intent4.putExtra("path", imagesDir);
+            case R.id.groupReader:
+                Intent intent4 = new Intent(QRCodeScanner.this, GroupReader.class);
                 startActivity(intent4);
+                break;
+            case R.id.fab:
+                Intent intent5 = new Intent(QRCodeScanner.this, AllianceActivity.class);
+                intent5.putExtra("local",true);
+                imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
+                intent5.putExtra("path", imagesDir);
+                startActivity(intent5);
                 break;
         }
     }
