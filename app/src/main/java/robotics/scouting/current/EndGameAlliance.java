@@ -1,10 +1,13 @@
 package robotics.scouting.current;
 
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -161,8 +164,15 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
             case R.id.fabRead:
                 Intent intent1 = new Intent(context,QRCodeScanner.class);
                 if (finalDataAdd != null) {
+                    SharedPreferences sh = context.getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor shEditor = sh.edit();
+                    shEditor.putString("alliance", finalDataAdd);
+                    shEditor.apply();
+                }
+                /*if (finalDataAdd != null) {
                     intent1.putExtra("alliance",finalDataAdd);
                 }
+                */
                 startActivity(intent1);
                 break;
         }

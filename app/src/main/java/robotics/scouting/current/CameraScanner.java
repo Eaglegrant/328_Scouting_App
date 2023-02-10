@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 import com.google.zxing.Result;
 import com.google.zxing.WriterException;
@@ -40,7 +41,6 @@ import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class CameraScanner extends AppCompatActivity implements ZXingScannerView.ResultHandler{
-    //TODO FIX SCANNER FOR ALLIANCE AUTO READ, IT IS NOT WORKING.
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
     private static int cam = Camera.CameraInfo.CAMERA_FACING_BACK; //New Version: CameraCharacteristics.LENS_FACING_BACK
@@ -50,14 +50,13 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
         int currentApiVersion = Build.VERSION.SDK_INT;
-        if(currentApiVersion >= Build.VERSION_CODES.M){
-            if(checkPermission()){
-              //  Toast.makeText(getApplicationContext(),"Permission is granted",Toast.LENGTH_LONG).show();
-            }else{
+        if(currentApiVersion >= Build.VERSION_CODES.M) {
+            if (checkPermission()) {
+                //  Toast.makeText(getApplicationContext(),"Permission is granted",Toast.LENGTH_LONG).show();
+            } else {
                 requestPermission();
             }
         }
-
     }
     private boolean checkPermission(){
         return (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
@@ -124,13 +123,13 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
                 .create()
                 .show();
     }
-    private boolean saveImage(Bitmap bitmap) throws IOException {
+    private boolean saveImageT(Bitmap bitmap,String first, String second) throws IOException {
         boolean saved;
         OutputStream fos=null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
             ContentValues contentValues =new  ContentValues();
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + matchNumber + " Alliance " + allianceNum);
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + first + " T " + second);
             contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
             contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "QR");
             Uri imageUri = getApplicationContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
@@ -149,7 +148,7 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
                 file.mkdir();
             }
 
-            File image =new File(imagesDir,  "M" + matchNumber + " Alliance " + allianceNum+".png");
+            File image =new File(imagesDir,  "M" + matchNumber + " T " + allianceNum+".png");
             try {
                 fos =new FileOutputStream(image);
             } catch (FileNotFoundException e) {
@@ -212,13 +211,14 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
             }
         }
     }
-    private boolean saveImage(String dataRaw) throws IOException {
+    private boolean saveCSV(String dataRaw) throws IOException {
         imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR" + File.separator;
         String content = dataRaw.replace("\n", ";");
-        content = content.replace("|", "\n");
+        content = content.replace(";|;", "\n");
+        Log.d("CSV Data", content);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             saveFileToExternalStorage(content);
-        } else {
+        } else { //UNTESTED CODE FOR API < 29, ADDED BY GITHUB COPILOT
             File file = new File(imagesDir, "file.csv");
             FileWriter outputfile = new FileWriter(file);
             CSVWriter writer = new CSVWriter(outputfile);
@@ -232,7 +232,7 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
     private void writeDataAtOnce(String dataRaw)
     {
         try {
-            saveImage(dataRaw);
+            saveCSV(dataRaw);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -241,11 +241,11 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
         dimen = AllianceActivity.getDimen();
         String[] splitData = dataRaw.split("\n");
         matchNumber = Integer.parseInt(splitData[1]);
-        allianceNum = splitData[2];
-        qrgEncoder = new QRGEncoder(dataRaw, null, QRGContents.Type.TEXT, dimen);
-        try {
+        allianceNum = String.valueOf(splitData[2]);
+       qrgEncoder = new QRGEncoder(dataRaw, null, QRGContents.Type.TEXT, dimen);
+       try {
             bitmap = qrgEncoder.encodeAsBitmap();
-            saveImage(bitmap);
+            saveImageT(bitmap, String.valueOf(matchNumber),allianceNum+" Group");
         } catch (WriterException | IOException e) {
             e.printStackTrace();
         }

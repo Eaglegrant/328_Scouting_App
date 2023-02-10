@@ -11,6 +11,7 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
@@ -22,8 +23,12 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.google.zxing.EncodeHintType;
 import com.google.zxing.Result;
 import com.google.zxing.WriterException;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.opencsv.CSVWriter;
 
 import java.io.BufferedReader;
@@ -36,7 +41,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
@@ -58,7 +67,9 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
                 requestPermission();
             }
         }
-
+        saveData("Penn\n1\n135\nFast\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nSlow\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nFirst\n10.00");
+        saveData("Penn\n1\n328\nSlow\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nSlow\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nThird\n20.00");
+        saveData("Penn\n1\n45\nMedium\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nSlow\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nSecond\n15.00");
     }
     private boolean checkPermission(){
         return (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
@@ -172,14 +183,30 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
     int index = 0;
     private void groupQR(List<String> listOfLists){
         String data = listOfLists.toString();
-        String formattedData;
-        formattedData = data.replace(", ","\n");
+        String formattedData = null;
+        String pattern = "(?<!\\b(?:1|0)\\b),\\s";
+        // Create a Pattern object
+        Pattern r = Pattern.compile(pattern);
+
+        // Now create matcher object.
+        Matcher m = r.matcher(data);
+        if (m.find( )) {
+            formattedData = m.replaceAll("\n");
+        }
         String testString = formattedData;
         testString = testString.substring(1,testString.length()-1);
-        if (getIntent().getExtras()!=null){
+        testString = testString.replace("[","");
+        testString = testString.replace("]","");
+        SharedPreferences sh = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        String allianceData = sh.getString("alliance", "na");
+        if (!allianceData.equals("na")){
             testString +="\n";
-            testString += getIntent().getStringExtra("alliance");
+            allianceData = allianceData.replace("[","");
+            allianceData = allianceData.replace("]","");
+            testString += allianceData;
         }
+        testString = testString.replaceAll(",\\s"," ");
+        Log.d("GROUP", "groupQR: "+testString);
         qrgEncoder = new QRGEncoder(testString, null, QRGContents.Type.TEXT, dimen);
         try {
             bitmap = qrgEncoder.encodeAsBitmap();
@@ -203,6 +230,8 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
         matchNumber = Integer.parseInt(splitData[1]);
         allianceNum = splitData[2];
         qrgEncoder = new QRGEncoder(dataRaw, null, QRGContents.Type.TEXT, dimen);
+        Log.d("ROBOT", "soloQR: "+dataRaw);
+
         try {
             bitmap = qrgEncoder.encodeAsBitmap();
             saveImage(bitmap, String.valueOf(matchNumber),allianceNum);

@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
         return animList;
     }
     private Button btnToggleDark;
-    public SharedPreferences sharedPreferences;
+    public static SharedPreferences sharedPreferences;
     public static SharedPreferences.Editor editor;
     public static boolean isDarkModeOn;
     public static String event;
