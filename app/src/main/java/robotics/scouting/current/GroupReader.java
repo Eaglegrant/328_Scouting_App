@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 import com.google.zxing.Result;
 import com.google.zxing.WriterException;
@@ -34,6 +35,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import androidmads.library.qrgenearator.QRGContents;
@@ -123,13 +125,13 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
                 .create()
                 .show();
     }
-    private boolean saveImage(Bitmap bitmap) throws IOException {
+    private boolean saveImage(Bitmap bitmap,String first, String second) throws IOException {
         boolean saved;
         OutputStream fos=null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
             ContentValues contentValues =new  ContentValues();
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + matchNumber + " T " + allianceNum);
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + first + " T " + second);
             contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
             contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "QR");
             Uri imageUri = getApplicationContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
@@ -166,6 +168,35 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
     int dimen;
     QRGEncoder qrgEncoder;
     Bitmap bitmap;
+    List<String> groupList = new ArrayList<>();
+    int index = 0;
+    private void groupQR(List<String> listOfLists){
+        String data = listOfLists.toString();
+        String formattedData;
+        formattedData = data.replace(", ","\n");
+        String testString = formattedData;
+        testString = testString.substring(1,testString.length()-1);
+        if (getIntent().getExtras()!=null){
+            testString +="\n";
+            testString += getIntent().getStringExtra("alliance");
+        }
+        qrgEncoder = new QRGEncoder(testString, null, QRGContents.Type.TEXT, dimen);
+        try {
+            bitmap = qrgEncoder.encodeAsBitmap();
+            saveImage(bitmap, String.valueOf(matchNumber),allianceNum+" Group");
+        } catch (WriterException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void groupCheck(String data){
+        groupList.add(data+"\n|");
+        index++;
+        if (index == 3){
+            groupQR(groupList);
+            groupList.clear();
+            index = 0;
+        }
+    }
     private void saveData(String dataRaw){
         dimen = AllianceActivity.getDimen();
         String[] splitData = dataRaw.split("\n");
@@ -174,17 +205,18 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
         qrgEncoder = new QRGEncoder(dataRaw, null, QRGContents.Type.TEXT, dimen);
         try {
             bitmap = qrgEncoder.encodeAsBitmap();
-            saveImage(bitmap);
+            saveImage(bitmap, String.valueOf(matchNumber),allianceNum);
         } catch (WriterException | IOException e) {
             e.printStackTrace();
         }
+        groupCheck(dataRaw);
     }
     @Override
     public void handleResult(Result result) {
         final String rawResult = result.getText();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Scan Result");
-        builder.setPositiveButton("Scan Another?", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Scan Next Robot QR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 scannerView.resumeCameraPreview(GroupReader.this);
@@ -197,7 +229,7 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
             }
         });
         saveData(rawResult);
-        builder.setMessage(rawResult + "\nSCANNNED AND SAVED");
+        builder.setMessage(rawResult + "\nSCANNNED AND SAVED, SCAN NEXT ROBOT QR");
         AlertDialog alert1 = builder.create();
         alert1.show();
     }

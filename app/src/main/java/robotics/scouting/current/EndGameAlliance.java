@@ -129,6 +129,7 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
     }
     String data;
     int dimen;
+    String finalDataAdd;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -147,6 +148,7 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
                 } catch (WriterException | IOException e) {
                     e.printStackTrace();
                 }
+                finalDataAdd = data;
                 AllianceActivity.clearData();
                 break;
                 //Okay you can touch stuff from here.
@@ -158,6 +160,9 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
                     break;
             case R.id.fabRead:
                 Intent intent1 = new Intent(context,QRCodeScanner.class);
+                if (finalDataAdd != null) {
+                    intent1.putExtra("alliance",finalDataAdd);
+                }
                 startActivity(intent1);
                 break;
         }

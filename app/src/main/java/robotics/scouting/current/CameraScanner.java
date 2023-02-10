@@ -203,7 +203,7 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
             Uri fileUri = getContentResolver().insert(externalUri, contentValues);
             try {
                 OutputStream outputStream =  getContentResolver().openOutputStream(fileUri);
-                String header = "Event;Match;Team Or Alliance;Auto Comment;Auto Grid;Teleop Comment; Teleop Grid;Docking;Time To Dock\n";
+                String header = "Event;Match;Team Or Alliance;Auto Comment;Auto Grid;Teleop Comment;Teleop Grid;Docking;Time To Dock\n";
                 outputStream.write(header.getBytes());
                 outputStream.write(content.getBytes());
                 outputStream.close();
