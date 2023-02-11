@@ -120,6 +120,7 @@ public class AutoAlliance extends Fragment implements View.OnClickListener{
     ImageView rightGrid16;
     ImageView rightGrid17;
     ImageView rightGrid18;
+    ImageView forwardGrid1;
     int Grid1_OG = R.drawable.tile000;
     int Grid2_OG = R.drawable.tile001;
     int Grid3_OG = R.drawable.tile002;
@@ -354,7 +355,7 @@ public class AutoAlliance extends Fragment implements View.OnClickListener{
                 rightGrid13.setImageResource(R.drawable.cube);
                 rightGrid13.setBackgroundColor(Color.RED);
             }
-            if (gridQR.get(26) == 1){
+            if (gridQR.get(26) == 1) {
                 rightGrid14.setImageResource(R.drawable.cone);
                 rightGrid14.setBackgroundColor(Color.RED);
             }
@@ -395,15 +396,15 @@ public class AutoAlliance extends Fragment implements View.OnClickListener{
                     }
                 } else {
                     image.setImageResource(R.drawable.cone);
-                    image.setBackgroundColor(Color.RED);
-                    switch (((View) v.getParent()).getId()) {
-                        case R.id.leftGrid:
-                            gridQR.set(0, 1);
-                            break;
-                        case R.id.coopGrid:
-                            gridQR.set(9, 1);
-                            break;
-                        case R.id.rightGrid:
+                            image.setBackgroundColor(Color.RED);
+                            switch (((View) v.getParent()).getId()) {
+                                case R.id.leftGrid:
+                                    gridQR.set(0, 1);
+                                    break;
+                                case R.id.coopGrid:
+                                    gridQR.set(9, 1);
+                                    break;
+                                case R.id.rightGrid:
                             gridQR.set(18, 1);
                             break;
                     }

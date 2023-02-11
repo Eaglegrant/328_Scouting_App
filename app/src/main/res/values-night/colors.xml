@@ -10,6 +10,9 @@
     <color name="red">#FF0000</color>
     <color name="blue">#0000FF</color>
     <color name="backgroundColor">#0f2133</color>
+    <color name="backgroundColorGrid">#16314d</color>
     <color name="secondaryColor">#7A8F8F</color>
-
+    <color name="disable_foreground_grey">#bcc9e0</color>
+    <color name="disable_thumb_grey">#144299</color>
+    <color name="enable_thumb_green">#cf2913</color>
 </resources>

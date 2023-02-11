@@ -184,7 +184,7 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
     private void groupQR(List<String> listOfLists){
         String data = listOfLists.toString();
         String formattedData = null;
-        String pattern = "(?<!\\b(?:1|0)\\b),\\s";
+        String pattern = "(?<!\\b(?:1|0)\\b),\\s"; // If any , is followed by a space, and NOT preceded by 1 or 0, replace with a new line
         // Create a Pattern object
         Pattern r = Pattern.compile(pattern);
 
@@ -194,7 +194,7 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
             formattedData = m.replaceAll("\n");
         }
         String testString = formattedData;
-        testString = testString.substring(1,testString.length()-1);
+        testString = testString.substring(1,testString.length()-1); //removes { and } from the string.
         testString = testString.replace("[","");
         testString = testString.replace("]","");
         SharedPreferences sh = getSharedPreferences("sharedPrefs", MODE_PRIVATE);

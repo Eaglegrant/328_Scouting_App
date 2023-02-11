@@ -11,6 +11,7 @@
     <color name="red">#FF0000</color>
     <color name="blue">#0000FF</color>
     <color name="backgroundColor">#7993ab</color>
+    <color name="backgroundColorGrid">#4c5c6b</color>
     <color name="secondaryColor">#232b2b</color>
     <color name="disable_foreground_grey">#bcc9e0</color>
     <color name="disable_thumb_grey">#144299</color>
