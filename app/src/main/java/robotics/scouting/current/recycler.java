@@ -12,8 +12,7 @@ public class recycler {
     public static Comparator<recycler> teamComparator = new Comparator<recycler>() {
         @Override
         public int compare(recycler t1, recycler t2) {
-            Log.d("TEAM COMPARE", "compare: "+t2.team.compareTo(t1.team));
-            return t2.team.compareTo(t1.team);
+            return t1.team.compareTo(t2.team);
         }
     };
 }

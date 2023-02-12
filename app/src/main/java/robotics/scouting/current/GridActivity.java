@@ -87,19 +87,17 @@ public class GridActivity extends AppCompatActivity {
         if (!csvFile.exists()) {
             noFilesText.setVisibility(View.VISIBLE);
         }else{
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerArrayList = new ArrayList<recycler>();
+
             try {
+                getData();
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 recyclerView.setAdapter(new GridAdapter(this));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+
         }
-        try {
-            getData();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
 
     }
 
@@ -125,11 +123,14 @@ public class GridActivity extends AppCompatActivity {
     Menu menu;
     private void getData() throws Exception {
         List<String[]> TotalLines = readLineByLine();
+        recyclerArrayList = new ArrayList<recycler>();
         for (int i=1;i< TotalLines.toArray().length;i++){
             String data = TotalLines.get(i)[0];
                 recycler recyclerp = new recycler(regexFinder(data,2));
-            Log.d("teamRecycler", "getData: "+recyclerp.team);
-            recyclerArrayList.add(recyclerp);
+                if (recyclerArrayList != null){
+                    recyclerArrayList.add(recyclerp);
+                    Toast.makeText(this, regexFinder(data,2), Toast.LENGTH_SHORT).show();
+                }
         }
         gridAdapter = new GridAdapter(this);
         recyclerView.setAdapter(gridAdapter);
