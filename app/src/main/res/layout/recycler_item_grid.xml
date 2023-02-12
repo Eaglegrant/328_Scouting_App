@@ -3,14 +3,18 @@
     android:layout_width="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_edge"
+    >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/event_text"
         android:padding="10dp"
+        android:layout_centerVertical="true"
         android:textColor="@color/black"
         android:textSize="24sp"
+        android:background="@drawable/border"
         tools:text="Event"/>
     <TextView
         android:layout_width="wrap_content"
@@ -19,7 +23,9 @@
         android:id="@+id/match_text"
         android:padding="10dp"
         android:textColor="@color/black"
+        android:layout_centerVertical="true"
         android:textSize="24sp"
+        android:background="@drawable/border"
         tools:text="Match"/>
     <TextView
         android:layout_width="wrap_content"
@@ -27,8 +33,11 @@
         android:layout_toEndOf="@id/match_text"
         android:id="@+id/team_text"
         android:padding="10dp"
+        android:layout_centerVertical="true"
         android:textColor="@color/black"
         android:textSize="24sp"
+        android:background="@drawable/border"
+
         tools:text="Team"/>
     <TextView
         android:layout_width="wrap_content"
@@ -37,79 +46,100 @@
         android:id="@+id/autoc_text"
         android:padding="10dp"
         android:textColor="@color/black"
+        android:layout_centerVertical="true"
+
         android:textSize="24sp"
+        android:background="@drawable/border"
         tools:text="Auto Comment"/>
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/layoutGrid1"
         android:layout_toEndOf="@id/autoc_text"
-        android:id="@+id/LAgrid_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        tools:text="0 0 0 0 0 0 0 0 0"/>
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/LAgrid_text"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="0 0 0 0 0 0 0 0 0"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CAgrid_text"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="0 0 0 0 0 0 0 0 0"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RAgrid_text"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="0 0 0 0 0 0 0 0 0"/>
+    </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/LAgrid_text"
-        android:id="@+id/CAgrid_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        tools:text="0 0 0 0 0 0 0 0 0"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/CAgrid_text"
-        android:id="@+id/RAgrid_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        tools:text="0 0 0 0 0 0 0 0 0"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/RAgrid_text"
+        android:layout_toEndOf="@id/layoutGrid1"
         android:id="@+id/teleop_text"
         android:padding="10dp"
+        android:layout_centerVertical="true"
         android:textColor="@color/black"
         android:textSize="24sp"
+        android:background="@drawable/border"
         tools:text="Teleop Comment"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutGrid2"
+        android:layout_toEndOf="@id/teleop_text"
+        android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/teleop_text"
         android:id="@+id/LTgrid_text"
         android:padding="10dp"
         android:textColor="@color/black"
         android:textSize="24sp"
+        android:background="@drawable/border"
         tools:text="0 0 0 0 0 0 0 0 0"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/LTgrid_text"
         android:id="@+id/CTgrid_text"
         android:padding="10dp"
         android:textColor="@color/black"
         android:textSize="24sp"
+        android:background="@drawable/border"
         tools:text="0 0 0 0 0 0 0 0 0"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/CTgrid_text"
         android:id="@+id/RTgrid_text"
         android:padding="10dp"
         android:textColor="@color/black"
         android:textSize="24sp"
+        android:background="@drawable/border"
         tools:text="0 0 0 0 0 0 0 0 0"/>
+    </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/RTgrid_text"
+        android:layout_toEndOf="@id/layoutGrid2"
         android:id="@+id/docking_text"
         android:padding="10dp"
+        android:layout_centerVertical="true"
         android:textColor="@color/black"
         android:textSize="24sp"
+        android:background="@drawable/border"
         tools:text="Dock"/>
     <TextView
         android:layout_width="wrap_content"
@@ -117,8 +147,10 @@
         android:layout_toEndOf="@id/docking_text"
         android:id="@+id/dockTime_text"
         android:padding="10dp"
+        android:layout_centerVertical="true"
         android:textColor="@color/black"
         android:textSize="24sp"
+        android:background="@drawable/border"
         tools:text="Dock Time"/>
     <LinearLayout
         android:layout_width="match_parent"
