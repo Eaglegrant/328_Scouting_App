@@ -25,10 +25,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.lets_go_splash.CreateAnim;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Reader;
@@ -36,6 +39,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -78,29 +82,23 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         String dataNew = data.split(";")[position];
         return dataNew;
     }
+    List<String[]> finalElements;
     public boolean removeItem(int position) {
         File csvFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
         if (csvFile.exists()) {
             try {
-                String[]rawLines = readAll();
-                for(int i=0;i<rawLines.length;i++){
-                    if(i == position){
-                        rawLines[i]="";
-                    }
-                }
-                StringBuilder finalStringBuilder= new StringBuilder("");
-                for(String s:rawLines){
-                    if(!s.equals("")){
-                        finalStringBuilder.append(s).append(System.getProperty("line.separator"));
-                    }
-                }
-                String finalString = finalStringBuilder.toString();
-                OutputStream outputStream = context.getContentResolver().openOutputStream(Uri.fromFile(csvFile));
-                outputStream.write(finalString.getBytes());
-                outputStream.close();
+                CSVReader reader2 = new CSVReader(new FileReader(csvFile));
+                List<String[]> allElements = reader2.readAll();
+                allElements.remove(position+1);
+                FileWriter sw = new FileWriter(csvFile);
+                CSVWriter writer = new CSVWriter(sw);
+                writer.writeAll(allElements);
+                writer.close();
                 return true;
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
         return false;
@@ -124,12 +122,12 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     public void updateAll(GridAdapter.ViewHolder holder, int position) throws Exception {
         TotalLines = readLineByLine();
         String data = TotalLines.get(position+1)[0];
-        String lAGrid = regexFinder(data,4).substring(0,6)+regexFinder(data,4).substring(18,24)+regexFinder(data,4).substring(36,42);
-        String cAGrid = regexFinder(data,4).substring(6,12)+regexFinder(data,4).substring(24,30)+regexFinder(data,4).substring(42,48);
-        String rAGrid = regexFinder(data,4).substring(12,18)+regexFinder(data,4).substring(30,36)+regexFinder(data,4).substring(48,53) + " ";
-        String lTGrid = regexFinder(data,6).substring(0,6)+regexFinder(data,6).substring(18,24)+regexFinder(data,6).substring(36,42);
-        String cTGrid = regexFinder(data,6).substring(6,12)+regexFinder(data,6).substring(24,30)+regexFinder(data,6).substring(42,48);
-        String rTGrid = regexFinder(data,6).substring(12,18)+regexFinder(data,6).substring(30,36)+regexFinder(data,6).substring(48,53) + " ";
+        String lAGrid = regexFinder(data,4).substring(0,6)+"| "+regexFinder(data,4).substring(18,24)+"| "+regexFinder(data,4).substring(36,42);
+        String cAGrid = regexFinder(data,4).substring(6,12)+"| "+regexFinder(data,4).substring(24,30)+"| "+regexFinder(data,4).substring(42,48);
+        String rAGrid = regexFinder(data,4).substring(12,18)+"| "+regexFinder(data,4).substring(30,36)+"| "+regexFinder(data,4).substring(48,53) + " ";
+        String lTGrid = regexFinder(data,6).substring(0,6)+"| "+regexFinder(data,6).substring(18,24)+"| "+regexFinder(data,6).substring(36,42);
+        String cTGrid = regexFinder(data,6).substring(6,12)+"| "+regexFinder(data,6).substring(24,30)+"| "+regexFinder(data,6).substring(42,48);
+        String rTGrid = regexFinder(data,6).substring(12,18)+"| "+regexFinder(data,6).substring(30,36)+"| "+regexFinder(data,6).substring(48,53) + " ";
         holder.eventTitle.setText(regexFinder(data,0));
         holder.matchText.setText(regexFinder(data,1));
         holder.teamText.setText(regexFinder(data,2));
@@ -143,6 +141,15 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         holder.RTeleGrid.setText(rTGrid);
         holder.docking.setText(regexFinder(data,7));
         holder.dockingTime.setText(regexFinder(data,8));
+        holder.eventHeader.setText("Event");
+        holder.matchHeader.setText("Match");
+        holder.teamHeader.setText("Team");
+        holder.autoHeader.setText("Auto Comment");
+        holder.AutoGridHeader.setText("Auto Grid");
+        holder.teleHeader.setText("Tele");
+        holder.TeleGridHeader.setText("Tele Grid");
+        holder.dockHeader.setText("Docking");
+        holder.dockingTimeHeader.setText("Docking Time");
     }
     @Override
     public void onBindViewHolder(GridAdapter.ViewHolder holder, int position) {
@@ -192,7 +199,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
                                 Toast.makeText(context.getApplicationContext(), "DELETED", Toast.LENGTH_SHORT).show();
                                 v.setVisibility(View.GONE);
                             }
-                            ((FileListActivity)context).recreate();
+                            ((GridActivity)context).recreate();
                         }
                         return true;
                     }
@@ -214,32 +221,50 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView eventTitle;
+        TextView eventHeader;
         TextView matchText;
+        TextView matchHeader;
         TextView teamText;
+        TextView teamHeader;
         TextView autoComment;
+        TextView autoHeader;
+        TextView AutoGridHeader;
         TextView LAutoGrid;
         TextView CAutoGrid;
         TextView RAutoGrid;
+        TextView teleHeader;
         TextView teleComment;
+        TextView TeleGridHeader;
         TextView LTeleGrid;
         TextView CTeleGrid;
         TextView RTeleGrid;
+        TextView dockHeader;
         TextView docking;
+        TextView dockingTimeHeader;
         TextView dockingTime;
         public ViewHolder(View itemView){
             super(itemView);
             eventTitle = itemView.findViewById(R.id.event_text);
+            eventHeader = itemView.findViewById(R.id.event_header);
             matchText = itemView.findViewById(R.id.match_text);
+            matchHeader = itemView.findViewById(R.id.match_header);
             teamText = itemView.findViewById(R.id.team_text);
+            teamHeader = itemView.findViewById(R.id.team_header);
             autoComment = itemView.findViewById(R.id.autoc_text);
+            autoHeader = itemView.findViewById(R.id.autoc_header);
+            AutoGridHeader = itemView.findViewById(R.id.Autogrid_header);
             LAutoGrid = itemView.findViewById(R.id.LAgrid_text);
             CAutoGrid = itemView.findViewById(R.id.CAgrid_text);
             RAutoGrid = itemView.findViewById(R.id.RAgrid_text);
+            teleHeader = itemView.findViewById(R.id.tele_header);
             teleComment = itemView.findViewById(R.id.teleop_text);
+            TeleGridHeader = itemView.findViewById(R.id.teleGrid_header);
             LTeleGrid = itemView.findViewById(R.id.LTgrid_text);
             CTeleGrid = itemView.findViewById(R.id.CTgrid_text);
             RTeleGrid = itemView.findViewById(R.id.RTgrid_text);
+            dockHeader = itemView.findViewById(R.id.dock_header);
             docking = itemView.findViewById(R.id.docking_text);
+            dockingTimeHeader = itemView.findViewById(R.id.dockTime_header);
             dockingTime = itemView.findViewById(R.id.dockTime_text);
         }
     }

@@ -30,6 +30,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,7 @@ public class GridActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<recycler> recyclerArrayList;
     GridAdapter gridAdapter;
+    View header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +64,7 @@ public class GridActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         noFilesText = findViewById(R.id.nofiles_textview);
         FloatingActionButton fab = findViewById(R.id.fab);
-        eventTitle = findViewById(R.id.event_text);
+       /* eventTitle = findViewById(R.id.event_text);
         matchText = findViewById(R.id.match_text);
         teamText = findViewById(R.id.team_text);
         autoComment = findViewById(R.id.autoc_text);
@@ -75,6 +77,8 @@ public class GridActivity extends AppCompatActivity {
         RTeleGrid = findViewById(R.id.RTgrid_text);
         docking = findViewById(R.id.docking_text);
         dockingTime = findViewById(R.id.dockTime_text);
+
+        */
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,10 +133,10 @@ public class GridActivity extends AppCompatActivity {
                 recycler recyclerp = new recycler(regexFinder(data,2));
                 if (recyclerArrayList != null){
                     recyclerArrayList.add(recyclerp);
-                    Toast.makeText(this, regexFinder(data,2), Toast.LENGTH_SHORT).show();
                 }
         }
         gridAdapter = new GridAdapter(this);
+
         recyclerView.setAdapter(gridAdapter);
     }
     public String regexFinder(String data,int position){

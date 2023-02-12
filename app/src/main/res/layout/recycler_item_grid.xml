@@ -6,101 +6,231 @@
     android:layout_height="wrap_content"
     android:background="@drawable/border_edge"
     >
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/event_text"
-        android:padding="10dp"
-        android:layout_centerVertical="true"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:background="@drawable/border"
-        tools:text="Event"/>
-    <TextView
+        android:id="@+id/event_layout"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_text"
+            android:padding="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/event_header"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Event"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_header"
+            android:minWidth="95dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Event"/>
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/event_text"
-        android:id="@+id/match_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:layout_centerVertical="true"
-        android:textSize="24sp"
-        android:background="@drawable/border"
-        tools:text="Match"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/match_text"
-        android:id="@+id/team_text"
-        android:padding="10dp"
-        android:layout_centerVertical="true"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:background="@drawable/border"
+        android:id="@+id/match_layout"
+        android:layout_toEndOf="@id/event_layout"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/match_text"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:layout_below="@id/match_header"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Match"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/match_header"
+            android:minWidth="95dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Match"/>
+    </RelativeLayout>
 
-        tools:text="Team"/>
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/team_text"
-        android:id="@+id/autoc_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:layout_centerVertical="true"
-
-        android:textSize="24sp"
-        android:background="@drawable/border"
-        tools:text="Auto Comment"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/layoutGrid1"
-        android:layout_toEndOf="@id/autoc_text"
-        android:orientation="vertical">
+        android:id="@+id/team_layout"
+        android:layout_toEndOf="@id/match_layout"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/LAgrid_text"
+            android:id="@+id/team_text"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:layout_below="@id/team_header"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Match"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/team_header"
+            android:minWidth="95dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:background="@drawable/border"
-            tools:text="0 0 0 0 0 0 0 0 0"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/CAgrid_text"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:background="@drawable/border"
-            tools:text="0 0 0 0 0 0 0 0 0"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RAgrid_text"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:background="@drawable/border"
-            tools:text="0 0 0 0 0 0 0 0 0"/>
-    </LinearLayout>
-    <TextView
+            tools:text="Team"/>
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/layoutGrid1"
-        android:id="@+id/teleop_text"
-        android:padding="10dp"
-        android:layout_centerVertical="true"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:background="@drawable/border"
-        tools:text="Teleop Comment"/>
+        android:id="@+id/autoc_layout"
+        android:layout_toEndOf="@id/team_layout"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/autoc_text"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:layout_below="@id/autoc_header"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Auto Comment"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/autoc_header"
+            android:minWidth="95dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Auto Comment"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/autoGrid_layout"
+        android:layout_toEndOf="@id/autoc_layout"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/Autogrid_header"
+            android:id="@+id/layoutGrid1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/LAgrid_text"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/border"
+                tools:text="0 0 0 0 0 0 0 0 0"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/CAgrid_text"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/border"
+                tools:text="0 0 0 0 0 0 0 0 0"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RAgrid_text"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/border"
+                tools:text="0 0 0 0 0 0 0 0 0"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Autogrid_header"
+            android:minWidth="95dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Auto Grid"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/teleop_layout"
+        android:layout_toEndOf="@id/autoGrid_layout"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teleop_text"
+            android:padding="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tele_header"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Tele"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tele_header"
+            android:minWidth="95dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="TeleOp Comment"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/teleGrid_layout"
+        android:layout_toEndOf="@id/teleop_layout"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/layoutGrid2"
-        android:layout_toEndOf="@id/teleop_text"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/teleGrid_header"
         android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
@@ -130,31 +260,85 @@
         android:background="@drawable/border"
         tools:text="0 0 0 0 0 0 0 0 0"/>
     </LinearLayout>
-    <TextView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teleGrid_header"
+            android:minWidth="95dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Tele Grid"/>
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/layoutGrid2"
-        android:id="@+id/docking_text"
-        android:padding="10dp"
-        android:layout_centerVertical="true"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:background="@drawable/border"
-        tools:text="Dock"/>
-    <TextView
+        android:id="@+id/dock_layout"
+        android:layout_toEndOf="@id/teleGrid_layout"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/docking_text"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:layout_below="@id/dock_header"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Dock"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dock_header"
+            android:minWidth="95dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Dock"/>
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/docking_text"
-        android:id="@+id/dockTime_text"
-        android:padding="10dp"
-        android:layout_centerVertical="true"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:background="@drawable/border"
-        tools:text="Dock Time"/>
+        android:id="@+id/dockingTime_layout"
+        android:layout_toEndOf="@id/dock_layout"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dockTime_text"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:layout_below="@id/dockTime_header"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Auto Comment"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dockTime_header"
+            android:minWidth="95dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/border"
+            tools:text="Auto Comment"/>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/backgroundColorGrid"
-        android:layout_below="@id/event_text"/>
+        android:layout_below="@id/event_layout"/>
 </RelativeLayout>

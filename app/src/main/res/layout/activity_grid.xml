@@ -7,48 +7,32 @@
     android:orientation="vertical"
     android:background="@color/grey"
     tools:context=".GridActivity">
-
+    <TextView
+        android:id="@+id/nofiles_textview"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="50dp"
+        android:layout_height="fill_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="NO DATA"
+        android:visibility="gone" />
     <HorizontalScrollView
         android:id="@+id/scrollViewHorizontal"
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <ScrollView
-                android:id="@+id/scrollViewVertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/nofiles_textview"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="NO DATA"
-                        android:visibility="gone" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycler_view"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintHeight="match_constraint"
-                            app:layout_constraintTop_toBottomOf="@id/event_text"
-                            app:layout_constraintStart_toStartOf="parent"
-                            />
-                </LinearLayout>
-            </ScrollView>
-        </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="wrap_content"
+                android:translationZ="-2000dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintHeight="match_constraint"
+                app:layout_constraintTop_toBottomOf="@id/event_text"
+                app:layout_constraintStart_toStartOf="parent"
+                />
     </HorizontalScrollView>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -64,139 +48,6 @@
                 android:background="@color/white"/>
         </com.google.android.material.appbar.AppBarLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/event_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Event"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/match_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/event_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Match"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/team_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/match_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Team/Alliance"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/autoc_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/team_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Auto Comment"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/LAgrid_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/autoc_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Left Auto Grid"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/CAgrid_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/LAgrid_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Center Auto Grid"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/RAgrid_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/CAgrid_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Right Auto Grid"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/teleop_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/RAgrid_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Teleop Comment"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/LTgrid_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/teleop_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Left Tele-Op Grid"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/LTgrid_text"
-        android:id="@+id/CTgrid_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/LTgrid_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Center Tele-Op Grid"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/CTgrid_text"
-        android:id="@+id/RTgrid_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/CTgrid_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Right Tele-Op Grid"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/docking_text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/RTgrid_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Dock"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/dockTime_text"
-        android:textColor="@color/black"
-        android:padding="10dp"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/docking_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Dock Time"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
