@@ -40,6 +40,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,7 +53,6 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         this.context = context;
         TotalLines = readLineByLine();
     }
-
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.recycler_item_grid,parent,false);

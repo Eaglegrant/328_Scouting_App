@@ -46,7 +46,6 @@ public class QRCodeScanner extends AppCompatActivity implements  View.OnClickLis
     MaterialButton openQRFolder;
     MaterialButton GridButton;
     MaterialButton groupReader;
-    MaterialButton resetData;
     FloatingActionButton fab;
     String imagesDir;
 
@@ -60,14 +59,12 @@ public class QRCodeScanner extends AppCompatActivity implements  View.OnClickLis
         GridButton = (MaterialButton) findViewById(R.id.GridButton);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         groupReader = (MaterialButton) findViewById(R.id.groupReader);
-        resetData = (MaterialButton) findViewById(R.id.resetData);
         scanBtn.setOnClickListener(this);
         scanBtnAlliance.setOnClickListener(this);
         openQRFolder.setOnClickListener(this);
         GridButton.setOnClickListener(this);
         groupReader.setOnClickListener(this);
         fab.setOnClickListener(this);
-        resetData.setOnClickListener(this);
     }
 
     @Override
@@ -76,17 +73,6 @@ public class QRCodeScanner extends AppCompatActivity implements  View.OnClickLis
             case R.id.scanBtnSuper:
                 Intent intent = new Intent(QRCodeScanner.this, CameraScanner.class);
                 startActivity(intent);
-                break;
-            case R.id.resetData:
-                File csvFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
-                if (csvFile.exists()){
-                    Boolean succeeded = csvFile.delete();
-                    if (succeeded){
-                        Toast.makeText(this, "Data Reset", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(this, "Data Reset Failed", Toast.LENGTH_SHORT).show();
-                    }
-                }
                 break;
             case R.id.scanBtnAlliance:
                 Intent intent2 = new Intent(QRCodeScanner.this, CameraScannerAlliance.class);

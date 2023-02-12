@@ -38,23 +38,9 @@ import android.widget.Toast;
 public class GridActivity extends AppCompatActivity {
     TextView noFilesText;
     File csvFile;
-    TextView eventTitle;
-    TextView matchText;
-    TextView teamText;
-    TextView autoComment;
-    TextView LAutoGrid;
-    TextView CAutoGrid;
-    TextView RAutoGrid;
-    TextView teleComment;
-    TextView LTeleGrid;
-    TextView CTeleGrid;
-    TextView RTeleGrid;
-    TextView docking;
-    TextView dockingTime;
     RecyclerView recyclerView;
     ArrayList<recycler> recyclerArrayList;
     GridAdapter gridAdapter;
-    View header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,21 +50,6 @@ public class GridActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         noFilesText = findViewById(R.id.nofiles_textview);
         FloatingActionButton fab = findViewById(R.id.fab);
-       /* eventTitle = findViewById(R.id.event_text);
-        matchText = findViewById(R.id.match_text);
-        teamText = findViewById(R.id.team_text);
-        autoComment = findViewById(R.id.autoc_text);
-        LAutoGrid = findViewById(R.id.LAgrid_text);
-        CAutoGrid = findViewById(R.id.CAgrid_text);
-        RAutoGrid = findViewById(R.id.RAgrid_text);
-        teleComment = findViewById(R.id.teleop_text);
-        LTeleGrid = findViewById(R.id.LTgrid_text);
-        CTeleGrid = findViewById(R.id.CTgrid_text);
-        RTeleGrid = findViewById(R.id.RTgrid_text);
-        docking = findViewById(R.id.docking_text);
-        dockingTime = findViewById(R.id.dockTime_text);
-
-        */
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,12 +90,26 @@ public class GridActivity extends AppCompatActivity {
                 Collections.sort(recyclerArrayList,recycler.teamComparator); //Not doing anything?
                 gridAdapter.notifyDataSetChanged();
                 Toast.makeText(this, "Sorted", Toast.LENGTH_SHORT).show();
-                return true;
+                break;
+            case R.id.wipeData:
+                File csvFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
+            if (csvFile.exists()) {
+                Boolean succeeded = csvFile.delete();
+                if (succeeded) {
+                    Toast.makeText(this, "Data Reset", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Data Reset Failed", Toast.LENGTH_SHORT).show();
+                }
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+            }
+            break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    Menu menu;
     private void getData() throws Exception {
         List<String[]> TotalLines = readLineByLine();
         recyclerArrayList = new ArrayList<recycler>();
