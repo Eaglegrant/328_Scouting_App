@@ -16,10 +16,10 @@ android {
 
     defaultConfig {
         applicationId "com.current.files"
-        minSdkVersion 24
+        minSdkVersion 26
         targetSdkVersion 33
-        versionCode 4
-        versionName "1"
+        versionCode 5
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

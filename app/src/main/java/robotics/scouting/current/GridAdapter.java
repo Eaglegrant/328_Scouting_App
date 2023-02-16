@@ -106,14 +106,12 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     public List<String[]> readLineByLine() throws Exception {
         List<String[]> list = new ArrayList<>();
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            Path filePath = Paths.get(file.getAbsolutePath()); //possible error. check
-            try (Reader reader = Files.newBufferedReader(filePath)) {
-                try (CSVReader csvReader = new CSVReader(reader)) {
-                    String[] line;
-                    while ((line = csvReader.readNext()) != null) {
-                        list.add(line);
-                    }
+        Path filePath = Paths.get(file.getAbsolutePath()); //possible error. check
+        try (Reader reader = Files.newBufferedReader(filePath)) {
+            try (CSVReader csvReader = new CSVReader(reader)) {
+                String[] line;
+                while ((line = csvReader.readNext()) != null) {
+                    list.add(line);
                 }
             }
         }

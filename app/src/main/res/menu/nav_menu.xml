@@ -38,7 +38,7 @@
                 android:title="Rate Us!"
                 />
             <item android:id="@+id/version"
-                android:title="Version: 1.0.1"
+                android:title="Version: 1.0.0"
                 />
         </menu>
     </item>

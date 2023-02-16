@@ -75,20 +75,16 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
                         Toast.makeText(getApplicationContext(),"Permission Granted",Toast.LENGTH_LONG).show();
                     }else{
                         Toast.makeText(getApplicationContext(),"Permission Denied",Toast.LENGTH_LONG).show();
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if(shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
-                                showMessageOKCancel("You need to allow access to both the permissions",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermissions(new String[]{Manifest.permission.CAMERA},
-                                                            REQUEST_CAMERA);
-                                                }
-                                            }
-                                        });
-                                return;
-                            }
+                        if(shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
+                            showMessageOKCancel("You need to allow access to both the permissions",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            requestPermissions(new String[]{Manifest.permission.CAMERA},
+                                                    REQUEST_CAMERA);
+                                        }
+                                    });
+                            return;
                         }
                     }
                 }
@@ -98,15 +94,13 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
     @Override
     public void onResume(){
         super.onResume();
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if(checkPermission()){
-                if(scannerView == null){
-                    scannerView = new ZXingScannerView(this);
-                    setContentView(scannerView);
-                }
-                scannerView.setResultHandler(this);
-                scannerView.startCamera();
+        if(checkPermission()){
+            if(scannerView == null){
+                scannerView = new ZXingScannerView(this);
+                setContentView(scannerView);
             }
+            scannerView.setResultHandler(this);
+            scannerView.startCamera();
         }
     }
     @Override
@@ -170,11 +164,9 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
     Bitmap bitmap;
     String imagesDir;
     ContentValues contentValues;
-    @RequiresApi(Build.VERSION_CODES.Q)
     private void saveFileToExternalStorage(String content) {
-        Uri externalUri = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
-
-        String relativeLocation = Environment.DIRECTORY_DOCUMENTS;
+        File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        Uri uri = Uri.parse(folder.toString());
         File csvFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
         if (csvFile.exists()){
             try {
@@ -194,22 +186,26 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
                 e.printStackTrace();
             }
         }else {
-            contentValues = new ContentValues();
-            contentValues.put(MediaStore.Files.FileColumns.DISPLAY_NAME, "file.csv");
-            contentValues.put(MediaStore.Files.FileColumns.MIME_TYPE, "application/text");
-            contentValues.put(MediaStore.Files.FileColumns.TITLE, "file");
-            contentValues.put(MediaStore.Files.FileColumns.DATE_ADDED, System.currentTimeMillis() / 1000);
-            contentValues.put(MediaStore.Files.FileColumns.RELATIVE_PATH, relativeLocation);
-            contentValues.put(MediaStore.Files.FileColumns.DATE_TAKEN, System.currentTimeMillis());
-            Uri fileUri = getContentResolver().insert(externalUri, contentValues);
-            try {
-                OutputStream outputStream =  getContentResolver().openOutputStream(fileUri);
                 String header = "Event;Match;Team Or Alliance;Auto Comment;Auto Grid;Teleop Comment;Teleop Grid;Docking;Time To Dock\n";
-                outputStream.write(header.getBytes());
-                outputStream.write(content.getBytes());
-                outputStream.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+                String total = header+content;
+                writeTextData(csvFile, total);
+        }
+    }
+    private void writeTextData(File file, String data) {
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(data.getBytes());
+            Toast.makeText(this, "Done" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fileOutputStream != null) {
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -218,17 +214,7 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
         String content = dataRaw.replace("\n", ";");
         content = content.replace(";|;", "\n");
         Log.d("CSV Data", content);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            saveFileToExternalStorage(content);
-        } else { //UNTESTED CODE FOR API < 29, ADDED BY GITHUB COPILOT
-            File file = new File(imagesDir, "file.csv");
-            FileWriter outputfile = new FileWriter(file);
-            CSVWriter writer = new CSVWriter(outputfile);
-            List<String[]> data = new ArrayList<String[]>();
-            data.add(content.split(";"));
-            writer.writeAll(data);
-            writer.close();
-        }
+        saveFileToExternalStorage(content);
         return true;
     }
     private void writeDataAtOnce(String dataRaw)

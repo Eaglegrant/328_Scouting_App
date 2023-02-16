@@ -29,20 +29,21 @@
             android:layout_marginTop="10dp"
             android:layout_height="match_parent">
             <!--Add the header here, remove from actual recycler.-->
-            <TextView
+            <!--<TextView
             android:layout_width="match_parent"
                 android:id="@+id/hello"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="Hello World"></TextView>
+                android:text="Event"></TextView>-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintHeight="match_constraint"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/hello" />
+                app:layout_constraintTop_toTopOf="parent"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </HorizontalScrollView>

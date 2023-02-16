@@ -87,10 +87,8 @@ public class QRCodeScanner extends AppCompatActivity implements  View.OnClickLis
                 break;
             case R.id.GridButton:
                 Intent intent3 = null;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
                     intent3 = new Intent(QRCodeScanner.this, GridActivity.class);
-                }
-                startActivity(intent3);
+                    startActivity(intent3);
                 break;
             case R.id.groupReader:
                 Intent intent4 = new Intent(QRCodeScanner.this, GroupReader.class);

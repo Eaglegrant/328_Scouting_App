@@ -34,7 +34,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-@RequiresApi(api = Build.VERSION_CODES.Q)
 public class GridActivity extends AppCompatActivity {
     TextView noFilesText;
     File csvFile;
@@ -73,7 +72,6 @@ public class GridActivity extends AppCompatActivity {
 
         }
 
-
     }
 
     @Override
@@ -94,7 +92,7 @@ public class GridActivity extends AppCompatActivity {
             case R.id.wipeData:
                 File csvFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
             if (csvFile.exists()) {
-                Boolean succeeded = csvFile.delete();
+                boolean succeeded = csvFile.delete();
                 if (succeeded) {
                     Toast.makeText(this, "Data Reset", Toast.LENGTH_SHORT).show();
                 } else {
@@ -131,8 +129,9 @@ public class GridActivity extends AppCompatActivity {
     public List<String[]> readLineByLine() throws Exception {
         List<String[]> list = new ArrayList<>();
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
+        Path filePath = null; //possible error. check
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            Path filePath = Paths.get(file.getAbsolutePath()); //possible error. check
+            filePath = Paths.get(file.getAbsolutePath());
             try (Reader reader = Files.newBufferedReader(filePath)) {
                 try (CSVReader csvReader = new CSVReader(reader)) {
                     String[] line;
@@ -141,7 +140,10 @@ public class GridActivity extends AppCompatActivity {
                     }
                 }
             }
+        }else{
+            Toast.makeText(this, "Error. Please get a newer phone for this feature!", Toast.LENGTH_SHORT).show();
         }
+
         return list;
     }
 }
