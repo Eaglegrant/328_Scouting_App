@@ -1,6 +1,5 @@
 package robotics.scouting.current;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -27,13 +26,19 @@ import com.google.zxing.WriterException;
 import com.opencsv.CSVWriter;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,14 +54,11 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
         super.onCreate(savedInstanceState);
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
-        int currentApiVersion = Build.VERSION.SDK_INT;
-        if(currentApiVersion >= Build.VERSION_CODES.M) {
             if (checkPermission()) {
                 //  Toast.makeText(getApplicationContext(),"Permission is granted",Toast.LENGTH_LONG).show();
             } else {
                 requestPermission();
             }
-        }
         saveData("event\n1\n328\nnan\n1 1 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0\ntest\n1 1 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0\ntest\ntest\n|\n");
         saveData("event\n1\n135\nnan\n1 1 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0\ntest\n1 1 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0\ntest\ntest\n|\n");
     }
@@ -123,7 +125,6 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
         boolean saved;
         OutputStream fos=null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-
             ContentValues contentValues =new  ContentValues();
             contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + first + " T " + second);
             contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
@@ -165,23 +166,14 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
     String imagesDir;
     ContentValues contentValues;
     private void saveFileToExternalStorage(String content) {
-        File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-        Uri uri = Uri.parse(folder.toString());
         File csvFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
         if (csvFile.exists()){
             try {
-                BufferedReader reader = new BufferedReader(new FileReader(csvFile));
-                StringBuilder text = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    text.append(line);
-                    text.append('\n');
-                }
-                String data = text.toString();
-                OutputStream outputStream =  getContentResolver().openOutputStream(Uri.fromFile(csvFile));
-                outputStream.write(data.getBytes());
-                outputStream.write(content.getBytes());
-                outputStream.close();
+                    FileWriter f = new FileWriter(csvFile.getPath(), true);
+                    BufferedWriter b = new BufferedWriter(f);
+                    b.write(content);
+                    b.flush();
+                    b.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -192,21 +184,19 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
         }
     }
     private void writeTextData(File file, String data) {
-        FileOutputStream fileOutputStream = null;
-        try {
-            fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(data.getBytes());
+        try  {
+            File f = new File(file.getPath());
+            if (!f.getParentFile().exists())
+                f.getParentFile().mkdirs();
+            if (!f.exists())
+                f.createNewFile();
+            Writer writer = new BufferedWriter(new FileWriter(file));
+            writer.write(data);
+            writer.flush();
+            writer.close();
             Toast.makeText(this, "Done" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            if (fileOutputStream != null) {
-                try {
-                    fileOutputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
     private boolean saveCSV(String dataRaw) throws IOException {

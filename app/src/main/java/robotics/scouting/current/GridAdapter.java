@@ -29,10 +29,12 @@ import com.opencsv.CSVWriter;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -106,8 +108,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     public List<String[]> readLineByLine() throws Exception {
         List<String[]> list = new ArrayList<>();
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
-        Path filePath = Paths.get(file.getAbsolutePath()); //possible error. check
-        try (Reader reader = Files.newBufferedReader(filePath)) {
+        try (Reader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
             try (CSVReader csvReader = new CSVReader(reader)) {
                 String[] line;
                 while ((line = csvReader.readNext()) != null) {

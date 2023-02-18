@@ -1,7 +1,6 @@
 package robotics.scouting.current;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,7 +10,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.opencsv.CSVReader;
 
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -111,7 +114,7 @@ public class GridActivity extends AppCompatActivity {
     private void getData() throws Exception {
         List<String[]> TotalLines = readLineByLine();
         recyclerArrayList = new ArrayList<recycler>();
-        for (int i=1;i< TotalLines.toArray().length;i++){
+        for (int i=1;i<TotalLines.size();i++){
             String data = TotalLines.get(i)[0];
                 recycler recyclerp = new recycler(regexFinder(data,2));
                 if (recyclerArrayList != null){
@@ -129,21 +132,13 @@ public class GridActivity extends AppCompatActivity {
     public List<String[]> readLineByLine() throws Exception {
         List<String[]> list = new ArrayList<>();
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
-        Path filePath = null; //possible error. check
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            filePath = Paths.get(file.getAbsolutePath());
-            try (Reader reader = Files.newBufferedReader(filePath)) {
-                try (CSVReader csvReader = new CSVReader(reader)) {
-                    String[] line;
-                    while ((line = csvReader.readNext()) != null) {
-                        list.add(line);
-                    }
-                }
-            }
-        }else{
-            Toast.makeText(this, "Error. Please get a newer phone for this feature!", Toast.LENGTH_SHORT).show();
+        CSVReader reader = new CSVReader(new FileReader(csvFile.getAbsolutePath()));
+        String [] nextLine;
+        while ((nextLine = reader.readNext()) != null) {
+            list.add(nextLine);
         }
-
+reader.close();
+        Log.d("READDATA", "readLineByLine: "+list.toString());
         return list;
     }
 }
