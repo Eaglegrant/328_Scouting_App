@@ -131,7 +131,6 @@ public class GridActivity extends AppCompatActivity {
     }
     public List<String[]> readLineByLine() throws Exception {
         List<String[]> list = new ArrayList<>();
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
         CSVReader reader = new CSVReader(new FileReader(csvFile.getAbsolutePath()));
         String [] nextLine;
         while ((nextLine = reader.readNext()) != null) {

@@ -152,6 +152,13 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
                     e.printStackTrace();
                 }
                 finalDataAdd = data;
+                if (finalDataAdd != null) {
+                    SharedPreferences sh = context.getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor shEditor = sh.edit();
+                    shEditor.putString("alliance", finalDataAdd);
+                    shEditor.apply();
+                    finalDataAdd = null;
+                }
                 AllianceActivity.clearData();
                 break;
                 //Okay you can touch stuff from here.
@@ -163,12 +170,6 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
                     break;
             case R.id.fabRead:
                 Intent intent1 = new Intent(context,QRCodeScanner.class);
-                if (finalDataAdd != null) {
-                    SharedPreferences sh = context.getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-                    SharedPreferences.Editor shEditor = sh.edit();
-                    shEditor.putString("alliance", finalDataAdd);
-                    shEditor.apply();
-                }
                 /*if (finalDataAdd != null) {
                     intent1.putExtra("alliance",finalDataAdd);
                 }

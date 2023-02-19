@@ -10,9 +10,6 @@
 
     <!--We are using this image view to display our QR code-->
     <!--Edit text to enter text for creating a QR code-->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
     <!--Button for creating a QR code-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -50,7 +47,4 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fabGenerate" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
-
 </FrameLayout>

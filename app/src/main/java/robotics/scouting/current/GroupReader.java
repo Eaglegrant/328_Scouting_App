@@ -67,9 +67,9 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
                 requestPermission();
             }
         }
-        saveData("Penn\n1\n135\nFast\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nSlow\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nFirst\n10.00");
-        saveData("Penn\n1\n328\nSlow\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nSlow\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nThird\n20.00");
-        saveData("Penn\n1\n45\nMedium\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nSlow\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nSecond\n15.00");
+       // saveData("Penn\n1\n135\nFast\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nSlow\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nFirst\n10.00");
+    //    saveData("Penn\n1\n328\nSlow\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nSlow\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nThird\n20.00");
+   //     saveData("Penn\n1\n45\nMedium\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nSlow\n[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nSecond\n15.00");
     }
     private boolean checkPermission(){
         return (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
@@ -174,6 +174,7 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
         assert fos != null;
         fos.flush();
         fos.close();
+        Toast.makeText(this, "Group QR Generated", Toast.LENGTH_SHORT).show();
         return saved;
     }
     int dimen;
@@ -204,6 +205,7 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
             allianceData = allianceData.replace("[","");
             allianceData = allianceData.replace("]","");
             testString += allianceData;
+
         }
         testString = testString.replaceAll(",\\s"," ");
         Log.d("GROUP", "groupQR: "+testString);

@@ -7,14 +7,10 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     tools:context=".BeforeMatchFragment">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <!--Button for creating a QR code-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -23,7 +19,6 @@
                 android:id="@+id/teamID"
                 android:layout_width="370dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="250dp"
                 android:autofillHints=""
                 android:ems="10"
                 android:hint="Team Number"
@@ -32,6 +27,7 @@
                 android:textSize="26dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/matchID"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
@@ -44,12 +40,11 @@
                 android:inputType="number"
                 android:textColor="@color/black"
                 android:textSize="26dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginBottom="100dp"
                 app:layout_constraintTop_toBottomOf="@id/teamID"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
 </FrameLayout>

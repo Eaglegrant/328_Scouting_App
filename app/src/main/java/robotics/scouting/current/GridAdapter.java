@@ -48,6 +48,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
+    //TODO: Add support for displaying the Alliance Data, as currently if there isn't the normal/robot data, it will crash.
+    // (Happens due to the data expecting 9 columns, but only getting 7)
     Context context;
     ImageView imageView;
     List<String[]> TotalLines;
