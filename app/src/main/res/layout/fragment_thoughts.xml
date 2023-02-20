@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="Select the BEST Defense in the Alliance"
+                android:text="Select the WORST Defense in the Alliance"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="26dp"
