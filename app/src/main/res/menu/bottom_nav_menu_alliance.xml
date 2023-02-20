@@ -9,6 +9,8 @@
         android:id="@+id/auto" />
     <item android:title="Tele-Op" android:icon="@drawable/ic_baseline_home_24"
         android:id="@+id/tele" />
+    <item android:title="Thoughts" android:icon="@drawable/baseline_chat_24"
+        android:id="@+id/thoughts" />
     <item android:title="End Game"
         android:icon="@drawable/ic_baseline_send_24"
         android:id="@+id/end" />

@@ -75,23 +75,60 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         >
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/team_text"
+            android:id="@+id/team_layoutTeams"
             android:layout_centerHorizontal="true"
-            android:padding="10dp"
             android:layout_below="@id/team_header"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:background="@drawable/border"
-            tools:text="Match"/>
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/allianceText"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/border"
+                android:visibility="gone"
+                tools:text="Alliance"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/team_text"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/border"
+                tools:text="Team1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/teamNum2"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/border"
+                android:visibility="gone"
+                tools:text="Team2"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/teamNum3"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/border"
+                android:visibility="gone"
+                tools:text="Team3"/>
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/team_header"
             android:minWidth="95dp"
             android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
             android:padding="10dp"
             android:textColor="@color/black"
@@ -281,60 +318,114 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/docking_text"
-            android:layout_centerHorizontal="true"
-            android:padding="10dp"
-            android:layout_below="@id/dock_header"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:background="@drawable/border"
-            tools:text="Dock"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dock_layout_linear"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/dock_header"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/docking_text"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:background="@drawable/border"
+                    tools:text="Dock Pos"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/offence2"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:background="@drawable/border"
+                    android:visibility="gone"
+                    tools:text="Offense 2"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/offence3"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:background="@drawable/border"
+                    android:visibility="gone"
+                    tools:text="Offense 3"/>
+            </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/dock_header"
             android:minWidth="95dp"
             android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:background="@drawable/border"
-            tools:text="Dock"/>
+            tools:text="Docking"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:id="@+id/dockingTime_layout"
+        android:id="@+id/dockTime_layout"
         android:layout_toEndOf="@id/dock_layout"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         >
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/dockTime_text"
+            android:id="@+id/dockTime_layout_linear"
             android:layout_centerHorizontal="true"
-            android:padding="10dp"
             android:layout_below="@id/dockTime_header"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:background="@drawable/border"
-            tools:text="Auto Comment"/>
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dockTime_text"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/border"
+                tools:text="Dock Time1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/defense2"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/border"
+                android:visibility="gone"
+                tools:text="Defense 2"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/defense3"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/border"
+                android:visibility="gone"
+                tools:text="Defense 3"/>
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/dockTime_header"
             android:minWidth="95dp"
             android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:background="@drawable/border"
-            tools:text="Auto Comment"/>
+            tools:text="Docking Time"/>
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"

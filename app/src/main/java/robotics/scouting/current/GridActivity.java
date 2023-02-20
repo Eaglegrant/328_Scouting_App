@@ -38,6 +38,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class GridActivity extends AppCompatActivity {
+    //TODO: Add a way to sort the data
     TextView noFilesText;
     File csvFile;
     RecyclerView recyclerView;

@@ -31,6 +31,9 @@ public class BeforeMatchFragmentAlliance extends Fragment implements View.OnClic
     Context context;
     SwitchCompat alliance;
     EditText match;
+    EditText team1;
+    EditText team2;
+    EditText team3;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +48,13 @@ public class BeforeMatchFragmentAlliance extends Fragment implements View.OnClic
         context = container.getContext();
         alliance = root.findViewById(R.id.switch1);
         match = root.findViewById(R.id.matchID);
+        team1 = root.findViewById(R.id.team1);
+        team2 = root.findViewById(R.id.team2);
+        team3 = root.findViewById(R.id.team3);
         match.setOnClickListener(this);
-
+        team1.setOnClickListener(this);
+        team2.setOnClickListener(this);
+        team3.setOnClickListener(this);
         if (AllianceActivity.getMatch() == -1) {
             match.setText("");
         }else {
@@ -57,6 +65,21 @@ public class BeforeMatchFragmentAlliance extends Fragment implements View.OnClic
         }else {
             alliance.setChecked(false);
         }
+        if (AllianceActivity.getTeam1().equals("NA")){
+            team1.setText("");
+        }else {
+            team1.setText(AllianceActivity.getTeam1());
+        }
+        if (AllianceActivity.getTeam2().equals("NA")){
+            team2.setText("");
+        }else {
+            team2.setText(AllianceActivity.getTeam2());
+        }
+        if (AllianceActivity.getTeam3().equals("NA")){
+            team3.setText("");
+        }else {
+            team3.setText(AllianceActivity.getTeam3());
+        }
         alliance.setOnClickListener(this);
         return root;
     }
@@ -65,6 +88,15 @@ public class BeforeMatchFragmentAlliance extends Fragment implements View.OnClic
             case R.id.matchID:
                 match.setText("");
                 break;
+            case R.id.team1:
+                team1.setText("");
+                break;
+            case R.id.team2:
+                team2.setText("");
+                break;
+            case R.id.team3:
+                team3.setText("");
+                break;
             case R.id.switch1:
                 if (alliance.isChecked()){
                     alliance.setChecked(false);
@@ -72,13 +104,24 @@ public class BeforeMatchFragmentAlliance extends Fragment implements View.OnClic
                     alliance.setChecked(true);
                 }
                 break;
-
         }
         }
     @Override
     public void onStop() {
         if (match != null && match.getText() != null){
             String matchText = match.getText().toString();
+            String team1Text = team1.getText().toString();
+            String team2Text = team2.getText().toString();
+            String team3Text = team3.getText().toString();
+            if (!team1Text.isEmpty()) {
+                AllianceActivity.setTeam1(team1Text);
+            }
+            if (!team2Text.isEmpty()) {
+                AllianceActivity.setTeam2(team2Text);
+            }
+            if (!team3Text.isEmpty()) {
+                AllianceActivity.setTeam3(team3Text);
+            }
             if (alliance.isChecked()){
                 AllianceActivity.setAlliance("Red");
                 AllianceActivity.setAllianceName("Red");

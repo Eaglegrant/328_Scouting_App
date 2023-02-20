@@ -65,6 +65,15 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
     String imagesDir;
     static String event;
     static String alliance = "Blue";
+    static String team1 = "NA";
+    static String team2 = "NA";
+    static String team3 = "NA";
+    static String offense1 = "NA";
+    static String offense2 = "NA";
+    static String offense3 = "NA";
+    static String defense1 = "NA";
+    static String defense2 = "NA";
+    static String defense3 = "NA";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +126,10 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                     replaceFragment(new TeleOpAlliance(),"tele");
                     getSupportActionBar().setTitle("Tele-Operative ALLIANCE");
                     break;
+                case R.id.thoughts:
+                    replaceFragment(new ThoughtsAlliance(),"thoughts");
+                    getSupportActionBar().setTitle("Thoughts ALLIANCE");
+                    break;
                 case R.id.end:
                     replaceFragment(new EndGameAlliance(),"end");
                     getSupportActionBar().setTitle("Review ALLIANCE");
@@ -165,6 +178,10 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                 clearData();
                 Intent intent = new Intent(AllianceActivity.this,AllianceActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.mainMenu:
+                Intent intent3 = new Intent(AllianceActivity.this,SplashActivity.class);
+                startActivity(intent3);
                 break;
             case R.id.FileViewer:
                 Intent intent1 = new Intent(AllianceActivity.this,FileListActivity.class);
@@ -226,7 +243,7 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                 EndGameAlliance endFrag = (EndGameAlliance) getSupportFragmentManager().findFragmentByTag("end");
                 AutoAlliance autoFrag = (AutoAlliance) getSupportFragmentManager().findFragmentByTag("auto");
                 TeleOpAlliance teleFrag = (TeleOpAlliance) getSupportFragmentManager().findFragmentByTag("tele");
-
+                ThoughtsAlliance thoughtsFrag = (ThoughtsAlliance) getSupportFragmentManager().findFragmentByTag("thoughts");
                 if (beforeFrag != null && beforeFrag.isVisible()) {
                     Intent intent = new Intent(AllianceActivity.this,SplashActivity.class);
                     startActivity(intent);
@@ -236,9 +253,12 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                 }else if (teleFrag != null && teleFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.auto);
                     replaceFragment(new AutoAlliance(), "auto");
-                }else if (endFrag != null && endFrag.isVisible()) {
+                }else if (thoughtsFrag != null && thoughtsFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.tele);
                     replaceFragment(new TeleOpAlliance(), "tele");
+                }else if (endFrag != null && endFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.thoughts);
+                    replaceFragment(new ThoughtsAlliance(), "thoughts");
                 }
                 break;
             case R.id.fab2:
@@ -246,6 +266,7 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                 beforeFrag = (BeforeMatchFragmentAlliance) getSupportFragmentManager().findFragmentByTag("before");
                 autoFrag = (AutoAlliance) getSupportFragmentManager().findFragmentByTag("auto");
                 teleFrag = (TeleOpAlliance) getSupportFragmentManager().findFragmentByTag("tele");
+                thoughtsFrag = (ThoughtsAlliance) getSupportFragmentManager().findFragmentByTag("thoughts");
                 endFrag = (EndGameAlliance)getSupportFragmentManager().findFragmentByTag("end");
 
                 if (beforeFrag != null && beforeFrag.isVisible()) {
@@ -255,6 +276,9 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
                     binding.bottomNavigationView.setSelectedItemId(R.id.tele);
                     replaceFragment(new TeleOpAlliance(), "tele");
                 }else if (teleFrag != null && teleFrag.isVisible()) {
+                    binding.bottomNavigationView.setSelectedItemId(R.id.thoughts);
+                    replaceFragment(new ThoughtsAlliance(), "thoughts");
+                }else if (thoughtsFrag != null && thoughtsFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.end);
                     replaceFragment(new EndGameAlliance(), "end");
                     view.setVisibility(View.GONE);
@@ -326,9 +350,6 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
         MatchText = headerView.findViewById(R.id.matchNum);
         MatchText.setText("Match:\n" + matchNum);
     }
-    public static void setBalance(String balance) {
-        AllianceActivity.balance = balance;
-    }
     public static void setMatch(int match) {
         AllianceActivity.match = match;
     }
@@ -344,14 +365,35 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
     public static void setTeleGrid( ArrayList<Integer> teleGrid) {
         AllianceActivity.teleGrid = teleGrid;
     }
-    public static void setTime(int mins,int secs,int millis) {
-        AllianceActivity.mins = mins;
-        AllianceActivity.secs = secs;
-        AllianceActivity.millis = millis;
-        AllianceActivity.time = String.valueOf(secs) + "." + String.valueOf(millis);
-    }
     public static void setAlliance(String alliance) {
         AllianceActivity.alliance = alliance;
+    }
+    public static void setTeam1(String team1) {
+        AllianceActivity.team1 = team1;
+    }
+    public static void setTeam2(String team2) {
+        AllianceActivity.team2 = team2;
+    }
+    public static void setTeam3(String team3) {
+        AllianceActivity.team3 = team3;
+    }
+    public static void setOffense1(String offense1) {
+        AllianceActivity.offense1 = offense1;
+    }
+    public static void setOffense2(String offense2) {
+        AllianceActivity.offense2 = offense2;
+    }
+    public static void setOffense3(String offense3) {
+        AllianceActivity.offense3 = offense3;
+    }
+    public static void setDefense1(String defense1) {
+        AllianceActivity.defense1 = defense1;
+    }
+    public static void setDefense2(String defense2) {
+        AllianceActivity.defense2 = defense2;
+    }
+    public static void setDefense3(String defense3) {
+        AllianceActivity.defense3 = defense3;
     }
     public static int getDimen() {
         return dimen;
@@ -366,29 +408,47 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
         return teleC;
     }
 
-    public static String getBalance() {
-        return balance;
-    }
     public static ArrayList<Integer> getGrid() {
         return grid;
     }
     public static ArrayList<Integer> getTeleGrid() {
         return teleGrid;
     }
-    public static int getTimeMin() {
-        return mins;
-    }
-    public static int getTimeSec() {
-        return secs;
-    }
-    public static int getTimeMillis() {
-        return millis;
-    }
     public static String getAlliance(){
         return alliance;
     }
+    public static String getTeam1() {
+        return team1;
+    }
+    public static String getTeam2() {
+        return team2;
+    }
+    public static String getTeam3() {
+        return team3;
+    }
+    public static String getOffense1() {
+        return offense1;
+    }
+    public static String getOffense2() {
+        return offense2;
+    }
+    public static String getOffense3() {
+        return offense3;
+    }
+    public static String getDefense1() {
+        return defense1;
+    }
+    public static String getDefense2() {
+        return defense2;
+    }
+    public static String getDefense3() {
+        return defense3;
+    }
+    public static String[] getTeams(){
+        return new String[]{team1,team2,team3};
+    }
     public static String getAllData(){
-        return event + "\n" + String.valueOf(match) + "\n" + String.valueOf(alliance) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString();
+        return event + "\n" + String.valueOf(match) + "\n" + String.valueOf(alliance) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString()+ "\n" + team1 + "\n" + team2 + "\n" + team3 + "\n" + offense1+"\n"+offense2 + "\n" + offense3 + "\n" + defense1+"\n"+ defense2 + "\n" + defense3;
     }
     public static void clearData(){
         match = -1;
@@ -403,6 +463,14 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
         for (int i = 0; i < 27; i++) {
             teleGrid.add(i,0);
         }
-        balance = "NA";
+        offense1 = "NA";
+        offense2 = "NA";
+        offense3 = "NA";
+        defense1 = "NA";
+        defense2 = "NA";
+        defense3 = "NA";
+        team1 = "NA";
+        team2 = "NA";
+        team3 = "NA";
     }
 }

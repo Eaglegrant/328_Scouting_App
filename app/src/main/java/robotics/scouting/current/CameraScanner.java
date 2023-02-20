@@ -59,7 +59,7 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
             } else {
                 requestPermission();
             }
-        saveData("event\n1\ntest\nnan\n1 1 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0\ntest\n1 1 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0\ntest\ntest\n|\nevent\n1\n135\nnan\n1 1 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0\ntest\n1 1 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0\ntest\ntest\n|\n");
+        //saveData("event\n1\ntest\nnan\n1 1 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0\ntest\n1 1 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0\n135\n328\n45\n328\n45\n135\n328\n135\n45\n|\nevent\n1\n135\nnan\n1 1 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0\ntest\n1 1 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0\ntest\ntest\n|\n");
     }
     private boolean checkPermission(){
         return (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);

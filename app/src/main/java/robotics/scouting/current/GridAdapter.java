@@ -62,26 +62,6 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         View view = LayoutInflater.from(context).inflate(R.layout.recycler_item_grid,parent,false);
         return new ViewHolder(view);
     }
-    public String[] readAll(){
-        File csvFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
-        if (csvFile.exists()) {
-            try {
-                BufferedReader reader = new BufferedReader(new FileReader(csvFile));
-                StringBuilder text = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    text.append(line);
-                    text.append('\n');
-                }
-                String data = text.toString();
-                String[] lines = data.split("\n");
-                return lines;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
     public String regexFinder(String data,int position){
         String dataNew = data.split(";")[position];
         return dataNew;
@@ -120,6 +100,15 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         }
         return list;
     }
+    public boolean isInteger( String input ) {
+        try {
+            Integer.parseInt( input );
+            return true;
+        }
+        catch( Exception e ) {
+            return false;
+        }
+    }
     public void updateAll(GridAdapter.ViewHolder holder, int position) throws Exception {
         TotalLines = readLineByLine();
         String data = TotalLines.get(position+1)[0];
@@ -129,28 +118,68 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         String lTGrid = regexFinder(data,6).substring(0,6)+"| "+regexFinder(data,6).substring(18,24)+"| "+regexFinder(data,6).substring(36,42);
         String cTGrid = regexFinder(data,6).substring(6,12)+"| "+regexFinder(data,6).substring(24,30)+"| "+regexFinder(data,6).substring(42,48);
         String rTGrid = regexFinder(data,6).substring(12,18)+"| "+regexFinder(data,6).substring(30,36)+"| "+regexFinder(data,6).substring(48,53) + " ";
-        holder.eventTitle.setText(regexFinder(data,0));
-        holder.matchText.setText(regexFinder(data,1));
-        holder.teamText.setText(regexFinder(data,2));
-        holder.autoComment.setText(regexFinder(data,3));
-        holder.LAutoGrid.setText(lAGrid);
-        holder.CAutoGrid.setText(cAGrid);
-        holder.RAutoGrid.setText(rAGrid);
-        holder.teleComment.setText(regexFinder(data,5));
-        holder.LTeleGrid.setText(lTGrid);
-        holder.CTeleGrid.setText(cTGrid);
-        holder.RTeleGrid.setText(rTGrid);
-        holder.docking.setText(regexFinder(data,7));
-        holder.dockingTime.setText(regexFinder(data,8));
-        holder.eventHeader.setText("Event");
-        holder.matchHeader.setText("Match");
-        holder.teamHeader.setText("Team");
-        holder.autoHeader.setText("Auto Comment");
-        holder.AutoGridHeader.setText("Auto Grid");
-        holder.teleHeader.setText("Tele");
-        holder.TeleGridHeader.setText("Tele Grid");
-        holder.dockHeader.setText("Docking");
-        holder.dockingTimeHeader.setText("Docking Time");
+        if (isInteger(regexFinder(data,2))){
+            holder.eventTitle.setText(regexFinder(data,0));
+            holder.matchText.setText(regexFinder(data,1));
+            holder.teamText.setText(regexFinder(data,2));
+            holder.autoComment.setText(regexFinder(data,3));
+            holder.LAutoGrid.setText(lAGrid);
+            holder.CAutoGrid.setText(cAGrid);
+            holder.RAutoGrid.setText(rAGrid);
+            holder.teleComment.setText(regexFinder(data,5));
+            holder.LTeleGrid.setText(lTGrid);
+            holder.CTeleGrid.setText(cTGrid);
+            holder.RTeleGrid.setText(rTGrid);
+            holder.docking.setText(regexFinder(data,7));
+            holder.dockingTime.setText(regexFinder(data,8));
+            holder.eventHeader.setText("Event");
+            holder.matchHeader.setText("Match");
+            holder.teamHeader.setText("Team");
+            holder.autoHeader.setText("Auto Comment");
+            holder.AutoGridHeader.setText("Auto Grid");
+            holder.teleHeader.setText("Tele");
+            holder.TeleGridHeader.setText("Tele Grid");
+            holder.dockHeader.setText("Docking");
+            holder.dockingTimeHeader.setText("Docking Time");
+        }else{
+            holder.eventTitle.setText(regexFinder(data,0));
+            holder.matchText.setText(regexFinder(data,1));
+            holder.autoComment.setText(regexFinder(data,3));
+            holder.LAutoGrid.setText(lAGrid);
+            holder.CAutoGrid.setText(cAGrid);
+            holder.RAutoGrid.setText(rAGrid);
+            holder.teleComment.setText(regexFinder(data,5));
+            holder.LTeleGrid.setText(lTGrid);
+            holder.CTeleGrid.setText(cTGrid);
+            holder.RTeleGrid.setText(rTGrid);
+            holder.eventHeader.setText("Event");
+            holder.matchHeader.setText("Match");
+            holder.teamHeader.setText("Alliance");
+            holder.autoHeader.setText("Auto Comment");
+            holder.AutoGridHeader.setText("Auto Grid");
+            holder.teleHeader.setText("Tele");
+            holder.TeleGridHeader.setText("Tele Grid");
+            holder.dockHeader.setText("Offence");
+            holder.dockingTimeHeader.setText("Defense");
+            holder.alliance.setVisibility(View.VISIBLE);
+            holder.team2.setVisibility(View.VISIBLE);
+            holder.team3.setVisibility(View.VISIBLE);
+            holder.offense2.setVisibility(View.VISIBLE);
+            holder.defense2.setVisibility(View.VISIBLE);
+            holder.offense3.setVisibility(View.VISIBLE);
+            holder.defense3.setVisibility(View.VISIBLE);
+            holder.alliance.setText(regexFinder(data,2));
+            holder.teamText.setText(regexFinder(data,7));
+            holder.team2.setText(regexFinder(data,8));
+            holder.team3.setText(regexFinder(data,9));
+            holder.docking.setText(regexFinder(data,10));
+            holder.offense2.setText(regexFinder(data,11));
+            holder.offense3.setText(regexFinder(data,12));
+            holder.dockingTime.setText(regexFinder(data,13));
+            holder.defense2.setText(regexFinder(data,14));
+            holder.defense3.setText(regexFinder(data,15));
+
+        }
     }
     @Override
     public void onBindViewHolder(GridAdapter.ViewHolder holder, int position) {
@@ -243,6 +272,13 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         TextView docking;
         TextView dockingTimeHeader;
         TextView dockingTime;
+        TextView team2;
+        TextView team3;
+        TextView alliance;
+        TextView defense2;
+        TextView defense3;
+        TextView offense2;
+        TextView offense3;
         public ViewHolder(View itemView){
             super(itemView);
             eventTitle = itemView.findViewById(R.id.event_text);
@@ -267,6 +303,14 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             docking = itemView.findViewById(R.id.docking_text);
             dockingTimeHeader = itemView.findViewById(R.id.dockTime_header);
             dockingTime = itemView.findViewById(R.id.dockTime_text);
+            team2 = itemView.findViewById(R.id.teamNum2);
+            team3 = itemView.findViewById(R.id.teamNum3);
+            alliance = itemView.findViewById(R.id.allianceText);
+            defense2 = itemView.findViewById(R.id.defense2);
+            defense3 = itemView.findViewById(R.id.defense3);
+            offense2 = itemView.findViewById(R.id.offence2);
+            offense3 = itemView.findViewById(R.id.offence3);
+
         }
     }
 }

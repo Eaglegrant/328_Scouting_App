@@ -163,6 +163,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(MainActivity.this,MainActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.mainMenu:
+                Intent intent3 = new Intent(MainActivity.this,SplashActivity.class);
+                startActivity(intent3);
+                break;
             case R.id.FileViewer:
                 Intent intent1 = new Intent(MainActivity.this,FileListActivity.class);
                 intent1.putExtra("path",imagesDir);
