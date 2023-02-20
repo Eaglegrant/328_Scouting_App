@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -168,6 +169,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             holder.defense2.setVisibility(View.VISIBLE);
             holder.offense3.setVisibility(View.VISIBLE);
             holder.defense3.setVisibility(View.VISIBLE);
+            holder.pointLayout.setVisibility(View.VISIBLE);
             holder.alliance.setText(regexFinder(data,2));
             holder.teamText.setText(regexFinder(data,7));
             holder.team2.setText(regexFinder(data,8));
@@ -178,7 +180,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             holder.dockingTime.setText(regexFinder(data,13));
             holder.defense2.setText(regexFinder(data,14));
             holder.defense3.setText(regexFinder(data,15));
-
+            holder.points.setText(regexFinder(data,16));
         }
     }
     @Override
@@ -274,11 +276,14 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         TextView dockingTime;
         TextView team2;
         TextView team3;
+        RelativeLayout pointLayout;
+        TextView points;
         TextView alliance;
         TextView defense2;
         TextView defense3;
         TextView offense2;
         TextView offense3;
+
         public ViewHolder(View itemView){
             super(itemView);
             eventTitle = itemView.findViewById(R.id.event_text);
@@ -310,7 +315,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             defense3 = itemView.findViewById(R.id.defense3);
             offense2 = itemView.findViewById(R.id.offence2);
             offense3 = itemView.findViewById(R.id.offence3);
-
+            pointLayout = itemView.findViewById(R.id.point_layout);
+            points = itemView.findViewById(R.id.point_text);
         }
     }
 }

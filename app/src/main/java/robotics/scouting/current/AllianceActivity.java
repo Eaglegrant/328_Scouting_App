@@ -74,6 +74,7 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
     static String defense1 = "NA";
     static String defense2 = "NA";
     static String defense3 = "NA";
+    static String points = "NA";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -175,9 +176,14 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
         int id = item.getItemId();
         switch (id){
             case R.id.newTeam:
-                clearData();
-                Intent intent = new Intent(AllianceActivity.this,AllianceActivity.class);
+                Intent intent = new Intent(AllianceActivity.this,MainActivity.class);
                 startActivity(intent);
+                clearData();
+                break;
+            case R.id.newAlliance:
+                Intent intent4 = new Intent(AllianceActivity.this,AllianceActivity.class);
+                startActivity(intent4);
+                clearData();
                 break;
             case R.id.mainMenu:
                 Intent intent3 = new Intent(AllianceActivity.this,SplashActivity.class);
@@ -395,6 +401,9 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
     public static void setDefense3(String defense3) {
         AllianceActivity.defense3 = defense3;
     }
+    public static void setPoints(String points){
+        AllianceActivity.points = points;
+    }
     public static int getDimen() {
         return dimen;
     }
@@ -444,11 +453,14 @@ public class AllianceActivity extends AppCompatActivity implements View.OnClickL
     public static String getDefense3() {
         return defense3;
     }
+    public static String getPoints(){
+        return points;
+    }
     public static String[] getTeams(){
         return new String[]{team1,team2,team3};
     }
     public static String getAllData(){
-        return event + "\n" + String.valueOf(match) + "\n" + String.valueOf(alliance) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString()+ "\n" + team1 + "\n" + team2 + "\n" + team3 + "\n" + offense1+"\n"+offense2 + "\n" + offense3 + "\n" + defense1+"\n"+ defense2 + "\n" + defense3;
+        return event + "\n" + String.valueOf(match) + "\n" + String.valueOf(alliance) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString()+ "\n" + team1 + "\n" + team2 + "\n" + team3 + "\n" + offense1+"\n"+offense2 + "\n" + offense3 + "\n" + defense1+"\n"+ defense2 + "\n" + defense3 + "\n" + points;
     }
     public static void clearData(){
         match = -1;

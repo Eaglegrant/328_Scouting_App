@@ -18,6 +18,7 @@ import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -58,7 +59,8 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
     MaterialButton readQRBtn;
     Bitmap bitmap;
     MaterialButton openQRFolder;
-    FloatingActionButton fab;
+    String points;
+    EditText endPoints;
     QRGEncoder qrgEncoder;
     Context context;
     String imagesDir;
@@ -107,6 +109,12 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
         return saved;
     }
     @Override
+    public void onStop() {
+        points = endPoints.getText().toString();
+        AllianceActivity.setPoints(points);
+        super.onStop();
+    }
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TransitionInflater inflater = TransitionInflater.from(requireContext());
@@ -124,9 +132,15 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
        generateQrBtn = (MaterialButton) root.findViewById(R.id.fabGenerate);
         openQRFolder  = (MaterialButton) root.findViewById(R.id.fabFolder);
         readQRBtn = (MaterialButton) root.findViewById(R.id.fabRead);
+        endPoints = (EditText) root.findViewById(R.id.endPoints);
         generateQrBtn.setOnClickListener(this);
         openQRFolder.setOnClickListener(this);
         readQRBtn.setOnClickListener(this);
+        if (AllianceActivity.getPoints().equals("NA")){
+            endPoints.setText("");
+        } else {
+            endPoints.setText(AllianceActivity.getPoints());
+        }
       //  gridView = gridView.findViewById(R.id.gridView1);
         return root;
     }

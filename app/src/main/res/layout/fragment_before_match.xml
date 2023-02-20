@@ -17,14 +17,17 @@
 
             <EditText
                 android:id="@+id/teamID"
-                android:layout_width="370dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintWidth="match_constraint"
                 android:autofillHints=""
                 android:ems="10"
                 android:hint="Team Number"
                 android:inputType="number"
                 android:textColor="@color/black"
                 android:textSize="26dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/matchID"
@@ -32,8 +35,9 @@
 
             <EditText
                 android:id="@+id/matchID"
-                android:layout_width="370dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintWidth="match_constraint"
                 android:autofillHints=""
                 android:ems="10"
                 android:hint="Match Number"
@@ -41,6 +45,8 @@
                 android:textColor="@color/black"
                 android:textSize="26dp"
                 android:layout_marginBottom="100dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
                 app:layout_constraintTop_toBottomOf="@id/teamID"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

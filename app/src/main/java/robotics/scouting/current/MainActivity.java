@@ -159,9 +159,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = item.getItemId();
         switch (id){
             case R.id.newTeam:
-                clearData();
                 Intent intent = new Intent(MainActivity.this,MainActivity.class);
                 startActivity(intent);
+                clearData();
+                break;
+            case R.id.newAlliance:
+                Intent intent4 = new Intent(MainActivity.this,AllianceActivity.class);
+                startActivity(intent4);
+                clearData();
                 break;
             case R.id.mainMenu:
                 Intent intent3 = new Intent(MainActivity.this,SplashActivity.class);
@@ -422,6 +427,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             teleGrid.add(i,0);
         }
         balance = "NA";
+        millis = 0;
+        secs = 0;
+        mins = 0;
+        time = "0.00";
     }
 
 
