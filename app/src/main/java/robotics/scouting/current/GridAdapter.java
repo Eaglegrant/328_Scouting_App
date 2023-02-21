@@ -49,13 +49,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
-    //TODO: Add support for displaying the Alliance Data, as currently if there isn't the normal/robot data, it will crash.
-    // (Happens due to the data expecting 9 columns, but only getting 7)
     Context context;
     ImageView imageView;
     List<String[]> TotalLines;
-    public GridAdapter(Context context) throws Exception {
+    private List<MyData> data;
+
+
+    public GridAdapter(Context context, List<MyData> dataL) throws Exception {
         this.context = context;
+        this.data = dataL;
         TotalLines = readLineByLine();
     }
     @Override
@@ -67,7 +69,40 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         String dataNew = data.split(";")[position];
         return dataNew;
     }
-    List<String[]> finalElements;
+    public void sortDataByTitle() {
+        Collections.sort(data, new Comparator<MyData>() {
+            @Override
+            public int compare(MyData o1, MyData o2) {
+                if (isInteger(o1.getTitle()) && isInteger(o2.getTitle())) {
+                    return Integer.parseInt(o1.getTitle()) - Integer.parseInt(o2.getTitle());
+                } else if (isInteger(o1.getTitle())) {
+                    return -1;
+                } else if (isInteger(o2.getTitle())) {
+                    return 1;
+                }
+                return o1.getTitle().compareTo(o2.getTitle()); //greater if title1 > title2
+            }
+        });
+        notifyDataSetChanged();
+    }
+    public void sortDataByPoints(){
+        Collections.sort(data, new Comparator<MyData>() {
+            @Override
+            public int compare(MyData o1, MyData o2) {
+                return Integer.parseInt(o2.getPoints()) - Integer.parseInt(o1.getPoints()); //greater if title1 > title2
+            }
+        });
+        notifyDataSetChanged();
+    }
+    public void sortDataByMatch(){
+        Collections.sort(data, new Comparator<MyData>() {
+            @Override
+            public int compare(MyData o1, MyData o2) {
+                return Integer.parseInt(o1.getMatch()) - Integer.parseInt(o2.getMatch()); //greater if title1 > title2
+            }
+        });
+        notifyDataSetChanged();
+    }
     public boolean removeItem(int position) {
         File csvFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
         if (csvFile.exists()) {
@@ -112,7 +147,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     }
     public void updateAll(GridAdapter.ViewHolder holder, int position) throws Exception {
         TotalLines = readLineByLine();
-        String data = TotalLines.get(position+1)[0];
+        MyData item = data.get(position);
+        String data = item.getAllData();
         String lAGrid = regexFinder(data,4).substring(0,6)+"| "+regexFinder(data,4).substring(18,24)+"| "+regexFinder(data,4).substring(36,42);
         String cAGrid = regexFinder(data,4).substring(6,12)+"| "+regexFinder(data,4).substring(24,30)+"| "+regexFinder(data,4).substring(42,48);
         String rAGrid = regexFinder(data,4).substring(12,18)+"| "+regexFinder(data,4).substring(30,36)+"| "+regexFinder(data,4).substring(48,53) + " ";
@@ -131,6 +167,14 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             holder.LTeleGrid.setText(lTGrid);
             holder.CTeleGrid.setText(cTGrid);
             holder.RTeleGrid.setText(rTGrid);
+            holder.alliance.setVisibility(View.GONE);
+            holder.team2.setVisibility(View.GONE);
+            holder.team3.setVisibility(View.GONE);
+            holder.offense2.setVisibility(View.GONE);
+            holder.defense2.setVisibility(View.GONE);
+            holder.offense3.setVisibility(View.GONE);
+            holder.defense3.setVisibility(View.GONE);
+            holder.pointLayout.setVisibility(View.GONE);
             holder.docking.setText(regexFinder(data,7));
             holder.dockingTime.setText(regexFinder(data,8));
             holder.eventHeader.setText("Event");
@@ -162,6 +206,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             holder.TeleGridHeader.setText("Tele Grid");
             holder.dockHeader.setText("Offence");
             holder.dockingTimeHeader.setText("Defense");
+            holder.pointsHeader.setText("Points");
             holder.alliance.setVisibility(View.VISIBLE);
             holder.team2.setVisibility(View.VISIBLE);
             holder.team3.setVisibility(View.VISIBLE);
@@ -244,8 +289,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     }
     @Override
     public int getItemCount() {
-        if (TotalLines != null){
-            return TotalLines.toArray().length-1;
+        if (data != null){
+            return data.size();
         }
         return 0;
     }
@@ -278,6 +323,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         TextView team3;
         RelativeLayout pointLayout;
         TextView points;
+        TextView pointsHeader;
         TextView alliance;
         TextView defense2;
         TextView defense3;
@@ -317,6 +363,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             offense3 = itemView.findViewById(R.id.offence3);
             pointLayout = itemView.findViewById(R.id.point_layout);
             points = itemView.findViewById(R.id.point_text);
+            pointsHeader = itemView.findViewById(R.id.point_header);
         }
     }
 }

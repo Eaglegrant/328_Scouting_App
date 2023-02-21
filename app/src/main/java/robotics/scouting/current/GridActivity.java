@@ -38,11 +38,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class GridActivity extends AppCompatActivity {
-    //TODO: Add a way to sort the data
+
     TextView noFilesText;
     File csvFile;
     RecyclerView recyclerView;
-    ArrayList<recycler> recyclerArrayList;
+    ArrayList<MyData> recyclerArrayList;
     GridAdapter gridAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class GridActivity extends AppCompatActivity {
             try {
                 getData();
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                recyclerView.setAdapter(new GridAdapter(this));
+                recyclerView.setAdapter(gridAdapter);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -89,9 +89,16 @@ public class GridActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuTeam:
-                Collections.sort(recyclerArrayList,recycler.teamComparator); //Not doing anything?
-                gridAdapter.notifyDataSetChanged();
-                Toast.makeText(this, "Sorted", Toast.LENGTH_SHORT).show();
+                gridAdapter.sortDataByTitle();
+                Toast.makeText(this, "Sorted By Team", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menuMatch:
+                gridAdapter.sortDataByMatch();
+                Toast.makeText(this, "Sorted By Match Num", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menuPoints:
+                gridAdapter.sortDataByPoints();
+                Toast.makeText(this, "Sorted By Points", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.wipeData:
                 File csvFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
@@ -111,20 +118,31 @@ public class GridActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    public boolean isInteger( String input ) {
+        try {
+            Integer.parseInt( input );
+            return true;
+        }
+        catch( Exception e ) {
+            return false;
+        }
+    }
 
     private void getData() throws Exception {
         List<String[]> TotalLines = readLineByLine();
-        recyclerArrayList = new ArrayList<recycler>();
+        recyclerArrayList = new ArrayList<MyData>();
         for (int i=1;i<TotalLines.size();i++){
             String data = TotalLines.get(i)[0];
-                recycler recyclerp = new recycler(regexFinder(data,2));
-                if (recyclerArrayList != null){
-                    recyclerArrayList.add(recyclerp);
-                }
+            MyData recyclerp;
+            if (isInteger(regexFinder(data,2))){
+                 recyclerp = new MyData(regexFinder(data,2),"0",data,regexFinder(data,1));
+            }else{
+                 recyclerp = new MyData(regexFinder(data,2),regexFinder(data,16),data,regexFinder(data,1));
+            }
+            Log.d("TESTDATA", "getData: "+data);
+            recyclerArrayList.add(recyclerp);
         }
-        gridAdapter = new GridAdapter(this);
-
-        recyclerView.setAdapter(gridAdapter);
+        gridAdapter = new GridAdapter(this,recyclerArrayList);
     }
     public String regexFinder(String data,int position){
         String dataNew = data.split(";")[position];

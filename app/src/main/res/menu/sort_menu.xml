@@ -6,4 +6,10 @@
     <item
         android:id="@+id/menuTeam"
         android:title="Sort by Team" />
+    <item
+        android:id="@+id/menuMatch"
+        android:title="Sort by Match" />
+    <item
+        android:id="@+id/menuPoints"
+        android:title="Sort by Points" />
 </menu>
