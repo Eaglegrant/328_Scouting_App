@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_edge"
+    >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/event_layout"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_text"
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif-black"
+            android:textSize="50sp"
+            android:background="@drawable/border"
+            tools:text="Team Number"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/match_layout"
+        android:layout_toEndOf="@id/event_layout"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="200sp"
+            android:layout_height="200sp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_centerVertical="true"
+
+            android:src="@drawable/logo" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/team_layout"
+        android:layout_toEndOf="@id/match_layout"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/team_layoutTeams"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/allianceText"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/border"
+                android:visibility="gone"
+                tools:text="Alliance"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/autoc_layout"
+        android:layout_toEndOf="@id/team_layout"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/autoGrid_layout"
+        android:layout_toEndOf="@id/autoc_layout"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/layoutGrid1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:id="@+id/LAgrid_text"
+                android:padding="10dp"
+                android:minWidth="110dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/border"
+                tools:text="Speed"/>
+            <TextView
+                android:id="@+id/Autogrid_header"
+                android:layout_width="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:minWidth="110dp"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="15sp"
+
+                android:textSize="24sp"
+                tools:text="Purpose" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/CAgrid_text"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:fontFamily="sans-serif-black"
+                android:textAlignment="center"
+                android:layout_marginBottom="15sp"
+
+                android:background="@drawable/border"
+                tools:text="Defense"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RAgrid_text"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-black"
+                android:textSize="24sp"
+                android:layout_marginBottom="15sp"
+                android:textAlignment="center"
+                android:background="@drawable/border"
+                tools:text="Driving"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/teleop_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="14dp"
+        android:layout_toEndOf="@id/autoGrid_layout"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/teleop_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="sans-serif-black"
+            android:background="@drawable/border"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            tools:text="Points" />
+
+        <TextView
+            android:id="@+id/tele_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:layout_above="@id/teleop_text"
+            android:gravity="center_horizontal"
+            android:fontFamily="sans-serif-black"
+            android:minWidth="95dp"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            tools:text="Sizes" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/backgroundColorGrid"
+        android:layout_below="@id/event_layout"/>
+</RelativeLayout>

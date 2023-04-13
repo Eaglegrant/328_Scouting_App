@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Collect Pit"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:id="@+id/before" />
+    <item android:title="View Data"
+        android:icon="@drawable/ic_baseline_autorenew_24"
+        android:id="@+id/auto" />
+
+</menu>

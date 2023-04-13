@@ -23,16 +23,16 @@ import java.util.ArrayList;
 public class SplashActivity extends AppCompatActivity {
     private ArrayList<Animation> getAnimList() {
         ArrayList<Animation> animList = new ArrayList<>();
-        animList.add(CreateAnim.INSTANCE.createAnimation(getApplicationContext(), R.anim.no_animaiton));
+        animList.add(CreateAnim.INSTANCE.createAnimation(getApplicationContext(), R.anim.no_animaiton)); //always start with this.
         animList.add(CreateAnim.INSTANCE.createAnimation(getApplicationContext(), R.anim.rotate));
         animList.add(CreateAnim.INSTANCE.createAnimation(getApplicationContext(), R.anim.zoom_out_fast));
         animList.add(CreateAnim.INSTANCE.createAnimation(getApplicationContext(), R.anim.fade_in));
         return animList;
     }
-    private Button btnToggleDark;
     public static SharedPreferences sharedPreferences;
     public static SharedPreferences.Editor editor;
-    public static boolean isDarkModeOn;
+
+    public static boolean isDarkModeOn; //ANYTHING put in SharedPreferences HAS to be public static.
     public static String event;
     static public String setNight(){
         if (isDarkModeOn) {
@@ -60,7 +60,7 @@ public class SplashActivity extends AppCompatActivity {
     ArrayList<Integer> gridQR = new ArrayList<>();
     ArrayList<Integer> teleQR = new ArrayList<>();
     ArrayList<Integer> AgridQR = new ArrayList<>();
-    ArrayList<Integer> AteleQR = new ArrayList<>();
+    ArrayList<Integer> AteleQR = new ArrayList<>(); //{0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
