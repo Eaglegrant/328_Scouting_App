@@ -413,6 +413,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String getAllData(){
         return event + "\n" + String.valueOf(match) + "\n" + String.valueOf(team) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString() + "\n" + balance+"\n"+time;
     }
+    public static String getAllDataChangeable(){
+        return "Event: "+ event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team Number: " + String.valueOf(team) + "\n" + "Comment on Auto" + autoC + "\n" + "Auto Grid Positions: " + grid.toString() + "\n" + "Comment on Tele" + teleC + "\n" + "Tele Grid Positions: " + teleGrid.toString() + "\n" + "Balance Position: " + balance+"\n"+ "Time to Balance: " + time;
+    }
     public static void clearData(){
         match = -1;
         team = -1;

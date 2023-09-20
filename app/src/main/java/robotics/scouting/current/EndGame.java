@@ -18,6 +18,7 @@ import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -54,6 +55,7 @@ public class EndGame extends Fragment implements View.OnClickListener {
     }
     MaterialButton generateQrBtn;
     Bitmap bitmap;
+    TextView reviewText;
     MaterialButton openQRFolder;
     FloatingActionButton fab;
     QRGEncoder qrgEncoder;
@@ -120,6 +122,7 @@ public class EndGame extends Fragment implements View.OnClickListener {
         context = container.getContext();
        generateQrBtn = (MaterialButton) root.findViewById(R.id.fabGenerate);
         openQRFolder  = (MaterialButton) root.findViewById(R.id.fabFolder);
+        reviewText = (TextView) root.findViewById(R.id.reviewText);
         generateQrBtn.setOnClickListener(this);
         openQRFolder.setOnClickListener(this);
       //  gridView = gridView.findViewById(R.id.gridView1);
