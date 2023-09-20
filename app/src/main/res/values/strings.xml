@@ -22,4 +22,6 @@
     <string name="website">For a step by step guide on how to use the app, please visit our website at
         <a href="https://www.pennrobotics.org/scouting.html">pennrobotics.org/scouting</a></string>
     <string name="alliance_number">Alliance:\n <span>Blue</span></string>
+    <string name="scout_id"><u>Scout ID</u>.</string>
+    <string name="team_color"><u>Team Color</u></string>
 </resources>
