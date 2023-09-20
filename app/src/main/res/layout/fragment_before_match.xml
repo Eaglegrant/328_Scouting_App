@@ -8,49 +8,169 @@
     android:background="@color/backgroundColor"
     tools:context=".BeforeMatchFragment">
         <!--Button for creating a QR code-->
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/teamID"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Team Number"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="26dp"
+            app:layout_constraintBottom_toTopOf="@id/matchID"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth="match_constraint" />
+
+        <EditText
+            android:id="@+id/matchID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="100dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Match Number"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="26dp"
+            app:layout_constraintBottom_toBottomOf="@id/layout2Horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/teamID"
+            app:layout_constraintWidth="match_constraint" />
+
+        <Button
+            android:id="@+id/oldMatchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Previous Value"
+            app:layout_constraintBottom_toTopOf="@+id/teamID"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.658" />
+
+        <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_height="wrap_content"
+            app:justifyContent="space_evenly"
+            android:layout_marginBottom="70dp"
+            android:orientation="horizontal"
+            app:alignItems="center"
+            app:layout_constraintBottom_toTopOf="@+id/matchID"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/teamID">
 
+            <TextView
+                android:id="@+id/preLoadText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
 
-            <EditText
-                android:id="@+id/teamID"
+                android:textSize="21dp"
+                android:text="Pre-Load?" />
+
+            <CheckBox
+                android:id="@+id/preLoadConeCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Cone" />
+
+            <CheckBox
+                android:id="@+id/preLoadCubeCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Cube" />
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/layout2Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:orientation="horizontal"
+            app:justifyContent="space_evenly"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/matchID">
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintWidth="match_constraint"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="Team Number"
-                android:inputType="number"
-                android:textColor="@color/black"
-                android:textSize="26dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/matchID"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/matchID"
+                <TextView
+                    android:id="@+id/scoutIDText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/scout_id"
+                    android:textAlignment="center"
+                    android:textSize="25dp" />
+
+                <EditText
+                    android:id="@+id/editTextNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+
+                    android:hint="test"
+                    android:inputType="number"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintWidth="match_constraint"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="Match Number"
-                android:inputType="number"
-                android:textColor="@color/black"
-                android:textSize="26dp"
-                android:layout_marginBottom="100dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintTop_toBottomOf="@id/teamID"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:orientation="vertical">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/teamColorIDText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/team_color"
+                    android:textAlignment="center"
+                    android:textSize="25dp" />
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/redColorCheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/checkbox_blue_background"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/blueColorCheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </com.google.android.flexbox.FlexboxLayout>
+
+            </LinearLayout>
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
