@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/frameLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
@@ -11,10 +11,42 @@
     <!--We are using this image view to display our QR code-->
     <!--Edit text to enter text for creating a QR code-->
     <!--Button for creating a QR code-->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        app:alignContent="center"
+        app:flexDirection="column"
+        app:justifyContent="space_between">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbarStyle="insideInset"
+            android:fillViewport="true"
+            android:textAlignment="center">
+            <LinearLayout
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/reviewText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="WELCOME TEAMS 135 AND 328"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toTopOf="@+id/fabGenerate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+        </ScrollView>
 
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -27,7 +59,7 @@
             android:text="Create QR Code"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="25dp"
+            android:textSize="30dp"
             app:layout_constraintBottom_toTopOf="@id/fabFolder"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -43,26 +75,29 @@
             android:text="Open QR Code"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="25dp"
+            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fabGenerate" />
 
-        <TextView
-            android:id="@+id/reviewText"
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fabRead"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="20dp"
-            android:text="WELCOME TEAMS 135 AND 328"
+            android:layout_marginBottom="110dp"
+            android:text="Open Data View"
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/fabGenerate"
+            android:textColor="@color/white"
+            android:textSize="26dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/fabFolder" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.flexbox.FlexboxLayout>
 </FrameLayout>

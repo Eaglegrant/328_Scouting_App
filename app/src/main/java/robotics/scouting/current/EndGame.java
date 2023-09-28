@@ -57,11 +57,15 @@ public class EndGame extends Fragment implements View.OnClickListener {
     Bitmap bitmap;
     TextView reviewText;
     MaterialButton openQRFolder;
-    FloatingActionButton fab;
     QRGEncoder qrgEncoder;
     Context context;
+
+    String reviewData;
     String imagesDir;
     ArrayList<Integer> gridQR = new ArrayList<Integer>();
+    MaterialButton openDataView;
+
+
     private boolean saveImage(Bitmap bitmap) throws IOException {
         boolean saved;
         OutputStream fos=null;
@@ -112,6 +116,7 @@ public class EndGame extends Fragment implements View.OnClickListener {
         setExitTransition(inflater.inflateTransition(R.transition.fade_f));
         setEnterTransition(inflater.inflateTransition(R.transition.slide_right_f));
         imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
+        reviewData = MainActivity.getAllDataChangeable();
     }
 
     @Override
@@ -123,8 +128,12 @@ public class EndGame extends Fragment implements View.OnClickListener {
        generateQrBtn = (MaterialButton) root.findViewById(R.id.fabGenerate);
         openQRFolder  = (MaterialButton) root.findViewById(R.id.fabFolder);
         reviewText = (TextView) root.findViewById(R.id.reviewText);
+        openDataView = (MaterialButton) root.findViewById(R.id.fabRead);
         generateQrBtn.setOnClickListener(this);
         openQRFolder.setOnClickListener(this);
+        openDataView.setOnClickListener(this);
+        reviewText.setText(reviewData);
+
       //  gridView = gridView.findViewById(R.id.gridView1);
         return root;
     }
@@ -157,6 +166,10 @@ public class EndGame extends Fragment implements View.OnClickListener {
                 intent.putExtra("path",imagesDir);
                 startActivity(intent);
                     break;
+            case R.id.fabRead:
+                Intent dataViewIntent = new Intent(context,QRCodeScanner.class);
+                startActivity(dataViewIntent);
+                break;
         }
     }
 }

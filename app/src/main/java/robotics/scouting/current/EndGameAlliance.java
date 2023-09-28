@@ -120,6 +120,7 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
         TransitionInflater inflater = TransitionInflater.from(requireContext());
         setExitTransition(inflater.inflateTransition(R.transition.fade_f));
         setEnterTransition(inflater.inflateTransition(R.transition.slide_right_f));
+
         imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
     }
 
