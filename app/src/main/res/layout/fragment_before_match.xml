@@ -90,12 +90,14 @@
                 android:id="@+id/preLoadConeCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:buttonTint="@color/black"
                 android:text="Cone" />
 
             <CheckBox
                 android:id="@+id/preLoadCubeCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:buttonTint="@color/black"
                 android:text="Cube" />
         </com.google.android.flexbox.FlexboxLayout>
 
@@ -153,19 +155,24 @@
                 <com.google.android.flexbox.FlexboxLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    app:justifyContent="space_evenly">
+
 
                     <CheckBox
                         android:id="@+id/redColorCheck"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:button="@drawable/checkbox_blue_background"
+                        android:background="@color/red"
+                        android:buttonTint="@color/black"
                         />
 
                     <CheckBox
                         android:id="@+id/blueColorCheck"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@color/blue"
+                        android:buttonTint="@color/black"
                         />
                 </com.google.android.flexbox.FlexboxLayout>
 
