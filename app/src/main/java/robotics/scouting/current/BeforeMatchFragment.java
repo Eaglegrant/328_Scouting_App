@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 /**
@@ -30,6 +31,10 @@ public class BeforeMatchFragment extends Fragment implements View.OnClickListene
     Context context;
     EditText team;
     EditText match;
+    CheckBox redCheck;
+    CheckBox blueCheck;
+    CheckBox coneCheck;
+    CheckBox cubeCheck;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +49,14 @@ public class BeforeMatchFragment extends Fragment implements View.OnClickListene
         context = container.getContext();
         team = root.findViewById(R.id.teamID);
         match = root.findViewById(R.id.matchID);
+        blueCheck = root.findViewById(R.id.blueColorCheck);
+        redCheck = root.findViewById(R.id.redColorCheck);
+        coneCheck = root.findViewById(R.id.preLoadConeCheck);
+        cubeCheck = root.findViewById(R.id.preLoadCubeCheck);
+        blueCheck.setOnClickListener(this);
+        redCheck.setOnClickListener(this);
+        cubeCheck.setOnClickListener(this);
+        coneCheck.setOnClickListener(this);
         team.setOnClickListener(this);
         match.setOnClickListener(this);
 
@@ -64,7 +77,18 @@ public class BeforeMatchFragment extends Fragment implements View.OnClickListene
             case R.id.matchID:
                 match.setText("");
                 break;
-
+            case (R.id.blueColorCheck):
+                    redCheck.setChecked(false);
+                break;
+            case (R.id.redColorCheck):
+                    blueCheck.setChecked(false);
+                break;
+            case (R.id.preLoadConeCheck):
+                cubeCheck.setChecked(false);
+                break;
+            case (R.id.preLoadCubeCheck):
+                coneCheck.setChecked(false);
+                break;
         }
         }
     @Override
