@@ -168,6 +168,7 @@ public class EndGame extends Fragment implements View.OnClickListener {
                     break;
             case R.id.fabRead:
                 Intent dataViewIntent = new Intent(context,QRCodeScanner.class);
+                dataViewIntent.putExtra("Location", true);
                 startActivity(dataViewIntent);
                 break;
         }

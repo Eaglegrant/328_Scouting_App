@@ -136,7 +136,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MatchText = headerView.findViewById(R.id.matchNum);
         MatchText.setText("Match: NA");
         TeamText.setText("Team:\n NA");
-        replaceFragment(new BeforeMatchFragment(),"before");
+        boolean locationGo = getIntent().getBooleanExtra("local",false);
+        if (locationGo){
+            replaceFragment(new EndGameAlliance(),"end");
+            getSupportActionBar().setTitle("Review");
+            binding.bottomNavigationView.setSelectedItemId(R.id.end);
+        }else {
+            replaceFragment(new BeforeMatchFragment(),"before");
+        }
     }
     @SuppressLint("RestrictedApi")
     @Override
