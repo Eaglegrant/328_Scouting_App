@@ -21,34 +21,39 @@
             app:justifyContent="space_evenly"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintVertical_bias="0.496">
 
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:flexDirection="column">
+                app:flexDirection="column"
+                >
 
                 <Button
                     android:id="@+id/HighCubeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="High Cube:" />
+                    android:text="High Cube: 0"
+                    android:textSize="12dp"/>
 
                 <Button
                     android:id="@+id/MidCubeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mid Cube:"
-                    tools:layout_editor_absoluteY="56dp" />
+                    android:text="Mid Cube: 0"
+                    tools:layout_editor_absoluteY="56dp"
+                    android:textSize="12dp"/>
 
                 <Button
                     android:id="@+id/LowCubeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Low Cube:"
-                    tools:layout_editor_absoluteY="96dp" />
+                    android:text="Low Cube: 0"
+                    tools:layout_editor_absoluteY="96dp"
+                    android:textSize="12dp"/>
             </com.google.android.flexbox.FlexboxLayout>
 
             <com.google.android.flexbox.FlexboxLayout
@@ -60,46 +65,53 @@
                     android:id="@+id/HighConeButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="High Cone:" />
+                    android:text="High Cone: 0"
+                    android:textSize="12dp"/>
 
                 <Button
                     android:id="@+id/MidConeButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Mid Cone:"
-                    tools:layout_editor_absoluteY="48dp" />
+                    android:text="Mid Cone: 0"
+                    tools:layout_editor_absoluteY="48dp"
+                    android:textSize="12dp"/>
 
                 <Button
                     android:id="@+id/LowConeButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Low Cone:"
-                    tools:layout_editor_absoluteY="96dp" />
+                    android:text="Low Cone 0:"
+                    tools:layout_editor_absoluteY="96dp"
+                    android:textSize="12dp"/>
             </com.google.android.flexbox.FlexboxLayout>
 
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:flexDirection="column">
+                app:flexDirection="column"
+                android:textSize="12dp">
 
                 <Button
                     android:id="@+id/MissButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Miss:" />
+                    android:text="Miss: 0"
+                    android:textSize="12dp"/>
 
                 <Button
                     android:id="@+id/Button3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="Button"
+                    android:textSize="12dp"/>
 
                 <Button
                     android:id="@+id/DownedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Downed?"
-                    tools:layout_editor_absoluteY="96dp" />
+                    tools:layout_editor_absoluteY="96dp"
+                    android:textSize="12dp"/>
             </com.google.android.flexbox.FlexboxLayout>
         </com.google.android.flexbox.FlexboxLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

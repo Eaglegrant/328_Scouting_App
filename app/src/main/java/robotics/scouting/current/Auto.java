@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.android.material.button.MaterialButton;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -48,6 +50,14 @@ public class Auto extends Fragment implements View.OnClickListener{
     Button lowCone;
     Button miss;
     Button downed;
+    int highConeCount;
+    int midConeCount;
+    int lowConeCount;
+    int highCubeCount;
+    int midCubeCount;
+    int lowCubeCount;
+    int missCount;
+    boolean downedBool;
     public static int getBackgroundColor(View view) {
         Drawable drawable = view.getBackground();
         if (drawable instanceof ColorDrawable) {
@@ -108,10 +118,47 @@ public class Auto extends Fragment implements View.OnClickListener{
        // MainActivity.setGrid(gridQR);
         super.onStop();
     }
+    private int updater(int value,Button button,String name){
+        value +=1;
+        String tempText = name+String.valueOf(value);
+        button.setText(tempText);
+        return value;
+    }
     @Override
     public void onClick(View v) {
-        ImageView image = (ImageView) v;
+        MaterialButton image = (MaterialButton) v;
         switch (v.getId()) {
+            case R.id.HighConeButton:
+                highConeCount = updater(highConeCount, highCone, "High Cone: ");
+                break;
+            case R.id.MidConeButton:
+                midConeCount = updater(midConeCount, midCone, "Mid Cone: ");
+                break;
+            case R.id.LowConeButton:
+                ConeButton:
+                lowConeCount = updater(lowConeCount, lowCone, "Low Cone: ");
+                break;
+            case R.id.HighCubeButton:
+                highCubeCount = updater(highCubeCount, highCube, "High Cube: ");
+                break;
+            case R.id.MidCubeButton:
+                midCubeCount = updater(midCubeCount, midCube, "Mid Cube: ");
+                break;
+            case R.id.LowCubeButton:
+                lowCubeCount = updater(lowCubeCount, lowCube, "Low Cube: ");
+                break;
+            case R.id.MissButton:
+                missCount = updater(missCount, miss, "Miss: ");
+                break;
+            case R.id.DownedButton:
+                downedBool = !downedBool;
+                if (downedBool) {
+                    downed.setText("Working?");
+                    downed.setBackgroundColor(Color.RED);
+                } else {
+                    downed.setText("Downed?");
+                    downed.setBackgroundColor(Color.rgb(15,157,88));
+                }
         }
     }
 }
