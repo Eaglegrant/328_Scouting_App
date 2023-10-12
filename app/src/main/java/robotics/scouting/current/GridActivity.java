@@ -6,7 +6,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.VolleyError;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 import com.opencsv.CSVReader;
 
 
@@ -60,7 +62,6 @@ public class GridActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         csvFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "file.csv");
         if (!csvFile.exists()) {
             noFilesText.setVisibility(View.VISIBLE);

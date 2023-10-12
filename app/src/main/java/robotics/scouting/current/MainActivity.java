@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         navigationView.removeHeaderView(navigationView.getHeaderView(0));
         TeamText = headerView.findViewById(R.id.teamNum);
         MatchText = headerView.findViewById(R.id.matchNum);
-        MatchText.setText("Match: NA");
+        MatchText.setText("Match:\n NA");
         TeamText.setText("Team:\n NA");
         boolean locationGo = getIntent().getBooleanExtra("local",false);
         if (locationGo){

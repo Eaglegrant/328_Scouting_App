@@ -5,11 +5,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +37,8 @@ public class BeforeMatchFragment extends Fragment implements View.OnClickListene
     CheckBox blueCheck;
     CheckBox coneCheck;
     CheckBox cubeCheck;
+    BlueAllianceAPI blueAllianceAPI;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +63,16 @@ public class BeforeMatchFragment extends Fragment implements View.OnClickListene
         coneCheck.setOnClickListener(this);
         team.setOnClickListener(this);
         match.setOnClickListener(this);
+        blueAllianceAPI = new BlueAllianceAPI(this);
 
+        // Make the API request
+        blueAllianceAPI.getTeamData("/status", response -> {
+            // Handle the response
+            Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
+        }, error -> {
+            // Handle the error
+            Log.d("API", "onErrorResponse: " + error.toString());
+        });
         if (MainActivity.getTeam() == -1 && MainActivity.getMatch() == -1) {
             team.setText("");
             match.setText("");
