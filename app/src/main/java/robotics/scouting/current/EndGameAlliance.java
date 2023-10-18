@@ -185,6 +185,7 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
                     break;
             case R.id.fabRead:
                 Intent intent1 = new Intent(context,QRCodeScanner.class);
+                intent1.putExtra("location",false);
                 /*if (finalDataAdd != null) {
                     intent1.putExtra("alliance",finalDataAdd);
                 }
