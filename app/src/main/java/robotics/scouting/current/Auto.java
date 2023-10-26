@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.transition.TransitionInflater;
@@ -50,6 +51,7 @@ public class Auto extends Fragment implements View.OnClickListener{
     Button lowCone;
     Button miss;
     Button downed;
+    Button undo;
     int highConeCount;
     int midConeCount;
     int lowConeCount;
@@ -58,6 +60,10 @@ public class Auto extends Fragment implements View.OnClickListener{
     int lowCubeCount;
     int missCount;
     boolean downedBool;
+    int undoValue;
+
+
+
     public static int getBackgroundColor(View view) {
         Drawable drawable = view.getBackground();
         if (drawable instanceof ColorDrawable) {
@@ -101,6 +107,7 @@ public class Auto extends Fragment implements View.OnClickListener{
         lowCone = root.findViewById(R.id.LowConeButton);
         miss = root.findViewById(R.id.MissButton);
         downed = root.findViewById(R.id.DownedButton);
+        undo = root.findViewById(R.id.UndoButton);
         highCube.setOnClickListener(this);
         midCube.setOnClickListener(this);
         lowCube.setOnClickListener(this);
@@ -109,6 +116,7 @@ public class Auto extends Fragment implements View.OnClickListener{
         lowCone.setOnClickListener(this);
         miss.setOnClickListener(this);
         downed.setOnClickListener(this);
+        undo.setOnClickListener(this);
         return root;
     }
 
@@ -119,36 +127,73 @@ public class Auto extends Fragment implements View.OnClickListener{
         super.onStop();
     }
     private int updater(int value,Button button,String name){
+        //Ups the value of button pressed by one
         value +=1;
         String tempText = name+String.valueOf(value);
         button.setText(tempText);
         return value;
     }
+
+    private int updaterMinus(int value,Button button,String name){
+        //brings down the value of button pressed by one
+        if (value > 0){
+        value -=1;
+        }
+        String tempText = name+String.valueOf(value);
+        button.setText(tempText);
+        return value;
+    }
+    //Undo value correspond to what button was last presses, i couldn't figure out how to make it text
+    //Undo value works like this: High cone = 1, Mid cone = 2, Low cone = 3, High cube = 4, Mid cube = 5, Low cube = 6, and Miss = 7
     @Override
     public void onClick(View v) {
         MaterialButton image = (MaterialButton) v;
         switch (v.getId()) {
             case R.id.HighConeButton:
                 highConeCount = updater(highConeCount, highCone, "High Cone: ");
+                undoValue = 1;
                 break;
             case R.id.MidConeButton:
                 midConeCount = updater(midConeCount, midCone, "Mid Cone: ");
+                undoValue = 2;
                 break;
             case R.id.LowConeButton:
                 ConeButton:
                 lowConeCount = updater(lowConeCount, lowCone, "Low Cone: ");
+                undoValue = 3;
                 break;
             case R.id.HighCubeButton:
                 highCubeCount = updater(highCubeCount, highCube, "High Cube: ");
+                undoValue = 4;
                 break;
             case R.id.MidCubeButton:
                 midCubeCount = updater(midCubeCount, midCube, "Mid Cube: ");
+                undoValue = 5;
                 break;
             case R.id.LowCubeButton:
                 lowCubeCount = updater(lowCubeCount, lowCube, "Low Cube: ");
+                undoValue = 6;
                 break;
             case R.id.MissButton:
                 missCount = updater(missCount, miss, "Miss: ");
+                undoValue = 7;
+                break;
+            case R.id.UndoButton:
+                if (undoValue == 1){
+                    highConeCount = updaterMinus(highConeCount, highCone, "High Cone: ");
+                } else if (undoValue == 2) {
+                    midConeCount = updaterMinus(midConeCount, midCone, "Mid Cone: ");
+                } else if (undoValue == 3) {
+                    lowConeCount = updaterMinus(lowConeCount, lowCone, "Low Cone: ");
+                } else if (undoValue == 4) {
+                    highCubeCount = updaterMinus(highCubeCount, highCube, "High Cube: ");
+                } else if (undoValue == 5) {
+                    midCubeCount = updaterMinus(midCubeCount, midCube, "Mid Cube: ");
+                } else if (undoValue == 6) {
+                    lowCubeCount = updaterMinus(lowCubeCount, lowCube, "Low Cube: ");
+                } else if (undoValue == 7) {
+                    missCount = updaterMinus(missCount, miss, "Miss: ");
+                }
                 break;
             case R.id.DownedButton:
                 downedBool = !downedBool;
