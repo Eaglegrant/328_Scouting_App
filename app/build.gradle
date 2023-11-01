@@ -42,11 +42,9 @@ android {
 }
 allprojects {
     repositories {
-        maven { url 'https://jitpack.io' }
     }
 }
 dependencies {
-    implementation 'com.github.SumiMakito:AwesomeQRCode:1.2.0'
     implementation "com.github.sam43:AnimateViewLibrary:1.0.1"
     implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
     implementation 'androidx.appcompat:appcompat:1.6.0'
