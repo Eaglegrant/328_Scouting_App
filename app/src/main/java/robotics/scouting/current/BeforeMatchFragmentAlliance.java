@@ -2,14 +2,21 @@ package robotics.scouting.current;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
+
+import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +31,6 @@ public class BeforeMatchFragmentAlliance extends Fragment implements View.OnClic
     public static BeforeMatchFragmentAlliance newInstance() {
         BeforeMatchFragmentAlliance fragment = new BeforeMatchFragmentAlliance();
         Bundle args = new Bundle();
-
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,6 +53,26 @@ public class BeforeMatchFragmentAlliance extends Fragment implements View.OnClic
         View root = inflater.inflate(R.layout.fragment_before_match_alliance, container,false);
         context = container.getContext();
         alliance = root.findViewById(R.id.switch1);
+        BlueAllianceAPI blueAlliance = new BlueAllianceAPI(context);
+        String teamNumber = "frc328"; // team key for team 328
+        String teamEndpoint = "/team/" + teamNumber;
+        Response.Listener<JSONObject> teamDataListener = new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                // Handle the JSON response here
+                // You can parse the JSON response and use the data accordingly
+                Log.d("BlueAllianceAPI", "Team 328 Data: " + response.toString());
+            }
+        };
+
+        Response.ErrorListener teamDataErrorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle any errors here
+                Log.e("BlueAllianceAPI", "Error fetching Team 328 data: " + error.toString());
+            }
+        };
+        blueAlliance.getTeamData(teamEndpoint, teamDataListener, teamDataErrorListener);
         match = root.findViewById(R.id.matchID);
         team1 = root.findViewById(R.id.team1);
         team2 = root.findViewById(R.id.team2);
