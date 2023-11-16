@@ -10,17 +10,27 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Chronometer;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 
 import java.lang.reflect.Field;
+import java.text.CollationElementIterator;
 import java.util.ArrayList;
 
 /**
@@ -28,7 +38,7 @@ import java.util.ArrayList;
  * Use the {@link Auto#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Auto extends Fragment implements View.OnClickListener{
+public class Auto extends Fragment implements View.OnClickListener {
 
     public Auto() {
         // Required empty public constructor
@@ -41,6 +51,7 @@ public class Auto extends Fragment implements View.OnClickListener{
         fragment.setArguments(args);
         return fragment;
     }
+
     Context context;
     EditText dataEdt1;
     Button highCube;
@@ -52,6 +63,7 @@ public class Auto extends Fragment implements View.OnClickListener{
     Button miss;
     Button downed;
     Button undo;
+    TextView downedTimer;
     int highConeCount;
     int midConeCount;
     int lowConeCount;
@@ -61,9 +73,23 @@ public class Auto extends Fragment implements View.OnClickListener{
     int missCount;
     boolean downedBool;
     int undoValue;
+    private Button resetButton;
 
-
-
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        wasRunning = running;
+        running = false;
+    }
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        if (wasRunning) {
+            running = true;
+        }
+    }
     public static int getBackgroundColor(View view) {
         Drawable drawable = view.getBackground();
         if (drawable instanceof ColorDrawable) {
@@ -85,6 +111,7 @@ public class Auto extends Fragment implements View.OnClickListener{
         }
         return 0;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,8 +124,9 @@ public class Auto extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_auto, container,false);
+        View root = inflater.inflate(R.layout.fragment_auto, container, false);
         context = container.getContext();
+        resetButton = root.findViewById(R.id.ResetButton);
         highCube = root.findViewById(R.id.HighCubeButton);
         midCube = root.findViewById(R.id.MidCubeButton);
         lowCube = root.findViewById(R.id.LowCubeButton);
@@ -108,6 +136,7 @@ public class Auto extends Fragment implements View.OnClickListener{
         miss = root.findViewById(R.id.MissButton);
         downed = root.findViewById(R.id.DownedButton);
         undo = root.findViewById(R.id.UndoButton);
+        downedTimer = root.findViewById(R.id.DownedTime);
         highCube.setOnClickListener(this);
         midCube.setOnClickListener(this);
         lowCube.setOnClickListener(this);
@@ -117,34 +146,73 @@ public class Auto extends Fragment implements View.OnClickListener{
         miss.setOnClickListener(this);
         downed.setOnClickListener(this);
         undo.setOnClickListener(this);
+        resetButton.setOnClickListener(this);
+        runTimer();
         return root;
     }
 
     @Override
     public void onStop() {
-     //   MainActivity.setAutoC(dataEdt1.getText().toString());
-       // MainActivity.setGrid(gridQR);
+        //   MainActivity.setAutoC(dataEdt1.getText().toString());
+        // MainActivity.setGrid(gridQR);
         super.onStop();
     }
-    private int updater(int value,Button button,String name){
-        //Ups the value of button pressed by one
-        value +=1;
-        String tempText = name+String.valueOf(value);
-        button.setText(tempText);
-        return value;
-    }
 
-    private int updaterMinus(int value,Button button,String name){
-        //brings down the value of button pressed by one
-        if (value > 0){
-        value -=1;
-        }
-        String tempText = name+String.valueOf(value);
+    private int updater(int value, Button button, String name) {
+        //Ups the value of button pressed by one
+        value += 1;
+        String tempText = name + String.valueOf(value);
         button.setText(tempText);
         return value;
     }
+    public void updateTime(String newText){
+        downedTimer.setText("Downed Time: "+newText);
+    }
+    private int updaterMinus(int value, Button button, String name) {
+        //brings down the value of button pressed by one
+        if (value > 0) {
+            value -= 1;
+        }
+        String tempText = name + String.valueOf(value);
+        button.setText(tempText);
+        return value;
+    }
+    private int seconds = 0;
+    private int minutes = 0;
+    private int milliseconds = 0;
+
+    private boolean running;
+
+    private boolean wasRunning;
+    Handler handler = new Handler();
     //Undo value correspond to what button was last presses, i couldn't figure out how to make it text
     //Undo value works like this: High cone = 1, Mid cone = 2, Low cone = 3, High cube = 4, Mid cube = 5, Low cube = 6, and Miss = 7
+    private void runTimer() {
+        handler.post(new Runnable() {
+            @Override
+
+            public void run()
+            {
+                if (running) {
+                    milliseconds+=4;
+                    if (milliseconds %100 == 0){
+                        milliseconds = 0;
+                        seconds++;
+                        if (seconds %60 == 0){
+                            seconds = 0;
+                            minutes++;
+                        }
+                    }
+
+                }
+
+                updateTime(String.valueOf(seconds) + "." + String.valueOf(milliseconds)+" Seconds");
+                // Post the code again
+                // with a delay of 1 second.
+                handler.postDelayed(this, 40);
+            }
+        });
+    }
     @Override
     public void onClick(View v) {
         MaterialButton image = (MaterialButton) v;
@@ -179,7 +247,7 @@ public class Auto extends Fragment implements View.OnClickListener{
                 undoValue = 7;
                 break;
             case R.id.UndoButton:
-                if (undoValue == 1){
+                if (undoValue == 1) {
                     highConeCount = updaterMinus(highConeCount, highCone, "High Cone: ");
                 } else if (undoValue == 2) {
                     midConeCount = updaterMinus(midConeCount, midCone, "Mid Cone: ");
@@ -200,10 +268,18 @@ public class Auto extends Fragment implements View.OnClickListener{
                 if (downedBool) {
                     downed.setText("Working?");
                     downed.setBackgroundColor(Color.RED);
+                    running = true;
                 } else {
-                    downed.setText("Downed?");
-                    downed.setBackgroundColor(Color.rgb(15,157,88));
+                        downed.setText("Downed?");
+                        downed.setBackgroundColor(Color.rgb(15, 157, 88));
+                        running = false;
+                }
+                break;
+            case R.id.ResetButton:
+                running = false;
+                seconds = 0;
+                minutes = 0;
+                milliseconds = 0;
                 }
         }
-    }
 }

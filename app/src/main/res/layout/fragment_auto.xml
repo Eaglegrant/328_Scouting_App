@@ -99,11 +99,11 @@
                     android:textSize="12dp" />
 
                 <Button
-                    android:id="@+id/Button3"
+                    android:id="@+id/ResetButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button"
-                    android:textSize="12dp" />
+                    android:text="Reset Timer?"
+                    android:textSize="11dp" />
 
                 <Button
                     android:id="@+id/DownedButton"
@@ -124,5 +124,25 @@
             app:layout_constraintEnd_toEndOf="@+id/flexboxLayout"
             app:layout_constraintStart_toStartOf="@+id/flexboxLayout"
             app:layout_constraintTop_toTopOf="@+id/flexboxLayout" />
+
+        <LinearLayout
+            android:id="@+id/StopwatchLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/UndoButton"
+            app:layout_constraintEnd_toEndOf="@+id/UndoButton"
+            app:layout_constraintStart_toStartOf="@+id/UndoButton"
+            app:layout_constraintTop_toTopOf="@+id/flexboxLayout"
+            android:background="@color/purple_200"
+            app:layout_constraintVertical_bias="0.778" >
+
+            <TextView
+                android:id="@+id/DownedTime"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:text="Downed Time:"
+                android:textSize="20sp"
+                android:textColor="#EEEEEE" /></LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
