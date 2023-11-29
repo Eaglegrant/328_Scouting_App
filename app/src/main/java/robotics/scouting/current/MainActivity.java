@@ -36,6 +36,7 @@ import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import robotics.scouting.current.databinding.ActivityMainBinding;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static String teleC = "NA";
     public static int dimen;
     static int mins =0;
+    static ArrayList<Integer> scoresAuto;
     static int secs =0;
     static int millis =0;
     static String time="0.00";
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //generating dimension from width and height.
         dimen = Math.min(width, height);
         dimen = dimen * 3 / 4;
+        scoresAuto.
         fab.setOnClickListener(this);
         fab2.setOnClickListener(this);
         if (!checkPermission()) {
@@ -383,6 +386,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MainActivity.millis = millis;
         MainActivity.time = String.valueOf(secs) + "." + String.valueOf(millis);
     }
+    public static ArrayList<Integer> setAutoScores(int HighCubeCount, int MidCubeCount, int LowCubeCount, int HighConeCount, int MidConeCount, int LowConeCount, int MissCount)
     public static int getDimen() {
         return dimen;
     }
@@ -429,6 +433,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         autoC = "NA";
         grid = new ArrayList<Integer>();
         for (int i = 0; i < 27; i++) {
+            grid.add(i,0);
+        }
+        scoresAuto = new ArrayList<Integer>();
+        for (int i = 0; i < 7; i++) {
             grid.add(i,0);
         }
         teleC = "NA";

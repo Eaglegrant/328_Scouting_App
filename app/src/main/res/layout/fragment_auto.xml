@@ -129,20 +129,33 @@
             android:id="@+id/StopwatchLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/purple_200"
             app:layout_constraintBottom_toTopOf="@+id/UndoButton"
             app:layout_constraintEnd_toEndOf="@+id/UndoButton"
             app:layout_constraintStart_toStartOf="@+id/UndoButton"
             app:layout_constraintTop_toTopOf="@+id/flexboxLayout"
-            android:background="@color/purple_200"
-            app:layout_constraintVertical_bias="0.778" >
+            app:layout_constraintVertical_bias="0.778">
 
             <TextView
                 android:id="@+id/DownedTime"
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:text="Downed Time:"
-                android:textSize="20sp"
-                android:textColor="#EEEEEE" /></LinearLayout>
+                android:textColor="#EEEEEE"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/AutoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#EEEEEE"
+            android:textSize="30sp"
+            android:text="Auto"
+            app:layout_constraintBottom_toBottomOf="@+id/flexboxLayout"
+            app:layout_constraintEnd_toEndOf="@+id/flexboxLayout"
+            app:layout_constraintStart_toStartOf="@+id/flexboxLayout"
+            app:layout_constraintTop_toBottomOf="@+id/UndoButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
