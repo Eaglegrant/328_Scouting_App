@@ -211,9 +211,9 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
         Log.d("GROUP", "groupQR: "+testString);
         qrgEncoder = new QRGEncoder(testString, null, QRGContents.Type.TEXT, dimen);
         try {
-            bitmap = qrgEncoder.encodeAsBitmap();
+       //     bitmap = qrgEncoder.encodeAsBitmap();
             saveImage(bitmap, String.valueOf(matchNumber),allianceNum+" Group");
-        } catch (WriterException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -235,9 +235,9 @@ public class GroupReader extends AppCompatActivity implements ZXingScannerView.R
         Log.d("ROBOT", "soloQR: "+dataRaw);
 
         try {
-            bitmap = qrgEncoder.encodeAsBitmap();
+     //       bitmap = qrgEncoder.encodeAsBitmap();
             saveImage(bitmap, String.valueOf(matchNumber),allianceNum);
-        } catch (WriterException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         groupCheck(dataRaw);

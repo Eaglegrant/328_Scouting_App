@@ -160,10 +160,10 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
                 }
                 qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, dimen);
                 try {
-                    bitmap = qrgEncoder.encodeAsBitmap();
+              //      bitmap = qrgEncoder.encodeAsBitmap();
                     saveImage(bitmap);
                     Toast.makeText(context, "QR Generated Successfully", Toast.LENGTH_SHORT).show();
-                } catch (WriterException | IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 finalDataAdd = data;

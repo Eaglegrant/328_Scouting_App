@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -158,11 +157,11 @@ public class Auto extends Fragment implements View.OnClickListener {
             lowCone.setText("");
             miss.setText("");
         } else {
-            highCube.setText(String.valueOf(MainActivity.setAutoScores(HighCubeCount));
+     /*       highCube.setText(String.valueOf(MainActivity.setAutoScores(HighCubeCount));
             midCube.setText(String.valueOf(MainActivity.setAutoScores(MidCubeCount));
             midCube.setText(String.valueOf(MainActivity.setAutoScores(LowCubeCount));
             highCone.setText(String.valueOf(MainActivity.setAutoScores(HighConeCount));
-        }
+        */}
         return root;
     }
 

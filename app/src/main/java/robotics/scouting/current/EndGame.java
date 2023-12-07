@@ -1,10 +1,13 @@
 package robotics.scouting.current;
 
 
+import static com.android.volley.VolleyLog.TAG;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +18,7 @@ import android.content.Intent;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.transition.TransitionInflater;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +38,7 @@ import java.util.ArrayList;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
+import androidmads.library.qrgenearator.QRGSaver;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,12 +66,10 @@ public class EndGame extends Fragment implements View.OnClickListener {
     Context context;
 
     String reviewData;
-    String imagesDir;
     ArrayList<Integer> gridQR = new ArrayList<Integer>();
     MaterialButton openDataView;
-
-
-    private boolean saveImage(Bitmap bitmap) throws IOException {
+    String imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
+   /* private boolean saveImage(Bitmap bitmap) throws IOException {
         boolean saved;
         OutputStream fos=null;
         int teamNumber = MainActivity.getTeam();
@@ -86,15 +89,14 @@ public class EndGame extends Fragment implements View.OnClickListener {
                 e.printStackTrace();
             }
         } else {
-            String imagesDir = Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
+
 
             File file =new File(imagesDir);
             if (!file.exists()) {
                 file.mkdir();
             }
 
-            File image =new File(imagesDir,  "M" + matchNumber + " Team " + teamNumber+".png");
+                    File image =new File(imagesDir,  "M" + matchNumber + " Team " + teamNumber+".png");
             try {
                 fos =new FileOutputStream(image);
             } catch (FileNotFoundException e) {
@@ -109,6 +111,8 @@ public class EndGame extends Fragment implements View.OnClickListener {
         fos.close();
         return saved;
     }
+    */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,13 +155,15 @@ public class EndGame extends Fragment implements View.OnClickListener {
                 }
 
                 qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, dimen);
-                try {
-                    bitmap = qrgEncoder.encodeAsBitmap();
-                    saveImage(bitmap);
-                    Toast.makeText(context, "QR Generated Successfully", Toast.LENGTH_SHORT).show();
-                } catch (WriterException | IOException e) {
-                    e.printStackTrace();
-                }
+               // qrgEncoder.setColorBlack(Color.RED);
+             //   qrgEncoder.setColorWhite(Color.BLUE);
+                bitmap = qrgEncoder.getBitmap();
+                QRGSaver qrgSaver = new QRGSaver();
+                int teamNumber = MainActivity.getTeam();
+                int matchNumber = MainActivity.getMatch();
+                String text = "M" + matchNumber + " Team " + teamNumber;
+                qrgSaver.save(imagesDir + File.separator, text,bitmap, QRGContents.ImageType.IMAGE_JPEG);
+                Toast.makeText(context, "QR Generated Successfully", Toast.LENGTH_SHORT).show();
                 MainActivity.clearData();
                 break;
                 //Okay you can touch stuff from here.

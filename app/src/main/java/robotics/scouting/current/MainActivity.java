@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //generating dimension from width and height.
         dimen = Math.min(width, height);
         dimen = dimen * 3 / 4;
-        scoresAuto.
+
         fab.setOnClickListener(this);
         fab2.setOnClickListener(this);
         if (!checkPermission()) {
@@ -386,7 +386,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MainActivity.millis = millis;
         MainActivity.time = String.valueOf(secs) + "." + String.valueOf(millis);
     }
-    public static ArrayList<Integer> setAutoScores(int HighCubeCount, int MidCubeCount, int LowCubeCount, int HighConeCount, int MidConeCount, int LowConeCount, int MissCount)
+    public static ArrayList<Integer> setAutoScores(int HighCubeCount, int MidCubeCount, int LowCubeCount, int HighConeCount, int MidConeCount, int LowConeCount, int MissCount){
+        return null;
+    }
     public static int getDimen() {
         return dimen;
     }

@@ -173,9 +173,9 @@ public class CameraScannerAlliance extends AppCompatActivity implements ZXingSca
         allianceNum = splitData[2];
         qrgEncoder = new QRGEncoder(dataRaw, null, QRGContents.Type.TEXT, dimen);
         try {
-            bitmap = qrgEncoder.encodeAsBitmap();
+     //       bitmap = qrgEncoder.encodeAsBitmap();
             saveImage(bitmap);
-        } catch (WriterException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

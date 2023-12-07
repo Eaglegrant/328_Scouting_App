@@ -45,7 +45,7 @@ public class MyAdapters extends RecyclerView.Adapter<MyAdapters.ViewHolder> {
     @Override
     public void onBindViewHolder(MyAdapters.ViewHolder holder, int position) {
         File selectFile = filesAndFolders[position];
-        holder.textView.setText(selectFile.getName().replaceAll(".png"," QR Code"));
+        holder.textView.setText(selectFile.getName().replaceAll(".jpg"," QR Code"));
         if(selectFile.isDirectory()) {
             holder.imageView.setImageResource((R.drawable.ic_baseline_folder_24));
         }else{

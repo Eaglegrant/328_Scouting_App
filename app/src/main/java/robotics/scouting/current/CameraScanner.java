@@ -221,9 +221,9 @@ public class CameraScanner extends AppCompatActivity implements ZXingScannerView
         allianceNum = String.valueOf(splitData[2]);
        qrgEncoder = new QRGEncoder(dataRaw, null, QRGContents.Type.TEXT, dimen);
        try {
-            bitmap = qrgEncoder.encodeAsBitmap();
+           // bitmap = qrgEncoder.encodeAsBitmap();
             saveImageT(bitmap, String.valueOf(matchNumber),allianceNum+" Group");
-        } catch (WriterException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         writeDataAtOnce(dataRaw);
