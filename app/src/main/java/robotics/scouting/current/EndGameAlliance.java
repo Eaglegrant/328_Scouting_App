@@ -36,6 +36,7 @@ import java.util.ArrayList;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
+import androidmads.library.qrgenearator.QRGSaver;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,51 +64,8 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
     EditText endPoints;
     QRGEncoder qrgEncoder;
     Context context;
-    String imagesDir;
+    String imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
     ArrayList<Integer> gridQR = new ArrayList<Integer>();
-    private boolean saveImage(Bitmap bitmap) throws IOException {
-        boolean saved;
-        OutputStream fos=null;
-        String alliance = AllianceActivity.getAlliance();
-        int matchNumber = AllianceActivity.getMatch();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-
-            ContentValues contentValues =new  ContentValues();
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "M" + matchNumber + " Team " + alliance);
-            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
-            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "QR");
-
-            Uri imageUri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-
-            try {
-                fos = context.getContentResolver().openOutputStream(imageUri);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        } else {
-            String imagesDir = Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_DCIM).toString() + File.separator + "QR";
-
-            File file =new File(imagesDir);
-            if (!file.exists()) {
-                file.mkdir();
-            }
-
-            File image =new File(imagesDir,  "M" + matchNumber + " Team " + alliance+".png");
-            try {
-                fos =new FileOutputStream(image);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-        saved = bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
-        assert fos != null;
-        fos.flush();
-        fos.close();
-        return saved;
-    }
     @Override
     public void onStop() {
         points = endPoints.getText().toString();
@@ -159,13 +117,15 @@ public class EndGameAlliance extends Fragment implements View.OnClickListener {
                     dimen = AllianceActivity.getDimen();
                 }
                 qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, dimen);
-                try {
-              //      bitmap = qrgEncoder.encodeAsBitmap();
-                    saveImage(bitmap);
-                    Toast.makeText(context, "QR Generated Successfully", Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                // qrgEncoder.setColorBlack(Color.RED);
+                //   qrgEncoder.setColorWhite(Color.BLUE);
+                bitmap = qrgEncoder.getBitmap();
+                QRGSaver qrgSaver = new QRGSaver();
+                int teamNumber = MainActivity.getTeam();
+                int matchNumber = MainActivity.getMatch();
+                String text = "M" + matchNumber + " Alliance " + teamNumber;
+                qrgSaver.save(imagesDir + File.separator, text,bitmap, QRGContents.ImageType.IMAGE_JPEG);
+                Toast.makeText(context, "QR Generated Successfully", Toast.LENGTH_SHORT).show();
                 finalDataAdd = data;
                 if (finalDataAdd != null) {
                     SharedPreferences sh = context.getSharedPreferences("sharedPrefs", MODE_PRIVATE);

@@ -41,11 +41,9 @@ import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
 public class QRCodeScanner extends AppCompatActivity implements  View.OnClickListener {
-    MaterialButton scanBtn;
     MaterialButton scanBtnAlliance;
     MaterialButton openQRFolder;
     MaterialButton GridButton;
-    MaterialButton groupReader;
     FloatingActionButton fab;
     String imagesDir;
 
@@ -53,27 +51,17 @@ public class QRCodeScanner extends AppCompatActivity implements  View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode_scanner);
-        scanBtn = (MaterialButton) findViewById(R.id.scanBtnSuper);
         openQRFolder = (MaterialButton) findViewById(R.id.fabFolder);
         scanBtnAlliance = (MaterialButton) findViewById(R.id.scanBtnAlliance);
-        GridButton = (MaterialButton) findViewById(R.id.GridButton);
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        groupReader = (MaterialButton) findViewById(R.id.groupReader);
-        scanBtn.setOnClickListener(this);
         scanBtnAlliance.setOnClickListener(this);
         openQRFolder.setOnClickListener(this);
-        GridButton.setOnClickListener(this);
-        groupReader.setOnClickListener(this);
         fab.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.scanBtnSuper:
-                Intent intent = new Intent(QRCodeScanner.this, CameraScanner.class);
-                startActivity(intent);
-                break;
             case R.id.scanBtnAlliance:
                 Intent intent2 = new Intent(QRCodeScanner.this, CameraScannerAlliance.class);
                 startActivity(intent2);
@@ -84,15 +72,6 @@ public class QRCodeScanner extends AppCompatActivity implements  View.OnClickLis
                 intent1.putExtra("path", imagesDir);
                 intent1.putExtra("sendBack", false);
                 startActivity(intent1);
-                break;
-            case R.id.GridButton:
-                Intent intent3 = null;
-                    intent3 = new Intent(QRCodeScanner.this, GridActivity.class);
-                    startActivity(intent3);
-                break;
-            case R.id.groupReader:
-                Intent intent4 = new Intent(QRCodeScanner.this, GroupReader.class);
-                startActivity(intent4);
                 break;
             case R.id.fab:
                 if (getIntent().getBooleanExtra("location",false)){

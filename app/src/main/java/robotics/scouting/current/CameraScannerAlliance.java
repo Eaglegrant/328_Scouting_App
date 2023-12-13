@@ -52,8 +52,7 @@ public class CameraScannerAlliance extends AppCompatActivity implements ZXingSca
         if(currentApiVersion >= Build.VERSION_CODES.M){
             if(checkPermission()){
                 //  Toast.makeText(getApplicationContext(),"Permission is granted",Toast.LENGTH_LONG).show();
-            }else{
-                requestPermission();
+            }else{                requestPermission();
             }
         }
 

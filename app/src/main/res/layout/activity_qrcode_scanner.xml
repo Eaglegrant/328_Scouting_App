@@ -21,34 +21,17 @@
 
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/GridButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="25dp"
-            android:text="Open Data View"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scanBtnSuper" />
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/scanBtnSuper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="25dp"
             android:text="Read QR Code"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="25dp"
-            app:layout_constraintBottom_toTopOf="@id/GridButton"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -101,7 +84,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="20dp"
-            android:layout_marginBottom="75dp"
             android:layout_marginEnd="20dp"
             android:text="Read QR Code"
             android:textAlignment="center"
@@ -111,46 +93,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/groupReader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="25dp"
-            android:text="Read Three Robots"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scanBtnAlliance" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Alliance Scouter"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="40dp"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        >
-    </TextView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Super Scouter"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="40dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout1">
-    </TextView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

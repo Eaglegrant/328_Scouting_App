@@ -22,13 +22,6 @@
             android:exported="false" />
         <!-- this is a comment -->
         <activity
-            android:name=".CameraScanner"
-            android:exported="false" />
-        <activity android:name=".CameraScannerAlliance"
-            android:exported="false" />
-        <activity android:name=".GroupReader"
-            android:exported="false" />
-        <activity
             android:name=".QRCodeScanner"
             android:exported="false" />
         <activity
@@ -37,6 +30,8 @@
         <activity
             android:name=".faqActivityMain"
             android:exported="false" />
+        <activity android:name=".CameraScannerAlliance"
+            android:exported="false"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true">
