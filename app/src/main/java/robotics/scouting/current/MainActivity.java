@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     FloatingActionButton fab;
     FloatingActionButton fab2;
     static String balance = "NA";
+    static boolean blueAlliance = false;
+    static boolean redAlliance =false;
     static int match = -1;
     static int team = -1;
     static String autoC = "NA";
@@ -386,18 +388,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MainActivity.millis = millis;
         MainActivity.time = String.valueOf(secs) + "." + String.valueOf(millis);
     }
+
     public static ArrayList<Integer> setAutoScores(int HighCubeCount, int MidCubeCount, int LowCubeCount, int HighConeCount, int MidConeCount, int LowConeCount, int MissCount){
         return null;
     }
     public static int getDimen() {
         return dimen;
     }
-    public static int getMatch() {
-        return match;
-    }
+    public static int getMatch() { return match; }
+    public static void setRedAlliance(boolean value) { redAlliance = value;}
+    public static void setBlueAlliance(boolean value) { blueAlliance = value; }
     public static int getTeam() {
         return team;
     }
+    public static boolean getRedAlliance() { return redAlliance;}
+    public static boolean getBlueAlliance() {return blueAlliance;}
     public static String getAutoC() {
         return autoC;
     }

@@ -76,30 +76,7 @@
             app:layout_constraintBottom_toTopOf="@+id/matchID"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/teamID">
-
-            <TextView
-                android:id="@+id/preLoadText"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-
-                android:textSize="21dp"
-                android:text="Pre-Load?" />
-
-            <CheckBox
-                android:id="@+id/preLoadConeCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Cone"
-                android:buttonTint="@color/black"/>
-
-            <CheckBox
-                android:id="@+id/preLoadCubeCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Cube"
-                android:buttonTint="@color/black"/>
-        </com.google.android.flexbox.FlexboxLayout>
+            app:layout_constraintTop_toBottomOf="@+id/teamID"/>
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/layout2Horizontal"
