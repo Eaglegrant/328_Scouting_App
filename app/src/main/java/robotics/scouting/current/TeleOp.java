@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -17,21 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.os.Bundle;
-import android.os.SystemClock;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Chronometer;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 
 import java.lang.reflect.Field;
-import java.text.CollationElementIterator;
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -127,9 +117,9 @@ public class TeleOp extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.fragment_tele_op, container, false);
         context = container.getContext();
         resetButton = root.findViewById(R.id.ResetButton);
-        highCube = root.findViewById(R.id.HighCubeButton);
-        midCube = root.findViewById(R.id.MidCubeButton);
-        lowCube = root.findViewById(R.id.LowCubeButton);
+        highCube = root.findViewById(R.id.HighGoalButton);
+        midCube = root.findViewById(R.id.LowGoalButton);
+        lowCube = root.findViewById(R.id.AmpedButton);
         highCone = root.findViewById(R.id.HighConeButton);
         midCone = root.findViewById(R.id.MidConeButton);
         lowCone = root.findViewById(R.id.LowConeButton);
@@ -231,15 +221,15 @@ public class TeleOp extends Fragment implements View.OnClickListener {
                 lowConeCount = updater(lowConeCount, lowCone, "Low Cone: ");
                 undoValue = 3;
                 break;
-            case R.id.HighCubeButton:
+            case R.id.HighGoalButton:
                 highCubeCount = updater(highCubeCount, highCube, "High Cube: ");
                 undoValue = 4;
                 break;
-            case R.id.MidCubeButton:
+            case R.id.LowGoalButton:
                 midCubeCount = updater(midCubeCount, midCube, "Mid Cube: ");
                 undoValue = 5;
                 break;
-            case R.id.LowCubeButton:
+            case R.id.AmpedButton:
                 lowCubeCount = updater(lowCubeCount, lowCube, "Low Cube: ");
                 undoValue = 6;
                 break;

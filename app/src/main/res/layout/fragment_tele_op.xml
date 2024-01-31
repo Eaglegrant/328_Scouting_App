@@ -33,14 +33,14 @@
                 app:flexDirection="column">
 
                 <Button
-                    android:id="@+id/HighCubeButton"
+                    android:id="@+id/HighGoalButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="High Cube: 0"
                     android:textSize="12dp" />
 
                 <Button
-                    android:id="@+id/MidCubeButton"
+                    android:id="@+id/LowGoalButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mid Cube: 0"
@@ -48,7 +48,7 @@
                     tools:layout_editor_absoluteY="56dp" />
 
                 <Button
-                    android:id="@+id/LowCubeButton"
+                    android:id="@+id/AmpedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Low Cube: 0"

@@ -33,54 +33,25 @@
                 app:flexDirection="column">
 
                 <Button
-                    android:id="@+id/HighCubeButton"
+                    android:id="@+id/HighGoalButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="High Cube: 0"
+                    android:text="High Goal: 0"
                     android:textSize="12dp" />
 
                 <Button
-                    android:id="@+id/MidCubeButton"
+                    android:id="@+id/LowGoalButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mid Cube: 0"
+                    android:text="Low Goal: 0"
                     android:textSize="12dp"
                     tools:layout_editor_absoluteY="56dp" />
 
                 <Button
-                    android:id="@+id/LowCubeButton"
+                    android:id="@+id/AmpedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Low Cube: 0"
-                    android:textSize="12dp"
-                    tools:layout_editor_absoluteY="96dp" />
-            </com.google.android.flexbox.FlexboxLayout>
-
-            <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:flexDirection="column">
-
-                <Button
-                    android:id="@+id/HighConeButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="High Cone: 0"
-                    android:textSize="12dp" />
-
-                <Button
-                    android:id="@+id/MidConeButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Mid Cone: 0"
-                    android:textSize="12dp"
-                    tools:layout_editor_absoluteY="48dp" />
-
-                <Button
-                    android:id="@+id/LowConeButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Low Cone 0:"
+                    android:text="Amped?"
                     android:textSize="12dp"
                     tools:layout_editor_absoluteY="96dp" />
             </com.google.android.flexbox.FlexboxLayout>

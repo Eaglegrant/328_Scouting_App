@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static String balance = "NA";
     static boolean blueAlliance = false;
     static boolean redAlliance =false;
+    static int points = 0;
     static int match = -1;
     static int team = -1;
     static String autoC = "NA";
@@ -396,6 +397,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return dimen;
     }
     public static int getMatch() { return match; }
+    public static int getPoints(){return points;}
+    public static void setPoints(int value) { points = value;}
     public static void setRedAlliance(boolean value) { redAlliance = value;}
     public static void setBlueAlliance(boolean value) { blueAlliance = value; }
     public static int getTeam() {
@@ -403,6 +406,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public static boolean getRedAlliance() { return redAlliance;}
     public static boolean getBlueAlliance() {return blueAlliance;}
+
     public static String getAutoC() {
         return autoC;
     }

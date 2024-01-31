@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -17,21 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.os.Bundle;
-import android.os.SystemClock;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Chronometer;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 
 import java.lang.reflect.Field;
-import java.text.CollationElementIterator;
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,25 +44,22 @@ public class Auto extends Fragment implements View.OnClickListener {
 
     Context context;
     EditText dataEdt1;
-    Button highCube;
-    Button midCube;
-    Button lowCube;
-    Button highCone;
-    Button midCone;
-    Button lowCone;
+    Button highGoal;
+    Button lowGoal;
+    Button amped;
+
     Button miss;
     Button downed;
     Button undo;
     TextView downedTimer;
-    int highConeCount;
-    int midConeCount;
-    int lowConeCount;
-    int highCubeCount;
-    int midCubeCount;
-    int lowCubeCount;
+
+    int highGoalCount;
+    int lowGoalCount;
+    boolean ampedBool;
     int missCount;
     boolean downedBool;
     int undoValue;
+    int points;
     private Button resetButton;
 
     @Override
@@ -127,34 +114,25 @@ public class Auto extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.fragment_auto, container, false);
         context = container.getContext();
         resetButton = root.findViewById(R.id.ResetButton);
-        highCube = root.findViewById(R.id.HighCubeButton);
-        midCube = root.findViewById(R.id.MidCubeButton);
-        lowCube = root.findViewById(R.id.LowCubeButton);
-        highCone = root.findViewById(R.id.HighConeButton);
-        midCone = root.findViewById(R.id.MidConeButton);
-        lowCone = root.findViewById(R.id.LowConeButton);
+        highGoal = root.findViewById(R.id.HighGoalButton);
+        lowGoal = root.findViewById(R.id.LowGoalButton);
+        amped = root.findViewById(R.id.AmpedButton);
+        points = MainActivity.getPoints();
         miss = root.findViewById(R.id.MissButton);
         downed = root.findViewById(R.id.DownedButton);
         undo = root.findViewById(R.id.UndoButton);
         downedTimer = root.findViewById(R.id.DownedTime);
-        highCube.setOnClickListener(this);
-        midCube.setOnClickListener(this);
-        lowCube.setOnClickListener(this);
-        highCone.setOnClickListener(this);
-        midCone.setOnClickListener(this);
-        lowCone.setOnClickListener(this);
+        highGoal.setOnClickListener(this);
+        lowGoal.setOnClickListener(this);
+        amped.setOnClickListener(this);
         miss.setOnClickListener(this);
         downed.setOnClickListener(this);
         undo.setOnClickListener(this);
         resetButton.setOnClickListener(this);
         runTimer();
-        if(highCubeCount == -1 && midCubeCount == -1 && lowCubeCount == -1 && highConeCount == -1 && midConeCount == -1 && lowConeCount == -1 && missCount == -1) {
-            highCube.setText("");
-            midCube.setText("");
-            lowCube.setText("");
-            highCone.setText("");
-            midCone.setText("");
-            lowCone.setText("");
+        if(highGoalCount == -1 && lowGoalCount == -1 && missCount == -1) {
+            highGoal.setText("");
+            lowGoal.setText("");
             miss.setText("");
         } else {
      /*       highCube.setText(String.valueOf(MainActivity.setAutoScores(HighCubeCount));
@@ -231,50 +209,43 @@ public class Auto extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         MaterialButton image = (MaterialButton) v;
         switch (v.getId()) {
-            case R.id.HighConeButton:
-                highConeCount = updater(highConeCount, highCone, "High Cone: ");
+            case R.id.HighGoalButton:
+                highGoalCount = updater(highGoalCount, highGoal, "High Goal: ");
                 undoValue = 1;
+                points = points + 5;
+                MainActivity.setPoints(points);
                 break;
-            case R.id.MidConeButton:
-                midConeCount = updater(midConeCount, midCone, "Mid Cone: ");
+            case R.id.LowGoalButton:
+                lowGoalCount = updater(lowGoalCount, lowGoal, "Low Goal: ");
                 undoValue = 2;
-                break;
-            case R.id.LowConeButton:
-                ConeButton:
-                lowConeCount = updater(lowConeCount, lowCone, "Low Cone: ");
-                undoValue = 3;
-                break;
-            case R.id.HighCubeButton:
-                highCubeCount = updater(highCubeCount, highCube, "High Cube: ");
-                undoValue = 4;
-                break;
-            case R.id.MidCubeButton:
-                midCubeCount = updater(midCubeCount, midCube, "Mid Cube: ");
-                undoValue = 5;
-                break;
-            case R.id.LowCubeButton:
-                lowCubeCount = updater(lowCubeCount, lowCube, "Low Cube: ");
-                undoValue = 6;
+                MainActivity.setPoints(points);
                 break;
             case R.id.MissButton:
                 missCount = updater(missCount, miss, "Miss: ");
-                undoValue = 7;
+                undoValue = 3;
+                points = points + 2;
                 break;
             case R.id.UndoButton:
                 if (undoValue == 1) {
-                    highConeCount = updaterMinus(highConeCount, highCone, "High Cone: ");
+                    highGoalCount = updaterMinus(highGoalCount, highGoal, "High Goal: ");
+                    points = points - 5;
+                    MainActivity.setPoints(points);
                 } else if (undoValue == 2) {
-                    midConeCount = updaterMinus(midConeCount, midCone, "Mid Cone: ");
+                    lowGoalCount = updaterMinus(lowGoalCount, lowGoal, "Low Goal: ");
+                    points = points - 2;
+                    MainActivity.setPoints(points);
                 } else if (undoValue == 3) {
-                    lowConeCount = updaterMinus(lowConeCount, lowCone, "Low Cone: ");
-                } else if (undoValue == 4) {
-                    highCubeCount = updaterMinus(highCubeCount, highCube, "High Cube: ");
-                } else if (undoValue == 5) {
-                    midCubeCount = updaterMinus(midCubeCount, midCube, "Mid Cube: ");
-                } else if (undoValue == 6) {
-                    lowCubeCount = updaterMinus(lowCubeCount, lowCube, "Low Cube: ");
-                } else if (undoValue == 7) {
                     missCount = updaterMinus(missCount, miss, "Miss: ");
+                }
+                break;
+            case R.id.AmpedButton:
+                ampedBool = !ampedBool;
+                if (ampedBool) {
+                    amped.setText("AMPED!!!!");
+                    amped.setBackgroundColor(Color.RED);
+                } else {
+                    amped.setText("Amped?");
+                    amped.setBackgroundColor(Color.rgb(15, 157, 88));
                 }
                 break;
             case R.id.DownedButton:
