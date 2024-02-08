@@ -36,7 +36,6 @@ import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import robotics.scouting.current.databinding.ActivityMainBinding;
@@ -48,7 +47,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static String balance = "NA";
     static boolean blueAlliance = false;
     static boolean redAlliance =false;
-    static int points = 0;
+    static int totalPoints = 0;
+    static int autoPoints = 0;
+    static int teleOpPoints = 0;
+    static int autoHighCount = 0;
+    static int autoLowCount = 0;
+    static int teleOpHighCount = 0;
+    static int teleOpLowCount = 0;
     static int match = -1;
     static int team = -1;
     static String autoC = "NA";
@@ -397,9 +402,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return dimen;
     }
     public static int getMatch() { return match; }
-    public static int getPoints(){return points;}
-    public static void setPoints(int value) { points = value;}
+    public static int getTotalPoints(){return totalPoints;}
+    public static void setTotalPoints(int value) { totalPoints = value;}
+    public static int getAutoPoints(){return autoPoints;}
+    public static void setAutoPoints(int value) { autoPoints = value;}
+    public static int getTeleOpPoints(){return teleOpPoints;}
+    public static void setTeleOpPoints(int value) { teleOpPoints = value;}
+    public static int getAutoHighCount(){return autoHighCount;}
+    public static void setAutoHighCount(int value) {autoHighCount = value;}
+    public static int getAutoLowCount(){return autoLowCount;}
+    public static void setAutoLowCount(int value) {autoLowCount = value;}
+    public static int getTeleOpHighCount(){return teleOpHighCount;}
+    public static void setTeleOpHighCount(int value) {teleOpHighCount = value;}
+    public static int getTeleOpLowCount(){return teleOpLowCount;}
+    public static void setTeleOpLowCount(int value) {teleOpLowCount = value;}
     public static void setRedAlliance(boolean value) { redAlliance = value;}
+
     public static void setBlueAlliance(boolean value) { blueAlliance = value; }
     public static int getTeam() {
         return team;
@@ -436,7 +454,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return event + "\n" + String.valueOf(match) + "\n" + String.valueOf(team) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString() + "\n" + balance+"\n"+time;
     }
     public static String getAllDataChangeable(){
-        return "Event: "+ event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team Number: " + String.valueOf(team) + "\n" + "Comment on Auto: " + autoC + "\n" + "Auto Grid Positions: " + grid.toString() + "\n" + "Comment on Tele: " + teleC + "\n" + "Tele Grid Positions: " + teleGrid.toString() + "\n" + "Balance Position: " + balance+"\n"+ "Time to Balance: " + time;
+        if (getBlueAlliance() == true) {
+            return "Event: " + event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team color: Blue" + "\n" + "Team Number: " + String.valueOf(team) + "\n" + "Total Points: " + String.valueOf(totalPoints) + "\n" + "Auto Points: " + String.valueOf(autoPoints) + "\n" + "Tele Op Points: " + String.valueOf(teleOpPoints) + "\n" + "Balance Position: " + balance + "\n" + "Time to Balance: " + time;
+        } else if (getRedAlliance() == true){
+            return "Event: "+ event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team color: Red" + "\n" + "Team Number: " + String.valueOf(team) +  "\n" + "Total Points: " + String.valueOf(totalPoints) + "\n" + "Auto Points: " + String.valueOf(autoPoints) + "\n" + "Tele Op Points: " + String.valueOf(teleOpPoints) + "\n" + "Balance Position: " + balance+"\n"+ "Time to Balance: " + time;
+        } else  {
+            return "Event: "+ event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team color: N/A" + "\n"  + "Team Number: " + String.valueOf(team) + "\n" + "Total Points: " + String.valueOf(totalPoints) + "\n" + "Auto Points: " + String.valueOf(autoPoints) + "\n" + "Tele Op Points: " + String.valueOf(teleOpPoints) + "\n" + "Balance Position: " + balance+"\n"+ "Time to Balance: " + time;
+        }
+
+        //return "Event: "+ event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team Number: " + String.valueOf(team) + "\n" + "Comment on Auto: " + autoC + "\n" + "Auto Grid Positions: " + grid.toString() + "\n" + "Comment on Tele: " + teleC + "\n" + "Tele Grid Positions: " + teleGrid.toString() + "\n" + "Balance Position: " + balance+"\n"+ "Time to Balance: " + time;
     }
     public static void clearData(){
         match = -1;

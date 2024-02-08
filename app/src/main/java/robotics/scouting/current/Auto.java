@@ -59,7 +59,8 @@ public class Auto extends Fragment implements View.OnClickListener {
     int missCount;
     boolean downedBool;
     int undoValue;
-    int points;
+    int totalPoints;
+    int autoPoints;
     private Button resetButton;
 
     @Override
@@ -117,7 +118,10 @@ public class Auto extends Fragment implements View.OnClickListener {
         highGoal = root.findViewById(R.id.HighGoalButton);
         lowGoal = root.findViewById(R.id.LowGoalButton);
         amped = root.findViewById(R.id.AmpedButton);
-        points = MainActivity.getPoints();
+        totalPoints = MainActivity.getTotalPoints();
+        autoPoints = MainActivity.getAutoPoints();
+        highGoalCount = MainActivity.getAutoHighCount();
+        lowGoalCount = MainActivity.getAutoLowCount();
         miss = root.findViewById(R.id.MissButton);
         downed = root.findViewById(R.id.DownedButton);
         undo = root.findViewById(R.id.UndoButton);
@@ -129,6 +133,8 @@ public class Auto extends Fragment implements View.OnClickListener {
         downed.setOnClickListener(this);
         undo.setOnClickListener(this);
         resetButton.setOnClickListener(this);
+        highGoal.setText("High Goal: " + highGoalCount);
+        lowGoal.setText("Low Goal: " + lowGoalCount);
         runTimer();
         if(highGoalCount == -1 && lowGoalCount == -1 && missCount == -1) {
             highGoal.setText("");
@@ -212,28 +218,40 @@ public class Auto extends Fragment implements View.OnClickListener {
             case R.id.HighGoalButton:
                 highGoalCount = updater(highGoalCount, highGoal, "High Goal: ");
                 undoValue = 1;
-                points = points + 5;
-                MainActivity.setPoints(points);
+                totalPoints = totalPoints + 5;
+                autoPoints = autoPoints + 5;
+                MainActivity.setTotalPoints(totalPoints);
+                MainActivity.setAutoPoints(autoPoints);
+                MainActivity.setAutoHighCount(highGoalCount);
                 break;
             case R.id.LowGoalButton:
                 lowGoalCount = updater(lowGoalCount, lowGoal, "Low Goal: ");
                 undoValue = 2;
-                MainActivity.setPoints(points);
+                totalPoints = totalPoints + 2;
+                autoPoints = autoPoints + 2;
+                MainActivity.setTotalPoints(totalPoints);
+                MainActivity.setAutoPoints(autoPoints);
+                MainActivity.setAutoLowCount(lowGoalCount);
                 break;
             case R.id.MissButton:
                 missCount = updater(missCount, miss, "Miss: ");
                 undoValue = 3;
-                points = points + 2;
                 break;
             case R.id.UndoButton:
                 if (undoValue == 1) {
                     highGoalCount = updaterMinus(highGoalCount, highGoal, "High Goal: ");
-                    points = points - 5;
-                    MainActivity.setPoints(points);
+                    totalPoints = totalPoints - 5;
+                    autoPoints = autoPoints - 5;
+                    MainActivity.setTotalPoints(totalPoints);
+                    MainActivity.setAutoPoints(autoPoints);
+                    MainActivity.setAutoHighCount(highGoalCount);
                 } else if (undoValue == 2) {
                     lowGoalCount = updaterMinus(lowGoalCount, lowGoal, "Low Goal: ");
-                    points = points - 2;
-                    MainActivity.setPoints(points);
+                    totalPoints = totalPoints - 2;
+                    autoPoints = autoPoints - 2;
+                    MainActivity.setTotalPoints(totalPoints);
+                    MainActivity.setAutoPoints(autoPoints);
+                    MainActivity.setAutoLowCount(lowGoalCount);
                 } else if (undoValue == 3) {
                     missCount = updaterMinus(missCount, miss, "Miss: ");
                 }

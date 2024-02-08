@@ -44,25 +44,23 @@ public class TeleOp extends Fragment implements View.OnClickListener {
 
     Context context;
     EditText dataEdt1;
-    Button highCube;
-    Button midCube;
-    Button lowCube;
-    Button highCone;
-    Button midCone;
-    Button lowCone;
+    Button highGoal;
+    Button lowGoal;
+    Button amped;
+
     Button miss;
     Button downed;
     Button undo;
     TextView downedTimer;
-    int highConeCount;
-    int midConeCount;
-    int lowConeCount;
-    int highCubeCount;
-    int midCubeCount;
-    int lowCubeCount;
+
+    int highGoalCount;
+    int lowGoalCount;
+    boolean ampedBool;
     int missCount;
     boolean downedBool;
     int undoValue;
+    int totalPoints;
+    int teleOpPoints;
     private Button resetButton;
 
     @Override
@@ -117,34 +115,43 @@ public class TeleOp extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.fragment_tele_op, container, false);
         context = container.getContext();
         resetButton = root.findViewById(R.id.ResetButton);
-        highCube = root.findViewById(R.id.HighGoalButton);
-        midCube = root.findViewById(R.id.LowGoalButton);
-        lowCube = root.findViewById(R.id.AmpedButton);
-        highCone = root.findViewById(R.id.HighConeButton);
-        midCone = root.findViewById(R.id.MidConeButton);
-        lowCone = root.findViewById(R.id.LowConeButton);
+        highGoal = root.findViewById(R.id.HighGoalButton);
+        lowGoal = root.findViewById(R.id.LowGoalButton);
+        amped = root.findViewById(R.id.AmpedButton);
+        totalPoints = MainActivity.getTotalPoints();
+        teleOpPoints = MainActivity.getTeleOpPoints();
+        highGoalCount = MainActivity.getTeleOpHighCount();
+        lowGoalCount = MainActivity.getTeleOpLowCount();
         miss = root.findViewById(R.id.MissButton);
         downed = root.findViewById(R.id.DownedButton);
         undo = root.findViewById(R.id.UndoButton);
         downedTimer = root.findViewById(R.id.DownedTime);
-        highCube.setOnClickListener(this);
-        midCube.setOnClickListener(this);
-        lowCube.setOnClickListener(this);
-        highCone.setOnClickListener(this);
-        midCone.setOnClickListener(this);
-        lowCone.setOnClickListener(this);
+        highGoal.setOnClickListener(this);
+        lowGoal.setOnClickListener(this);
+        amped.setOnClickListener(this);
         miss.setOnClickListener(this);
         downed.setOnClickListener(this);
         undo.setOnClickListener(this);
         resetButton.setOnClickListener(this);
+        highGoal.setText("High Goal: " + highGoalCount);
+        lowGoal.setText("Low Goal: " + lowGoalCount);
         runTimer();
-
+        if(highGoalCount == -1 && lowGoalCount == -1 && missCount == -1) {
+            highGoal.setText("");
+            lowGoal.setText("");
+            miss.setText("");
+        } else {
+     /*       highCube.setText(String.valueOf(MainActivity.setTeleOpScores(HighCubeCount));
+            midCube.setText(String.valueOf(MainActivity.setTeleOpScores(MidCubeCount));
+            midCube.setText(String.valueOf(MainActivity.setTeleOpScores(LowCubeCount));
+            highCone.setText(String.valueOf(MainActivity.setTeleOpScores(HighConeCount));
+        */}
         return root;
     }
 
     @Override
     public void onStop() {
-        //   MainActivity.setAutoC(dataEdt1.getText().toString());
+        //   MainActivity.setTeleOpC(dataEdt1.getText().toString());
         // MainActivity.setGrid(gridQR);
         super.onStop();
     }
@@ -208,50 +215,69 @@ public class TeleOp extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         MaterialButton image = (MaterialButton) v;
         switch (v.getId()) {
-            case R.id.HighConeButton:
-                highConeCount = updater(highConeCount, highCone, "High Cone: ");
-                undoValue = 1;
-                break;
-            case R.id.MidConeButton:
-                midConeCount = updater(midConeCount, midCone, "Mid Cone: ");
-                undoValue = 2;
-                break;
-            case R.id.LowConeButton:
-                ConeButton:
-                lowConeCount = updater(lowConeCount, lowCone, "Low Cone: ");
-                undoValue = 3;
-                break;
             case R.id.HighGoalButton:
-                highCubeCount = updater(highCubeCount, highCube, "High Cube: ");
-                undoValue = 4;
+                highGoalCount = updater(highGoalCount, highGoal, "High Goal: ");
+                if (ampedBool == true){
+                    totalPoints = totalPoints + 5;
+                    teleOpPoints = teleOpPoints + 5;
+                    undoValue = 1;
+                }else {
+                    totalPoints = totalPoints + 2;
+                    teleOpPoints = teleOpPoints + 2;
+                    undoValue = 2;
+                }
+                MainActivity.setTotalPoints(totalPoints);
+                MainActivity.setTeleOpPoints(teleOpPoints);
+                MainActivity.setTeleOpHighCount(highGoalCount);
                 break;
             case R.id.LowGoalButton:
-                midCubeCount = updater(midCubeCount, midCube, "Mid Cube: ");
-                undoValue = 5;
-                break;
-            case R.id.AmpedButton:
-                lowCubeCount = updater(lowCubeCount, lowCube, "Low Cube: ");
-                undoValue = 6;
+                lowGoalCount = updater(lowGoalCount, lowGoal, "Low Goal: ");
+                undoValue = 3;
+                totalPoints = totalPoints + 1;
+                teleOpPoints = teleOpPoints + 1;
+                MainActivity.setTotalPoints(totalPoints);
+                MainActivity.setTeleOpPoints(teleOpPoints);
+                MainActivity.setTeleOpLowCount(lowGoalCount);
                 break;
             case R.id.MissButton:
                 missCount = updater(missCount, miss, "Miss: ");
-                undoValue = 7;
+                undoValue = 4;
                 break;
             case R.id.UndoButton:
                 if (undoValue == 1) {
-                    highConeCount = updaterMinus(highConeCount, highCone, "High Cone: ");
+                    highGoalCount = updaterMinus(highGoalCount, highGoal, "High Goal: ");
+                    totalPoints = totalPoints - 5;
+                    teleOpPoints = teleOpPoints - 5;
+                    MainActivity.setTotalPoints(totalPoints);
+                    MainActivity.setTeleOpPoints(teleOpPoints);
+                    MainActivity.setTeleOpHighCount(highGoalCount);
+
                 } else if (undoValue == 2) {
-                    midConeCount = updaterMinus(midConeCount, midCone, "Mid Cone: ");
+                        highGoalCount = updaterMinus(highGoalCount, highGoal, "High Goal: ");
+                        totalPoints = totalPoints - 2;
+                        teleOpPoints = teleOpPoints - 2;
+                        MainActivity.setTotalPoints(totalPoints);
+                        MainActivity.setTeleOpPoints(teleOpPoints);
+                        MainActivity.setTeleOpHighCount(highGoalCount);
                 } else if (undoValue == 3) {
-                    lowConeCount = updaterMinus(lowConeCount, lowCone, "Low Cone: ");
+                    lowGoalCount = updaterMinus(lowGoalCount, lowGoal, "Low Goal: ");
+                    totalPoints = totalPoints - 2;
+                    teleOpPoints = teleOpPoints - 2;
+                    MainActivity.setTotalPoints(totalPoints);
+                    MainActivity.setTeleOpPoints(teleOpPoints);
+                    MainActivity.setTeleOpLowCount(lowGoalCount);
                 } else if (undoValue == 4) {
-                    highCubeCount = updaterMinus(highCubeCount, highCube, "High Cube: ");
-                } else if (undoValue == 5) {
-                    midCubeCount = updaterMinus(midCubeCount, midCube, "Mid Cube: ");
-                } else if (undoValue == 6) {
-                    lowCubeCount = updaterMinus(lowCubeCount, lowCube, "Low Cube: ");
-                } else if (undoValue == 7) {
                     missCount = updaterMinus(missCount, miss, "Miss: ");
+                }
+                break;
+            case R.id.AmpedButton:
+                ampedBool = !ampedBool;
+                if (ampedBool) {
+                    amped.setText("AMPED!!!!");
+                    amped.setBackgroundColor(Color.RED);
+                } else {
+                    amped.setText("Amped?");
+                    amped.setBackgroundColor(Color.rgb(15, 157, 88));
                 }
                 break;
             case R.id.DownedButton:

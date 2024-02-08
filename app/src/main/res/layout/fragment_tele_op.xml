@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".Auto">
+    tools:context=".TeleOp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,14 +36,14 @@
                     android:id="@+id/HighGoalButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="High Cube: 0"
+                    android:text="High Goal: 0"
                     android:textSize="12dp" />
 
                 <Button
                     android:id="@+id/LowGoalButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mid Cube: 0"
+                    android:text="Low Goal: 0"
                     android:textSize="12dp"
                     tools:layout_editor_absoluteY="56dp" />
 
@@ -51,36 +51,7 @@
                     android:id="@+id/AmpedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Low Cube: 0"
-                    android:textSize="12dp"
-                    tools:layout_editor_absoluteY="96dp" />
-            </com.google.android.flexbox.FlexboxLayout>
-
-            <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:flexDirection="column">
-
-                <Button
-                    android:id="@+id/HighConeButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="High Cone: 0"
-                    android:textSize="12dp" />
-
-                <Button
-                    android:id="@+id/MidConeButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Mid Cone: 0"
-                    android:textSize="12dp"
-                    tools:layout_editor_absoluteY="48dp" />
-
-                <Button
-                    android:id="@+id/LowConeButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Low Cone 0:"
+                    android:text="Amped?"
                     android:textSize="12dp"
                     tools:layout_editor_absoluteY="96dp" />
             </com.google.android.flexbox.FlexboxLayout>
@@ -129,20 +100,21 @@
             android:id="@+id/StopwatchLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/purple_200"
             app:layout_constraintBottom_toTopOf="@+id/UndoButton"
             app:layout_constraintEnd_toEndOf="@+id/UndoButton"
             app:layout_constraintStart_toStartOf="@+id/UndoButton"
             app:layout_constraintTop_toTopOf="@+id/flexboxLayout"
-            android:background="@color/purple_200"
-            app:layout_constraintVertical_bias="0.778" >
+            app:layout_constraintVertical_bias="0.778">
 
             <TextView
                 android:id="@+id/DownedTime"
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:text="Downed Time:"
-                android:textSize="20sp"
-                android:textColor="#EEEEEE" /></LinearLayout>
+                android:textColor="#EEEEEE"
+                android:textSize="20sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/TeleOpText"
