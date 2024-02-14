@@ -20,7 +20,7 @@
         android:id="@+id/header3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start this timer when then begin to dock. (When they FIRST touch the Charge Station)"
+        android:text="Start this timer when then begin to attempt a hang. (When they FIRST touch the Charge Station)"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="26dp"
