@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,100 +10,117 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!--Button for creating a QR code-->
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="72dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical">
-    <TextView
-        android:id="@+id/header3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Start this timer when then begin to attempt a hang. (When they FIRST touch the Charge Station)"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="26dp"
-        app:layout_constraintBottom_toTopOf="@+id/fabStopWatch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5">
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fabStopWatch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Start Timer"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@id/fabReset"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header3" />
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fabReset"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reset Timer"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintBottom_toTopOf="@id/timerText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fabStopWatch" />
+            <FrameLayout
+                android:id="@+id/child_fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/timerText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="0:00:00"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="36dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@id/header4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fabReset" />
-    <TextView
-        android:id="@+id/header4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Were they first, second, or third to dock?"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="26dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@id/DockingSpinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/timerText" />
+                <!-- Did you do Harmony? -->
 
-    <Spinner
-        android:id="@+id/DockingSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textSize="100sp"
-        android:background="@drawable/bg_spinner"
-        android:popupBackground="@drawable/bg_spinner"
-        app:layout_constraintTop_toBottomOf="@id/header4"
-        app:layout_constraintBottom_toBottomOf="@id/child_fragment_container"
-        app:layout_constraintEnd_toEndOf="@id/child_fragment_container"
-        app:layout_constraintStart_toStartOf="@id/child_fragment_container"
-        android:layout_marginBottom="100dp"
-        />
-    <FrameLayout
-        android:id="@+id/child_fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </FrameLayout>
+                <!-- Did you do Trap? -->
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="103dp"
+                    android:layout_marginStart="65dp"
+                    android:text="ENDGAME"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+                    android:visibility="visible" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_harmony"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="80dp"
+                    android:text="Did you do Harmony?"
+                    android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_trap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="120dp"
+                    android:text="Did you Trap?"
+                    android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/checkbox_harmony" />
+
+                <!-- Did you Spotlight? -->
+
+                <!-- Button to calculate points -->
+                <CheckBox
+                    android:id="@+id/checkbox_spot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="160dp"
+                    android:text="Did you Spotlight?"
+                    android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/checkbox_trap" />
+
+                <!-- EditText to display calculated points -->
+
+                <CheckBox
+                    android:id="@+id/checkbox_hang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="200dp"
+                    android:text="Did you hang?"
+                    android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/checkbox_spot" />
+
+                <Button
+                    android:id="@+id/btnCalculatePoints"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="110dp"
+                    android:layout_marginTop="500dp"
+                    android:text="Calculate Points"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/checkbox_spot" />
+
+                <EditText
+                    android:id="@+id/editTextNumberPoints"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginTop="550dp"
+                    android:text="totalPoints "
+                    android:focusable="false"
+                    android:inputType="none"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnCalculatePoints" />
+
+
+            </FrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
