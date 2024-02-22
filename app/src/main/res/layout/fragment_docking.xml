@@ -18,10 +18,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+<<<<<<< HEAD
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5">
+=======
+            android:orientation="vertical">
+    <TextView
+        android:id="@+id/header3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start this timer when then begin to dock. (When they FIRST touch the Charge Station)"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/fabStopWatch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+>>>>>>> parent of c0e0c0d (revisiting auto)
 
             <FrameLayout
                 android:id="@+id/child_fragment_container"

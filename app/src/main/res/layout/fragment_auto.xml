@@ -36,14 +36,14 @@
                     android:id="@+id/HighGoalButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Speaker Goal: 0"
+                    android:text="High Goal: 0"
                     android:textSize="12dp" />
 
                 <Button
                     android:id="@+id/LowGoalButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Amp Goal: 0"
+                    android:text="Low Goal: 0"
                     android:textSize="12dp"
                     tools:layout_editor_absoluteY="56dp" />
 
@@ -94,8 +94,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/flexboxLayout"
             app:layout_constraintEnd_toEndOf="@+id/flexboxLayout"
             app:layout_constraintStart_toStartOf="@+id/flexboxLayout"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.42000002" />
+            app:layout_constraintTop_toTopOf="@+id/flexboxLayout" />
 
         <LinearLayout
             android:id="@+id/StopwatchLayout"
@@ -106,7 +105,7 @@
             app:layout_constraintEnd_toEndOf="@+id/UndoButton"
             app:layout_constraintStart_toStartOf="@+id/UndoButton"
             app:layout_constraintTop_toTopOf="@+id/flexboxLayout"
-            app:layout_constraintVertical_bias="0.96">
+            app:layout_constraintVertical_bias="0.778">
 
             <TextView
                 android:id="@+id/DownedTime"
@@ -117,53 +116,17 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/Auto_Field"
+        <TextView
+            android:id="@+id/AutoText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/auto_note_numbers"
+            android:textColor="#EEEEEE"
+            android:textSize="30sp"
+            android:text="Auto"
             app:layout_constraintBottom_toBottomOf="@+id/flexboxLayout"
             app:layout_constraintEnd_toEndOf="@+id/flexboxLayout"
             app:layout_constraintStart_toStartOf="@+id/flexboxLayout"
-            app:layout_constraintTop_toBottomOf="@+id/UndoButton"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/purple_200"
-            app:layout_constraintBottom_toTopOf="@+id/Auto_Field"
-            app:layout_constraintEnd_toEndOf="@+id/flexboxLayout"
-            app:layout_constraintStart_toStartOf="@+id/flexboxLayout"
-            app:layout_constraintTop_toBottomOf="@+id/UndoButton">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/intakeQuestionText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="What do they intake?"
-                    android:textColor="#EEEEEE"
-                    android:textSize="20sp"/>
-
-                <EditText
-                    android:id="@+id/EditTextIntake"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:textColor="#EEEEEE"
-
-                    android:hint="EX: 1, 5, 8"
-                    android:textColorHint="#EEEDDD"
-                    android:inputType="text"
-                    android:textAlignment="center" />
-            </LinearLayout>
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/UndoButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

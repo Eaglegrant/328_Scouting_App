@@ -44,18 +44,17 @@ public class Auto extends Fragment implements View.OnClickListener {
 
     Context context;
     EditText dataEdt1;
-    Button speaker;
-    Button amp;
+    Button highGoal;
+    Button lowGoal;
     Button amped;
 
     Button miss;
     Button downed;
     Button undo;
     TextView downedTimer;
-    EditText intake;
 
-    int speakerCount;
-    int ampCount;
+    int highGoalCount;
+    int lowGoalCount;
     boolean ampedBool;
     int missCount;
     boolean downedBool;
@@ -115,32 +114,31 @@ public class Auto extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_auto, container, false);
         context = container.getContext();
-        intake = root.findViewById(R.id.EditTextIntake);
         resetButton = root.findViewById(R.id.ResetButton);
-        speaker = root.findViewById(R.id.HighGoalButton);
-        amp = root.findViewById(R.id.LowGoalButton);
+        highGoal = root.findViewById(R.id.HighGoalButton);
+        lowGoal = root.findViewById(R.id.LowGoalButton);
         amped = root.findViewById(R.id.AmpedButton);
         totalPoints = MainActivity.getTotalPoints();
         autoPoints = MainActivity.getAutoPoints();
-        speakerCount = MainActivity.getAutoHighCount();
-        ampCount = MainActivity.getAutoLowCount();
+        highGoalCount = MainActivity.getAutoHighCount();
+        lowGoalCount = MainActivity.getAutoLowCount();
         miss = root.findViewById(R.id.MissButton);
         downed = root.findViewById(R.id.DownedButton);
         undo = root.findViewById(R.id.UndoButton);
         downedTimer = root.findViewById(R.id.DownedTime);
-        speaker.setOnClickListener(this);
-        amp.setOnClickListener(this);
+        highGoal.setOnClickListener(this);
+        lowGoal.setOnClickListener(this);
         amped.setOnClickListener(this);
         miss.setOnClickListener(this);
         downed.setOnClickListener(this);
         undo.setOnClickListener(this);
         resetButton.setOnClickListener(this);
-        speaker.setText("Speaker Goal: " + speakerCount);
-        amp.setText("Amp Goal: " + ampCount);
+        highGoal.setText("High Goal: " + highGoalCount);
+        lowGoal.setText("Low Goal: " + lowGoalCount);
         runTimer();
-        if(speakerCount == -1 && ampCount == -1 && missCount == -1) {
-            speaker.setText("");
-            amp.setText("");
+        if(highGoalCount == -1 && lowGoalCount == -1 && missCount == -1) {
+            highGoal.setText("");
+            lowGoal.setText("");
             miss.setText("");
         } else {
      /*       highCube.setText(String.valueOf(MainActivity.setAutoScores(HighCubeCount));
@@ -155,8 +153,6 @@ public class Auto extends Fragment implements View.OnClickListener {
     public void onStop() {
         //   MainActivity.setAutoC(dataEdt1.getText().toString());
         // MainActivity.setGrid(gridQR);
-        String intakeText = intake.getText().toString();
-        
         super.onStop();
     }
 
@@ -220,22 +216,22 @@ public class Auto extends Fragment implements View.OnClickListener {
         MaterialButton image = (MaterialButton) v;
         switch (v.getId()) {
             case R.id.HighGoalButton:
-                speakerCount = updater(speakerCount, speaker, "High Goal: ");
+                highGoalCount = updater(highGoalCount, highGoal, "High Goal: ");
                 undoValue = 1;
                 totalPoints = totalPoints + 5;
                 autoPoints = autoPoints + 5;
                 MainActivity.setTotalPoints(totalPoints);
                 MainActivity.setAutoPoints(autoPoints);
-                MainActivity.setAutoHighCount(speakerCount);
+                MainActivity.setAutoHighCount(highGoalCount);
                 break;
             case R.id.LowGoalButton:
-                ampCount = updater(ampCount, amp, "Low Goal: ");
+                lowGoalCount = updater(lowGoalCount, lowGoal, "Low Goal: ");
                 undoValue = 2;
                 totalPoints = totalPoints + 2;
                 autoPoints = autoPoints + 2;
                 MainActivity.setTotalPoints(totalPoints);
                 MainActivity.setAutoPoints(autoPoints);
-                MainActivity.setAutoLowCount(ampCount);
+                MainActivity.setAutoLowCount(lowGoalCount);
                 break;
             case R.id.MissButton:
                 missCount = updater(missCount, miss, "Miss: ");
@@ -243,19 +239,19 @@ public class Auto extends Fragment implements View.OnClickListener {
                 break;
             case R.id.UndoButton:
                 if (undoValue == 1) {
-                    speakerCount = updaterMinus(speakerCount, speaker, "High Goal: ");
+                    highGoalCount = updaterMinus(highGoalCount, highGoal, "High Goal: ");
                     totalPoints = totalPoints - 5;
                     autoPoints = autoPoints - 5;
                     MainActivity.setTotalPoints(totalPoints);
                     MainActivity.setAutoPoints(autoPoints);
-                    MainActivity.setAutoHighCount(speakerCount);
+                    MainActivity.setAutoHighCount(highGoalCount);
                 } else if (undoValue == 2) {
-                    ampCount = updaterMinus(ampCount, amp, "Low Goal: ");
+                    lowGoalCount = updaterMinus(lowGoalCount, lowGoal, "Low Goal: ");
                     totalPoints = totalPoints - 2;
                     autoPoints = autoPoints - 2;
                     MainActivity.setTotalPoints(totalPoints);
                     MainActivity.setAutoPoints(autoPoints);
-                    MainActivity.setAutoLowCount(ampCount);
+                    MainActivity.setAutoLowCount(lowGoalCount);
                 } else if (undoValue == 3) {
                     missCount = updaterMinus(missCount, miss, "Miss: ");
                 }
