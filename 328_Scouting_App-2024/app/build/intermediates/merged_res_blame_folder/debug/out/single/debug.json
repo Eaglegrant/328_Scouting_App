@@ -1,0 +1,422 @@
+[
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile001.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile001.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\menu_bottom_nav_menu_alliance.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\menu\\bottom_nav_menu_alliance.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile016.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile016.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_border_edge.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\border_edge.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile008.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile008.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_fragment_tele_op.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_tele_op.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_baseline_backspace_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\baseline_backspace_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_logo_rounded.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\logo_rounded.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_fragment_docking.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_docking.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_zoom_in.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\zoom_in.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_fragment_auto.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_auto.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_baseline_lightbulb_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\baseline_lightbulb_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_ic_baseline_insert_drive_file_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\ic_baseline_insert_drive_file_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_activity_splash2.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_splash2.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_fragment_before_match_alliance.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_before_match_alliance.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_combo_fade_in.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\combo_fade_in.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_ic_baseline_autorenew_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\ic_baseline_autorenew_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile000.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile000.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_bg_spinner.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\bg_spinner.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile007.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile007.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\xml_provider_paths.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\xml\\provider_paths.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_view_spinner_item.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\view_spinner_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_fragment_tele_op_alliance.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_tele_op_alliance.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_ic_baseline_home_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\ic_baseline_home_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_activity_alliance.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_alliance.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile003.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile003.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_activity_qrcode_scanner.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_qrcode_scanner.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_fragment_end_game_alliance.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_end_game_alliance.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_cube.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\cube.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile014.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile014.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_bg.jpg.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\bg.jpg"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_activity_grid.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_grid.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_baseline_chat_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\baseline_chat_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile006.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile006.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_slide_out.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\slide_out.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_baseline_arrow_drop_down_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\baseline_arrow_drop_down_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_recycler_item.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\recycler_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile017.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile017.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_logo.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\logo.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile009.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile009.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_togather_animaiton.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\togather_animaiton.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_recycler_item_grid.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\recycler_item_grid.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_nav_header_layout.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\nav_header_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile011.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile011.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_slide_in.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\slide_in.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_border.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\border.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_activity_faq_main.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_faq_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_fragment_end_game.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_end_game.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_combo_rotate.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\combo_rotate.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_move.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\move.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_fade_in.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\fade_in.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_ic_baseline_folder_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\ic_baseline_folder_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile019.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile019.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_rotate.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\rotate.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile004.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile004.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile012.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile012.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_fade_in_f.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\fade_in_f.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_auto_note_numbers.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\auto_note_numbers.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_baseline_arrow_forward_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\baseline_arrow_forward_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile013.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile013.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\transition_slide_right_f.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\transition\\slide_right_f.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\menu_nav_menu.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\menu\\nav_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_whole_animation.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\whole_animation.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_fragment_before_match.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_before_match.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_ic_baseline_balance_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\ic_baseline_balance_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_activity_file_list.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_file_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\menu_sort_menu.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\menu\\sort_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_fragment_thoughts.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_thoughts.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_fragment_auto_alliance.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_auto_alliance.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_no_animaiton.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\no_animaiton.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_sequential_animaiton.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\sequential_animaiton.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "robotics.scouting.current.app-merged_res-48:/layout_fragment_docking.xml.flat",
+        "source": "robotics.scouting.current.app-main-50:/layout/fragment_docking.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_ic_baseline_send_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\ic_baseline_send_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\transition_fade_f.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\transition\\fade_f.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\layout_nav_header_layout_alliance.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\nav_header_layout_alliance.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile010.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile010.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile015.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile015.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile002.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile002.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_zoom_out_fast.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\zoom_out_fast.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_combo_fade_out.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\combo_fade_out.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_fade_out.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\fade_out.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_slide_down.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\slide_down.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_zoom_out.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\zoom_out.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile005.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile005.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\anim_sequential_anim_2.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\anim\\sequential_anim_2.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_tile018.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\tile018.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_baseline_qr_code_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\baseline_qr_code_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_cone.png.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\cone.png"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\menu_bottom_nav_menu.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\menu\\bottom_nav_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-merged_res-48:\\drawable_baseline_arrow_back_24.xml.flat",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\drawable\\baseline_arrow_back_24.xml"
+    }
+]

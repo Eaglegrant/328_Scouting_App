@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android:flexbox:2.0.0@aar" external-system-id="GRADLE">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/0f1feb9202782e7812e444e4677c2c39/transformed/jetified-flexbox-2.0.0/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/0f1feb9202782e7812e444e4677c2c39/transformed/jetified-flexbox-2.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0f1feb9202782e7812e444e4677c2c39/transformed/jetified-flexbox-2.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0f1feb9202782e7812e444e4677c2c39/transformed/jetified-flexbox-2.0.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android/flexbox/2.0.0/a55a5aba144fbdb788d8ac039861a41e01308c2/flexbox-2.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

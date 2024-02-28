@@ -1,0 +1,94 @@
+[
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\fragment_tele_op.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_tele_op.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\recycler_item_grid.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\recycler_item_grid.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\fragment_docking.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_docking.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\activity_grid.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_grid.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\view_spinner_item.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\view_spinner_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\activity_file_list.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_file_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\activity_qrcode_scanner.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_qrcode_scanner.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\nav_header_layout.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\nav_header_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\fragment_tele_op_alliance.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_tele_op_alliance.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\fragment_thoughts.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_thoughts.xml"
+    },
+    {
+        "merged": "robotics.scouting.current.app-mergeDebugResources-47:/layout/fragment_docking.xml",
+        "source": "robotics.scouting.current.app-main-50:/layout/fragment_docking.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\activity_faq_main.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_faq_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\fragment_before_match.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_before_match.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\fragment_auto.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_auto.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\fragment_auto_alliance.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_auto_alliance.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\nav_header_layout_alliance.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\nav_header_layout_alliance.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\fragment_end_game.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_end_game.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\activity_alliance.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_alliance.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\recycler_item.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\recycler_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\fragment_end_game_alliance.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_end_game_alliance.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\activity_splash2.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\activity_splash2.xml"
+    },
+    {
+        "merged": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-mergeDebugResources-47:\\layout\\fragment_before_match_alliance.xml",
+        "source": "C:\\Users\\aqazi075\\.gradle\\daemon\\7.5\\robotics.scouting.current.app-main-50:\\layout\\fragment_before_match_alliance.xml"
+    }
+]
