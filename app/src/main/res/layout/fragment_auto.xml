@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,163 +8,169 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     tools:context=".Auto">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/flexboxLayout"
+        android:layout_height="match_parent" >
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="600dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:orientation="horizontal"
-            app:justifyContent="space_evenly"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.496">
+            android:layout_height="match_parent">
 
             <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:flexDirection="column">
-
-                <Button
-                    android:id="@+id/HighGoalButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Speaker Goal: 0"
-                    android:textSize="12dp" />
-
-                <Button
-                    android:id="@+id/LowGoalButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Amp Goal: 0"
-                    android:textSize="12dp"
-                    tools:layout_editor_absoluteY="56dp" />
-
-                <Button
-                    android:id="@+id/AmpedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Amped?"
-                    android:textSize="12dp"
-                    tools:layout_editor_absoluteY="96dp" />
-            </com.google.android.flexbox.FlexboxLayout>
-
-            <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12dp"
-                app:flexDirection="column">
-
-                <Button
-                    android:id="@+id/MissButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Miss: 0"
-                    android:textSize="12dp" />
-
-                <Button
-                    android:id="@+id/ResetButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Reset Timer?"
-                    android:textSize="11dp" />
-
-                <Button
-                    android:id="@+id/DownedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Downed?"
-                    android:textSize="12dp"
-                    tools:layout_editor_absoluteY="96dp" />
-            </com.google.android.flexbox.FlexboxLayout>
-        </com.google.android.flexbox.FlexboxLayout>
-
-        <Button
-            android:id="@+id/UndoButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Undo"
-            app:layout_constraintBottom_toBottomOf="@+id/flexboxLayout"
-            app:layout_constraintEnd_toEndOf="@+id/flexboxLayout"
-            app:layout_constraintStart_toStartOf="@+id/flexboxLayout"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.42000002" />
-
-        <LinearLayout
-            android:id="@+id/StopwatchLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/purple_200"
-            app:layout_constraintBottom_toTopOf="@+id/UndoButton"
-            app:layout_constraintEnd_toEndOf="@+id/UndoButton"
-            app:layout_constraintStart_toStartOf="@+id/UndoButton"
-            app:layout_constraintTop_toTopOf="@+id/flexboxLayout"
-            app:layout_constraintVertical_bias="0.96">
-
-            <TextView
-                android:id="@+id/DownedTime"
-                android:layout_width="135dp"
-                android:layout_height="wrap_content"
-                android:text="Downed Time:"
-                android:textColor="#EEEEEE"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/Auto_Field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/auto_note_numbers"
-            app:layout_constraintBottom_toBottomOf="@+id/flexboxLayout"
-            app:layout_constraintEnd_toEndOf="@+id/flexboxLayout"
-            app:layout_constraintStart_toStartOf="@+id/flexboxLayout"
-            app:layout_constraintTop_toBottomOf="@+id/UndoButton"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/purple_200"
-            app:layout_constraintBottom_toTopOf="@+id/Auto_Field"
-            app:layout_constraintEnd_toEndOf="@+id/flexboxLayout"
-            app:layout_constraintStart_toStartOf="@+id/flexboxLayout"
-            app:layout_constraintTop_toBottomOf="@+id/UndoButton">
-
-            <LinearLayout
+                android:id="@+id/flexboxLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="600dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:orientation="horizontal"
+                app:justifyContent="space_evenly"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
 
-                <TextView
-                    android:id="@+id/intakeQuestionText"
-                    android:layout_width="match_parent"
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="What do they intake?"
-                    android:textColor="#EEEEEE"
-                    android:textSize="20sp"/>
+                    app:flexDirection="column">
 
-                <EditText
-                    android:id="@+id/EditTextIntake"
-                    android:layout_width="match_parent"
+                    <Button
+                        android:id="@+id/HighGoalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Speaker Goal: 0"
+                        android:textSize="12dp" />
+
+                    <Button
+                        android:id="@+id/LowGoalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Amp Goal: 0"
+                        android:textSize="12dp"
+                        tools:layout_editor_absoluteY="56dp" />
+
+                    <Button
+                        android:id="@+id/AmpedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Amped?"
+                        android:textSize="12dp"
+                        tools:layout_editor_absoluteY="96dp" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:textColor="#EEEEEE"
+                    android:textSize="12dp"
+                    app:flexDirection="column">
 
-                    android:hint="EX: 1, 5, 8"
-                    android:textColorHint="#EEEDDD"
-                    android:inputType="text"
-                    android:textAlignment="center" />
-            </LinearLayout>
-        </LinearLayout>
+                    <Button
+                        android:id="@+id/MissButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Miss: 0"
+                        android:textSize="12dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <Button
+                        android:id="@+id/ResetButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Reset Timer?"
+                        android:textSize="11dp" />
+
+                    <Button
+                        android:id="@+id/DownedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Downed?"
+                        android:textSize="12dp"
+                        tools:layout_editor_absoluteY="96dp" />
+                </com.google.android.flexbox.FlexboxLayout>
+            </com.google.android.flexbox.FlexboxLayout>
+
+                <Button
+                    android:id="@+id/UndoButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Undo"
+                    app:layout_constraintBottom_toBottomOf="@+id/flexboxLayout"
+                    app:layout_constraintEnd_toEndOf="@+id/flexboxLayout"
+                    app:layout_constraintStart_toStartOf="@+id/flexboxLayout"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.42000002" />
+
+                <LinearLayout
+                    android:id="@+id/StopwatchLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/purple_200"
+                    app:layout_constraintBottom_toTopOf="@+id/UndoButton"
+                    app:layout_constraintEnd_toEndOf="@+id/UndoButton"
+                    app:layout_constraintStart_toStartOf="@+id/UndoButton"
+                    app:layout_constraintTop_toTopOf="@+id/flexboxLayout"
+                    app:layout_constraintVertical_bias="0.96">
+
+                    <TextView
+                        android:id="@+id/DownedTime"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:text="Downed Time:"
+                        android:textColor="#EEEEEE"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/Auto_Field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/auto_note_numbers"
+                    app:layout_constraintBottom_toBottomOf="@+id/flexboxLayout"
+                    app:layout_constraintEnd_toEndOf="@+id/flexboxLayout"
+                    app:layout_constraintStart_toStartOf="@+id/flexboxLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/UndoButton"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/purple_200"
+                    app:layout_constraintBottom_toTopOf="@+id/Auto_Field"
+                    app:layout_constraintEnd_toEndOf="@+id/flexboxLayout"
+                    app:layout_constraintStart_toStartOf="@+id/flexboxLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/UndoButton">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/intakeQuestionText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="What do they intake?"
+                            android:textColor="#EEEEEE"
+                            android:textSize="20sp"/>
+
+                        <EditText
+                            android:id="@+id/EditTextIntake"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:textColor="#EEEEEE"
+
+                            android:hint="EX: 1, 5, 8"
+                            android:textColorHint="#EEEDDD"
+                            android:inputType="text"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 </FrameLayout>

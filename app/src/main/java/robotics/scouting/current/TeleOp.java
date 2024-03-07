@@ -57,6 +57,7 @@ public class TeleOp extends Fragment implements View.OnClickListener {
     int lowGoalCount;
     boolean ampedBool;
     int missCount;
+    int teleOpMissCount;
     boolean downedBool;
     int undoValue;
     int totalPoints;
@@ -118,6 +119,8 @@ public class TeleOp extends Fragment implements View.OnClickListener {
         highGoal = root.findViewById(R.id.HighGoalButton);
         lowGoal = root.findViewById(R.id.LowGoalButton);
         amped = root.findViewById(R.id.AmpedButton);
+        missCount = MainActivity.getMissCount();
+        teleOpMissCount = MainActivity.getTeleOpMissCount();
         totalPoints = MainActivity.getTotalPoints();
         teleOpPoints = MainActivity.getTeleOpPoints();
         highGoalCount = MainActivity.getTeleOpHighCount();
@@ -240,7 +243,10 @@ public class TeleOp extends Fragment implements View.OnClickListener {
                 MainActivity.setTeleOpLowCount(lowGoalCount);
                 break;
             case R.id.MissButton:
-                missCount = updater(missCount, miss, "Miss: ");
+                teleOpMissCount = updater(teleOpMissCount, miss, "Miss: ");
+                MainActivity.setTeleOpMissCount(teleOpMissCount);
+                missCount ++;
+                MainActivity.setMissCount(missCount);
                 undoValue = 4;
                 break;
             case R.id.UndoButton:
@@ -267,7 +273,10 @@ public class TeleOp extends Fragment implements View.OnClickListener {
                     MainActivity.setTeleOpPoints(teleOpPoints);
                     MainActivity.setTeleOpLowCount(lowGoalCount);
                 } else if (undoValue == 4) {
-                    missCount = updaterMinus(missCount, miss, "Miss: ");
+                    teleOpMissCount = updaterMinus(teleOpMissCount, miss, "Miss: ");
+                    missCount --;
+                    MainActivity.setMissCount(missCount);
+                    MainActivity.setTeleOpMissCount(teleOpMissCount);
                 }
                 break;
             case R.id.AmpedButton:

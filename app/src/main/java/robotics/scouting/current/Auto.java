@@ -276,9 +276,9 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
                 MainActivity.setAutoLowCount(ampCount);
                 break;
             case R.id.MissButton:
-                missCount = updater(missCount, miss, "Miss: ");
+                autoMissCount = updater(autoMissCount, miss, "Miss: ");
                 undoValue = 3;
-                autoMissCount ++ ;
+                missCount ++ ;
                 MainActivity.setAutoMissCount(autoMissCount);
                 MainActivity.setMissCount(missCount);
                 totalCount = totalCount + 1;
@@ -308,10 +308,10 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
                     MainActivity.setAutoPoints(autoPoints);
                     MainActivity.setAutoLowCount(ampCount);
                 } else if (undoValue == 3) {
-                    missCount = updaterMinus(missCount, miss, "Miss: ");
-                    MainActivity.setMissCount(missCount);
-                    autoMissCount ++ ;
-                    MainActivity.setAutoMissCount(autoMissCount);
+                    autoMissCount = updaterMinus(autoMissCount, miss, "Miss: ");
+                    MainActivity.setMissCount(autoMissCount);
+                    missCount -- ;
+                    MainActivity.setAutoMissCount(missCount);
                     totalCount = totalCount - 1;
                     MainActivity.setTotalCount(totalCount);
                 }
