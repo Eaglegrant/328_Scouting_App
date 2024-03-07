@@ -36,6 +36,7 @@ import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import robotics.scouting.current.databinding.ActivityMainBinding;
@@ -48,12 +49,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static boolean blueAlliance = false;
     static boolean redAlliance =false;
     static int totalPoints = 0;
+    static int totalCount = 0;
     static int autoPoints = 0;
     static int teleOpPoints = 0;
     static int autoHighCount = 0;
     static int autoLowCount = 0;
     static int teleOpHighCount = 0;
     static int teleOpLowCount = 0;
+    static int endgamePoints = 0;
+    static int missCount = 0;
+    static int autoMissCount = 0;
+    static int teleOpMissCount = 0;
+    static String intakeOrder = "";
     static int match = -1;
     static int team = -1;
     static String autoC = "NA";
@@ -272,10 +279,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.fab2:
 
-                 beforeFrag = (BeforeMatchFragment)getSupportFragmentManager().findFragmentByTag("before");
-                 autoFrag = (Auto)getSupportFragmentManager().findFragmentByTag("auto");
-                 teleFrag = (TeleOp)getSupportFragmentManager().findFragmentByTag("tele");
-                 dockFrag = (Docking)getSupportFragmentManager().findFragmentByTag("docking");
+                beforeFrag = (BeforeMatchFragment)getSupportFragmentManager().findFragmentByTag("before");
+                autoFrag = (Auto)getSupportFragmentManager().findFragmentByTag("auto");
+                teleFrag = (TeleOp)getSupportFragmentManager().findFragmentByTag("tele");
+                dockFrag = (Docking)getSupportFragmentManager().findFragmentByTag("docking");
 
                 if (beforeFrag != null && beforeFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.auto);
@@ -296,16 +303,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void replaceFragment(Fragment fragment,String title) {
-    FragmentManager fragmentManager = getSupportFragmentManager();
-    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.slide_in,
-                            R.anim.fade_out,
-                            R.anim.fade_in,
-                            R.anim.slide_out)
-            .setReorderingAllowed(true)
-            .replace(R.id.frameLayout, fragment,title)
-            .addToBackStack(null);
-    fragmentTransaction.commit();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_in,
+                        R.anim.fade_out,
+                        R.anim.fade_in,
+                        R.anim.slide_out)
+                .setReorderingAllowed(true)
+                .replace(R.id.frameLayout, fragment,title)
+                .addToBackStack(null);
+        fragmentTransaction.commit();
         if (title.equals("end")){
             fab2.setVisibility(View.GONE);
         }
@@ -416,9 +423,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static void setTeleOpHighCount(int value) {teleOpHighCount = value;}
     public static int getTeleOpLowCount(){return teleOpLowCount;}
     public static void setTeleOpLowCount(int value) {teleOpLowCount = value;}
+    public static int getTotalCount(){return totalCount;}
+    public static void setTotalCount(int value) {totalCount = value;}
+    public static void setEndgamePoints(int value) {endgamePoints = value;}
+    public static int getMissCount() {return missCount;}
+    public static void setMissCount(int value) {missCount = value;}
+    public static int getAutoMissCount() {return autoMissCount;}
+    public static void setAutoMissCount(int value) {autoMissCount = value;}
+    public static int getTeleOpMissCount() {return teleOpMissCount;}
+    public static void setTeleOpMissCount(int value) {teleOpMissCount = value;}
+    public static int getEndgamePoints() {return endgamePoints;}
     public static void setRedAlliance(boolean value) { redAlliance = value;}
-
     public static void setBlueAlliance(boolean value) { blueAlliance = value; }
+    public static String getIntakeOrder() {return intakeOrder;}
+    public static void setIntakeOrder(String value) {intakeOrder = value;}
+
+
     public static int getTeam() {
         return team;
     }
@@ -451,15 +471,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return millis;
     }
     public static String getAllData(){
-        return event + "\n" + String.valueOf(match) + "\n" + String.valueOf(team) + "\n" + autoC + "\n" + grid.toString() + "\n" + teleC + "\n" + teleGrid.toString() + "\n" + balance+"\n"+time;
+        if (getBlueAlliance() == true) {
+            double percentageMissed = 100.0 * missCount / totalCount;
+            double autoPercentageMissed = 100.0 * autoMissCount / (autoLowCount + autoHighCount);
+            double teleOpPercentageMissed = 100.0 * teleOpMissCount / (teleOpLowCount + teleOpHighCount);
+            String roundedPercentageMissed = String.format("%.2f", percentageMissed);
+            String roundedAutoPercentageMissed = String.format("%.2f", autoPercentageMissed);
+            String roundedTeleOpPercentageMissed = String.format("%.2f", teleOpPercentageMissed);
+            return "Event: " + event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team color: Blue" + "\n" + "Team Number: " + String.valueOf(team) + "\n" + "Total Points: " + String.valueOf(totalPoints) + "\n" + "Auto Points: " + String.valueOf(autoPoints) + "\n" + "Tele Op Points: " + String.valueOf(teleOpPoints) + "\n" + "Endgame Points: " + String.valueOf(endgamePoints) + "\n" + "Total Shots Made: " + String.valueOf(totalCount) + "\n" + "Shots Made in Auto: " + String.valueOf(autoHighCount+autoLowCount) + "\n" + "Shots Made in TeleOp: " + String.valueOf(teleOpHighCount + teleOpLowCount) + "\n" + "Miss Count: " + String.valueOf(missCount) + "\n" + "Shots Missed in Auto: " + String.valueOf(autoMissCount) + "\n" + "Shots Missed in TeleOp: " + String.valueOf(teleOpMissCount) + "\n" + "% of Shots Missed: " + roundedPercentageMissed + "\n" + "% of Shots Missed in Auto: " + roundedAutoPercentageMissed + "\n" + "% of Shots Missed in TeleOp: " + roundedTeleOpPercentageMissed + "\n" + "Intake Order: " + intakeOrder;
+        } else if (getRedAlliance() == true){
+            double percentageMissed = 100.0 * missCount / totalCount;
+            double autoPercentageMissed = 100.0 * autoMissCount / (autoLowCount + autoHighCount);
+            double teleOpPercentageMissed = 100.0 * teleOpMissCount / (teleOpLowCount + teleOpHighCount);
+            String roundedPercentageMissed = String.format("%.2f", percentageMissed);
+            String roundedAutoPercentageMissed = String.format("%.2f", autoPercentageMissed);
+            String roundedTeleOpPercentageMissed = String.format("%.2f", teleOpPercentageMissed);
+            return "Event: "+ event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team color: Red" + "\n" + "Team Number: " + String.valueOf(team) +  "\n" + "Total Points: " + String.valueOf(totalPoints) + "\n" + "Auto Points: " + String.valueOf(autoPoints) + "\n" + "Tele Op Points: " + String.valueOf(teleOpPoints) + "\n" + "Endgame Points: " + String.valueOf(endgamePoints) + "\n" + "Total Shots Made: " + String.valueOf(totalCount) + "\n" + "Shots Made in Auto: " + String.valueOf(autoHighCount+autoLowCount) + "\n" + "Shots Made in TeleOp: " + String.valueOf(teleOpHighCount + teleOpLowCount) + "\n" + "Miss Count: " + String.valueOf(missCount) + "\n" + "Shots Missed in Auto: " + String.valueOf(autoMissCount) + "\n" + "Shots Missed in TeleOp: " + String.valueOf(teleOpMissCount) + "\n" + "% of Shots Missed: " + roundedPercentageMissed + "\n" + "% of Shots Missed in Auto: " + roundedAutoPercentageMissed + "\n" + "% of Shots Missed in TeleOp: " + roundedTeleOpPercentageMissed + "\n" + "Intake Order: " + intakeOrder;
+        } else  {
+            double percentageMissed = 100.0 * missCount / totalCount;
+            double autoPercentageMissed = 100.0 * autoMissCount / (autoLowCount + autoHighCount);
+            double teleOpPercentageMissed = 100.0 * teleOpMissCount / (teleOpLowCount + teleOpHighCount);
+            String roundedPercentageMissed = String.format("%.2f", percentageMissed);
+            String roundedAutoPercentageMissed = String.format("%.2f", autoPercentageMissed);
+            String roundedTeleOpPercentageMissed = String.format("%.2f", teleOpPercentageMissed);
+            return "Event: "+ event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team color: N/A" + "\n"  + "Team Number: " + String.valueOf(team) + "\n" + "Total Points: " + String.valueOf(totalPoints) + "\n" + "Auto Points: " + String.valueOf(autoPoints) + "\n" + "Tele Op Points: " + String.valueOf(teleOpPoints) + "\n" + "Endgame Points: " + String.valueOf(endgamePoints) + "\n" + "Total Shots Made: " + String.valueOf(totalCount) + "\n" + "Shots Made in Auto: " + String.valueOf(autoHighCount+autoLowCount) + "\n" + "Shots Made in TeleOp: " + String.valueOf(teleOpHighCount + teleOpLowCount) + "\n" + "Miss Count: " + String.valueOf(missCount) + "\n" + "Shots Missed in Auto: " + String.valueOf(autoMissCount) + "\n" + "Shots Missed in TeleOp: " + String.valueOf(teleOpMissCount) + "\n" + "% of Shots Missed: " + roundedPercentageMissed + "\n" + "% of Shots Missed in Auto: " + roundedAutoPercentageMissed + "\n" + "% of Shots Missed in TeleOp: " + roundedTeleOpPercentageMissed + "\n" + "Intake Order: " + intakeOrder;
+        }
     }
     public static String getAllDataChangeable(){
         if (getBlueAlliance() == true) {
-            return "Event: " + event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team color: Blue" + "\n" + "Team Number: " + String.valueOf(team) + "\n" + "Total Points: " + String.valueOf(totalPoints) + "\n" + "Auto Points: " + String.valueOf(autoPoints) + "\n" + "Tele Op Points: " + String.valueOf(teleOpPoints) + "\n" + "Balance Position: " + balance + "\n" + "Time to Balance: " + time;
+            double percentageMissed = 100.0 * missCount / totalCount;
+            double autoPercentageMissed = 100.0 * autoMissCount / (autoLowCount + autoHighCount);
+            double teleOpPercentageMissed = 100.0 * teleOpMissCount / (teleOpLowCount + teleOpHighCount);
+            String roundedPercentageMissed = String.format("%.2f", percentageMissed);
+            String roundedAutoPercentageMissed = String.format("%.2f", autoPercentageMissed);
+            String roundedTeleOpPercentageMissed = String.format("%.2f", teleOpPercentageMissed);
+            return "Event: " + event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team color: Blue" + "\n" + "Team Number: " + String.valueOf(team) + "\n" + "Total Points: " + String.valueOf(totalPoints) + "\n" + "Auto Points: " + String.valueOf(autoPoints) + "\n" + "Tele Op Points: " + String.valueOf(teleOpPoints) + "\n" + "Endgame Points: " + String.valueOf(endgamePoints) + "\n" + "Total Shots Made: " + String.valueOf(totalCount) + "\n" + "Shots Made in Auto: " + String.valueOf(autoHighCount+autoLowCount) + "\n" + "Shots Made in TeleOp: " + String.valueOf(teleOpHighCount + teleOpLowCount) + "\n" + "Miss Count: " + String.valueOf(missCount) + "\n" + "Shots Missed in Auto: " + String.valueOf(autoMissCount) + "\n" + "Shots Missed in TeleOp: " + String.valueOf(teleOpMissCount) + "\n" + "% of Shots Missed: " + roundedPercentageMissed + "\n" + "% of Shots Missed in Auto: " + roundedAutoPercentageMissed + "\n" + "% of Shots Missed in TeleOp: " + roundedTeleOpPercentageMissed + "\n" + "Intake Order: " + intakeOrder;
         } else if (getRedAlliance() == true){
-            return "Event: "+ event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team color: Red" + "\n" + "Team Number: " + String.valueOf(team) +  "\n" + "Total Points: " + String.valueOf(totalPoints) + "\n" + "Auto Points: " + String.valueOf(autoPoints) + "\n" + "Tele Op Points: " + String.valueOf(teleOpPoints) + "\n" + "Balance Position: " + balance+"\n"+ "Time to Balance: " + time;
+            double percentageMissed = 100.0 * missCount / totalCount;
+            double autoPercentageMissed = 100.0 * autoMissCount / (autoLowCount + autoHighCount);
+            double teleOpPercentageMissed = 100.0 * teleOpMissCount / (teleOpLowCount + teleOpHighCount);
+            String roundedPercentageMissed = String.format("%.2f", percentageMissed);
+            String roundedAutoPercentageMissed = String.format("%.2f", autoPercentageMissed);
+            String roundedTeleOpPercentageMissed = String.format("%.2f", teleOpPercentageMissed);
+            return "Event: "+ event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team color: Red" + "\n" + "Team Number: " + String.valueOf(team) +  "\n" + "Total Points: " + String.valueOf(totalPoints) + "\n" + "Auto Points: " + String.valueOf(autoPoints) + "\n" + "Tele Op Points: " + String.valueOf(teleOpPoints) + "\n" + "Endgame Points: " + String.valueOf(endgamePoints) + "\n" + "Total Shots Made: " + String.valueOf(totalCount) + "\n" + "Shots Made in Auto: " + String.valueOf(autoHighCount+autoLowCount) + "\n" + "Shots Made in TeleOp: " + String.valueOf(teleOpHighCount + teleOpLowCount) + "\n" + "Miss Count: " + String.valueOf(missCount) + "\n" + "Shots Missed in Auto: " + String.valueOf(autoMissCount) + "\n" + "Shots Missed in TeleOp: " + String.valueOf(teleOpMissCount) + "\n" + "% of Shots Missed: " + roundedPercentageMissed + "\n" + "% of Shots Missed in Auto: " + roundedAutoPercentageMissed + "\n" + "% of Shots Missed in TeleOp: " + roundedTeleOpPercentageMissed + "\n" + "Intake Order: " + intakeOrder;
         } else  {
-            return "Event: "+ event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team color: N/A" + "\n"  + "Team Number: " + String.valueOf(team) + "\n" + "Total Points: " + String.valueOf(totalPoints) + "\n" + "Auto Points: " + String.valueOf(autoPoints) + "\n" + "Tele Op Points: " + String.valueOf(teleOpPoints) + "\n" + "Balance Position: " + balance+"\n"+ "Time to Balance: " + time;
+            double percentageMissed = 100.0 * missCount / totalCount;
+            double autoPercentageMissed = 100.0 * autoMissCount / (autoLowCount + autoHighCount);
+            double teleOpPercentageMissed = 100.0 * teleOpMissCount / (teleOpLowCount + teleOpHighCount);
+            String roundedPercentageMissed = String.format("%.2f", percentageMissed);
+            String roundedAutoPercentageMissed = String.format("%.2f", autoPercentageMissed);
+            String roundedTeleOpPercentageMissed = String.format("%.2f", teleOpPercentageMissed);
+            return "Event: "+ event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team color: N/A" + "\n"  + "Team Number: " + String.valueOf(team) + "\n" + "Total Points: " + String.valueOf(totalPoints) + "\n" + "Auto Points: " + String.valueOf(autoPoints) + "\n" + "Tele Op Points: " + String.valueOf(teleOpPoints) + "\n" + "Endgame Points: " + String.valueOf(endgamePoints) + "\n" + "Total Shots Made: " + String.valueOf(totalCount) + "\n" + "Shots Made in Auto: " + String.valueOf(autoHighCount+autoLowCount) + "\n" + "Shots Made in TeleOp: " + String.valueOf(teleOpHighCount + teleOpLowCount) + "\n" + "Miss Count: " + String.valueOf(missCount) + "\n" + "Shots Missed in Auto: " + String.valueOf(autoMissCount) + "\n" + "Shots Missed in TeleOp: " + String.valueOf(teleOpMissCount) + "\n" +"% of Shots Missed: " + roundedPercentageMissed + "\n" + "% of Shots Missed in Auto: " + roundedAutoPercentageMissed + "\n" + "% of Shots Missed in TeleOp: " + roundedTeleOpPercentageMissed + "\n" + "Intake Order: " + intakeOrder;
         }
 
         //return "Event: "+ event + "\n" + "Match Number: " + String.valueOf(match) + "\n" + "Team Number: " + String.valueOf(team) + "\n" + "Comment on Auto: " + autoC + "\n" + "Auto Grid Positions: " + grid.toString() + "\n" + "Comment on Tele: " + teleC + "\n" + "Tele Grid Positions: " + teleGrid.toString() + "\n" + "Balance Position: " + balance+"\n"+ "Time to Balance: " + time;
@@ -468,19 +530,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         match = -1;
         team = -1;
         autoC = "NA";
-        grid = new ArrayList<Integer>();
-        for (int i = 0; i < 27; i++) {
-            grid.add(i,0);
-        }
-        scoresAuto = new ArrayList<Integer>();
-        for (int i = 0; i < 7; i++) {
-            grid.add(i,0);
-        }
-        teleC = "NA";
-        teleGrid = new ArrayList<Integer>();
-        for (int i = 0; i < 27; i++) {
-            teleGrid.add(i,0);
-        }
+        autoHighCount = 0;
+        autoLowCount = 0;
+        autoPoints = 0;
+        teleOpHighCount = 0;
+        teleOpLowCount = 0;
+        teleOpPoints = 0;
+        totalPoints = 0;
+        endgamePoints = 0;
+        redAlliance = false;
+        blueAlliance = false;
+        missCount = 0;
         balance = "NA";
         millis = 0;
         secs = 0;
