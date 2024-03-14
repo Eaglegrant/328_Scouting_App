@@ -1,15 +1,24 @@
+package robotics.scouting.current;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link Docking#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class Docking extends Fragment {
 
-    private int endgamePoints = 0; // Declare endgamePoints as a field
-    private TextView pointsTextView; // Declare TextView for live updates
+    private int endgamePoints; // Declare endgamePoints as a field
 
     public Docking() {
         // Required empty public constructor
@@ -27,26 +36,93 @@ public class Docking extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_docking, container, false);
 
-        // Assuming you have checkboxes and TextView in your fragment_docking layout
+        // Assuming you have checkboxes in your fragment_docking layout
         final CheckBox harmonyCheckBox = view.findViewById(R.id.checkbox_harmony);
         final CheckBox trapCheckBox = view.findViewById(R.id.checkbox_trap);
         final CheckBox spotCheckBox = view.findViewById(R.id.checkbox_spot);
         final CheckBox hangCheckBox = view.findViewById(R.id.checkbox_hang);
         final CheckBox parkedCheckBox = view.findViewById(R.id.checkbox_hang345);
-        pointsTextView = view.findViewById(R.id.pointsTextView); // Initialize TextView
 
-        // Calculate and show points initially
-        calculateAndShowPoints();
+        boolean harmonyChecked = MainActivity.getHarmonyCheck();
+        if (harmonyChecked){
+            harmonyCheckBox.setChecked(true);
+        }else{
+            harmonyCheckBox.setChecked(false);
+        }
+        boolean trapChecked = MainActivity.getTrapCheck();
+        if (trapChecked){
+            trapCheckBox.setChecked(true);
+        }else{
+            trapCheckBox.setChecked(false);
+        }
+        boolean spotChecked = MainActivity.getSpotCheck();
+        if (spotChecked){
+            spotCheckBox.setChecked(true);
+        }else{
+            spotCheckBox.setChecked(false);
+        }
+
+        boolean hangChecked = MainActivity.getHangCheck();
+        if (hangChecked){
+            hangCheckBox.setChecked(true);
+        }else{
+            hangCheckBox.setChecked(false);
+        }
+
+        boolean parkedChecked = MainActivity.getParkedCheck();
+        if (parkedChecked){
+            parkedCheckBox.setChecked(true);
+        }else{
+            parkedCheckBox.setChecked(false);
+        }
+        // Set OnCheckedChangeListener for each checkbox to update points when clicked
+        harmonyCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                endgamePoints = calculateAndShowPoints();
+                MainActivity.setHarmonyCheck(isChecked);
+            }
+        });
+
+        trapCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                endgamePoints = calculateAndShowPoints();
+                MainActivity.setTrapCheck(isChecked);
+
+            }
+        });
+
+        spotCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                endgamePoints = calculateAndShowPoints();
+                MainActivity.setSpotCheck(isChecked);
+
+            }
+        });
+
+        hangCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                endgamePoints = calculateAndShowPoints();
+                MainActivity.setHangCheck(isChecked);
+
+            }
+        });
+
+        parkedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                endgamePoints = calculateAndShowPoints();
+                MainActivity.setParkedCheck(isChecked);
+
+            }
+        });
+
+        
 
         return view;
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        // Update endgamePoints before fragment stops
-        endgamePoints = calculateAndShowPoints();
-        MainActivity.setEndgamePoints(endgamePoints);
     }
 
     public int calculateAndShowPoints() {
@@ -86,9 +162,9 @@ public class Docking extends Fragment {
             totalPoints += parkedValue;
         }
 
-        // Update the TextView with the calculated total points
-        pointsTextView.setText("Points: " + totalPoints);
-
+        // Display the calculated points
+        TextView totalPointsView = getView().findViewById(R.id.total_points);
+        totalPointsView.setText("Total Points: " + totalPoints);
         // Return the calculated total points
         return totalPoints;
     }

@@ -77,6 +77,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout drawerLayout;
     private static NavigationView navigationView;
     private NavigationMenuItemView night;
+
+    private static boolean harmonyCheck;
+    private static boolean trapCheck;
+    private static boolean spotCheck;
+    private static boolean hangCheck;
+    private static boolean parkedCheck;
     Menu menu;
     static View headerView;
     static TextView TeamText;
@@ -437,6 +443,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static void setBlueAlliance(boolean value) { blueAlliance = value; }
     public static String getIntakeOrder() {return intakeOrder;}
     public static void setIntakeOrder(String value) {intakeOrder = value;}
+
+
+    public static boolean getHarmonyCheck() {
+        return harmonyCheck;
+    }
+
+    public static void setHarmonyCheck(boolean isChecked) {
+        harmonyCheck = isChecked;
+    }
+
+    public static boolean getTrapCheck() {
+        return trapCheck;
+    }
+
+    public static void setTrapCheck(boolean isChecked) {
+        trapCheck = isChecked;
+    }
+
+    public static boolean getSpotCheck() {
+        return spotCheck;
+    }
+
+    public static void setSpotCheck(boolean isChecked) {
+        spotCheck = isChecked;
+    }
+
+    public static boolean getHangCheck() {
+        return hangCheck;
+    }
+
+    public static void setHangCheck(boolean isChecked) {
+        hangCheck = isChecked;
+    }
+
+    public static boolean getParkedCheck() {
+        return parkedCheck;
+    }
+
+    public static void setParkedCheck(boolean isChecked) {
+        parkedCheck = isChecked;
+    }
 
 
     public static int getTeam() {
