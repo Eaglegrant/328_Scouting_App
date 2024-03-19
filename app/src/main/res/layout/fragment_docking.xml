@@ -17,43 +17,47 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
-                <CheckBox
-                    android:id="@+id/checkbox_harmony"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Did they perform Harmony?"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/checkbox_trap99" />
 
-                <TextView
-                    android:id="@+id/checkbox_trap99"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="IF they got trap, from where?"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/checkbox_harmony"
-                    app:layout_constraintBottom_toTopOf="@id/checkbox_trap" />
+            <CheckBox
+                android:id="@+id/checkbox_harmony"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Did they perform Harmony?"
+                app:layout_constraintBottom_toTopOf="@id/checkbox_trap99"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkbox_hang345"
+                app:layout_constraintVertical_bias="0.0" />
 
-                <CheckBox
-                    android:id="@+id/checkbox_trap"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Did they score Trap?"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/checkbox_trap99" />
+            <TextView
+                android:id="@+id/checkbox_trap99"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IF they got trap, from where?"
+                app:layout_constraintBottom_toTopOf="@id/checkbox_trap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.557"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkbox_trap"
+                app:layout_constraintVertical_bias="0.0" />
 
-                <CheckBox
+            <CheckBox
+                android:id="@+id/checkbox_trap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Did they score Trap?"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkbox_harmony" />
+
+            <CheckBox
                     android:id="@+id/checkbox_trap39"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="From the ground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/checkbox_trap" />
+                    app:layout_constraintTop_toBottomOf="@id/checkbox_trap99" />
 
                 <CheckBox
                     android:id="@+id/checkbox_trap35"
@@ -67,59 +71,64 @@
                 <!-- Did you Spotlight? -->
 
                 <!-- Button to calculate points -->
-                <CheckBox
-                    android:id="@+id/checkbox_spot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Did they score Spotlight?"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/checkbox_spot_1" />
 
-                <!-- EditText to display calculated points -->
+            <!-- EditText to display calculated points -->
 
-                <CheckBox
+            <CheckBox
+                android:id="@+id/checkbox_spot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Did their human player Spotlight?"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkbox_trap_22" />
+
+            <CheckBox
                     android:id="@+id/checkbox_hang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Did they hang?"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/checkbox_spot" />
-
-                <CheckBox
-                    android:id="@+id/checkbox_hang345"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="If not hang, they parked"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/checkbox_hang" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-                <TextView
-                    android:id="@+id/checkbox_spot_1"
-                    android:layout_width="251dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="IF they harmonized, where they first, second, or third?"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/checkbox_trap35" />
+            <CheckBox
+                android:id="@+id/checkbox_hang345"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="If not hang, they parked"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkbox_hang" />
 
-                <CheckBox
-                    android:id="@+id/checkbox_trap_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="First"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+            <TextView
+                android:id="@+id/checkbox_spot_1"
+                android:layout_width="251dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="36dp"
+                android:text="IF they harmonized, where they first, second, or third?"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.478"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkbox_trap35" />
 
-                    app:layout_constraintTop_toBottomOf="@id/checkbox_hang345" />
+            <CheckBox
+                android:id="@+id/checkbox_trap_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="240dp"
+                android:text="First"
+                app:layout_constraintEnd_toEndOf="parent"
 
-                <CheckBox
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkbox_hang345" />
+
+            <CheckBox
                     android:id="@+id/checkbox_trap_22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -129,17 +138,17 @@
                     app:layout_constraintTop_toBottomOf="@id/checkbox_trap_2" />
 
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/total_points"
-                    android:textSize="20dp"
-                    android:layout_marginTop="25dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/checkbox_trap_22"
-                    android:text="Total Points: 0"/>
+            <TextView
+                android:id="@+id/total_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="Total Points: 0"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.512"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkbox_trap_22" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
