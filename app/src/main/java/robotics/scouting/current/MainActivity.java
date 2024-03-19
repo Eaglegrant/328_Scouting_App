@@ -78,11 +78,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static NavigationView navigationView;
     private NavigationMenuItemView night;
 
+    private  static  boolean firstCheck;
+    private  static  boolean secondThirdCheck;
     private static boolean harmonyCheck;
     private static boolean trapCheck;
     private static boolean spotCheck;
     private static boolean hangCheck;
     private static boolean parkedCheck;
+
     Menu menu;
     static View headerView;
     static TextView TeamText;
@@ -148,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     getSupportActionBar().setTitle("Review");
                     break;
                 case R.id.dock:
-                    replaceFragment(new Docking(),"docking");
+                    replaceFragment(new DockingActivity(),"docking");
                     getSupportActionBar().setTitle("Docking/End Game");
                     break;
             }
@@ -262,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 EndGame endFrag = (EndGame)getSupportFragmentManager().findFragmentByTag("end");
                 Auto autoFrag = (Auto)getSupportFragmentManager().findFragmentByTag("auto");
                 TeleOp teleFrag = (TeleOp)getSupportFragmentManager().findFragmentByTag("tele");
-                Docking dockFrag = (Docking)getSupportFragmentManager().findFragmentByTag("docking");
+                DockingActivity dockFrag = (DockingActivity)getSupportFragmentManager().findFragmentByTag("docking");
 
                 if (beforeFrag != null && beforeFrag.isVisible()) {
                     Intent intent = new Intent(MainActivity.this,SplashActivity.class);
@@ -276,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     replaceFragment(new Auto(), "auto");
                 }else if (endFrag != null && endFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.dock);
-                    replaceFragment(new Docking(), "docking");
+                    replaceFragment(new DockingActivity(), "docking");
                 }else if (dockFrag != null && dockFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.tele);
                     replaceFragment(new TeleOp(), "tele");
@@ -288,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 beforeFrag = (BeforeMatchFragment)getSupportFragmentManager().findFragmentByTag("before");
                 autoFrag = (Auto)getSupportFragmentManager().findFragmentByTag("auto");
                 teleFrag = (TeleOp)getSupportFragmentManager().findFragmentByTag("tele");
-                dockFrag = (Docking)getSupportFragmentManager().findFragmentByTag("docking");
+                dockFrag = (DockingActivity)getSupportFragmentManager().findFragmentByTag("docking");
 
                 if (beforeFrag != null && beforeFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.auto);
@@ -298,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     replaceFragment(new TeleOp(), "tele");
                 }else if (teleFrag != null && teleFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.dock);
-                    replaceFragment(new Docking(), "docking");
+                    replaceFragment(new DockingActivity(), "docking");
                 }else if (dockFrag != null && dockFrag.isVisible()) {
                     binding.bottomNavigationView.setSelectedItemId(R.id.end);
                     replaceFragment(new EndGame(), "end");
@@ -431,7 +434,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static void setTeleOpLowCount(int value) {teleOpLowCount = value;}
     public static int getTotalCount(){return totalCount;}
     public static void setTotalCount(int value) {totalCount = value;}
-    public static void setEndgamePoints(int value) {endgamePoints = value;}
     public static int getMissCount() {return missCount;}
     public static void setMissCount(int value) {missCount = value;}
     public static int getAutoMissCount() {return autoMissCount;}
@@ -444,7 +446,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String getIntakeOrder() {return intakeOrder;}
     public static void setIntakeOrder(String value) {intakeOrder = value;}
 
+    public static boolean getFirstChecked() {
+        return firstCheck;
+    }
+    public static void setFirstChecked(boolean isChecked) {
+        firstCheck = isChecked;
+    }
+    public static boolean getSecondThirdChecked() {
+        return secondThirdCheck;
+    }
 
+    public static void setSecondThirdChecked(boolean isChecked) {
+        secondThirdCheck = isChecked;
+    }
     public static boolean getHarmonyCheck() {
         return harmonyCheck;
     }
