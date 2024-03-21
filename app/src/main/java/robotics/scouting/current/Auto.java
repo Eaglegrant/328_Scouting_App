@@ -41,7 +41,7 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
         fragment.setArguments(args);
         return fragment;
     }
-
+//Establishes all the elements the code will interact with in the layout
     Context context;
     EditText dataEdt1;
     Button speaker;
@@ -53,7 +53,7 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
     Button undo;
     TextView downedTimer;
     EditText intake;
-
+//Establishes all the variables that will be used
     int speakerCount;
     int ampCount;
     boolean ampedBool;
@@ -119,11 +119,17 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_auto, container, false);
         context = container.getContext();
+        //Links all the elements to the layout so they can interact
         intake = root.findViewById(R.id.EditTextIntake);
         resetButton = root.findViewById(R.id.ResetButton);
         speaker = root.findViewById(R.id.HighGoalButton);
         amp = root.findViewById(R.id.LowGoalButton);
         amped = root.findViewById(R.id.AmpedButton);
+        miss = root.findViewById(R.id.MissButton);
+        downed = root.findViewById(R.id.DownedButton);
+        undo = root.findViewById(R.id.UndoButton);
+        downedTimer = root.findViewById(R.id.DownedTime);
+        //set variables to the ones stored in main activity
         totalPoints = MainActivity.getTotalPoints();
         autoPoints = MainActivity.getAutoPoints();
         speakerCount = MainActivity.getAutoHighCount();
@@ -133,10 +139,7 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
         highCount = MainActivity.getAutoHighCount();
         lowCount = MainActivity.getAutoLowCount();
         totalCount = MainActivity.getTotalCount();
-        miss = root.findViewById(R.id.MissButton);
-        downed = root.findViewById(R.id.DownedButton);
-        undo = root.findViewById(R.id.UndoButton);
-        downedTimer = root.findViewById(R.id.DownedTime);
+        //sets ;isteners for all the buttons
         speaker.setOnClickListener(this);
         amp.setOnClickListener(this);
         amped.setOnClickListener(this);
@@ -145,6 +148,7 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
         undo.setOnClickListener(this);
         resetButton.setOnClickListener(this);
         intake.setOnFocusChangeListener(this);
+        //sets the text of the buttons to the count stored in main activity
         speaker.setText("Speaker Goal: " + speakerCount);
         amp.setText("Amp Goal: " + ampCount);
         runTimer();
@@ -179,9 +183,8 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
 
         super.onStop();
     }
-
     private int updater(int value, Button button, String name) {
-        //Ups the value of button pressed by one
+        //This function ups the value of button pressed by one
         value += 1;
         String tempText = name + String.valueOf(value);
         button.setText(tempText);
@@ -191,7 +194,7 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
         downedTimer.setText("Downed Time: "+newText);
     }
     private int updaterMinus(int value, Button button, String name) {
-        //brings down the value of button pressed by one
+        //This function brings down the value of button pressed by one
         if (value > 0) {
             value -= 1;
         }
@@ -246,11 +249,13 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
         }
     }
     @Override
+    //Define what happens on click for each instance
     public void onClick(View v) {
         MaterialButton image = (MaterialButton) v;
         switch (v.getId()) {
             case R.id.HighGoalButton:
-                speakerCount = updater(speakerCount, speaker, "High Goal: ");
+                //Update the value of goals by one, and records points and other information to main activity
+                speakerCount = updater(speakerCount, speaker, "Speaker Goal: ");
                 undoValue = 1;
                 totalPoints = totalPoints + 5;
                 autoPoints = autoPoints + 5;
@@ -263,7 +268,8 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
                 MainActivity.setAutoHighCount(speakerCount);
                 break;
             case R.id.LowGoalButton:
-                ampCount = updater(ampCount, amp, "Low Goal: ");
+                //Same as the last one, but for the amp goal
+                ampCount = updater(ampCount, amp, "Amp Goal: ");
                 undoValue = 2;
                 totalPoints = totalPoints + 2;
                 autoPoints = autoPoints + 2;
@@ -276,6 +282,7 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
                 MainActivity.setAutoLowCount(ampCount);
                 break;
             case R.id.MissButton:
+                //records the number of misses
                 autoMissCount = updater(autoMissCount, miss, "Miss: ");
                 undoValue = 3;
                 missCount ++ ;
@@ -285,8 +292,9 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
                 MainActivity.setTotalCount(totalCount);
                 break;
             case R.id.UndoButton:
+                //undoes an action based on undo value, which is specific for each button
                 if (undoValue == 1) {
-                    speakerCount = updaterMinus(speakerCount, speaker, "High Goal: ");
+                    speakerCount = updaterMinus(speakerCount, speaker, "Speaker Goal: ");
                     totalPoints = totalPoints - 5;
                     autoPoints = autoPoints - 5;
                     highCount = highCount -1;
@@ -297,7 +305,7 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
                     MainActivity.setAutoPoints(autoPoints);
                     MainActivity.setAutoHighCount(speakerCount);
                 } else if (undoValue == 2) {
-                    ampCount = updaterMinus(ampCount, amp, "Low Goal: ");
+                    ampCount = updaterMinus(ampCount, amp, "Amp Goal: ");
                     totalPoints = totalPoints - 2;
                     autoPoints = autoPoints - 2;
                     lowCount = lowCount -1;
@@ -317,6 +325,7 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
                 }
                 break;
             case R.id.AmpedButton:
+                //if thsi bool is active, it means it is amped
                 ampedBool = !ampedBool;
                 if (ampedBool) {
                     amped.setText("AMPED!!!!");
@@ -327,6 +336,7 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
                 }
                 break;
             case R.id.DownedButton:
+                //this records how long a robot was downed
                 downedBool = !downedBool;
                 if (downedBool) {
                     downed.setText("Working?");

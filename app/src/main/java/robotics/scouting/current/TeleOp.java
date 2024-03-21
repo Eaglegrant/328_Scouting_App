@@ -41,7 +41,7 @@ public class TeleOp extends Fragment implements View.OnClickListener {
         fragment.setArguments(args);
         return fragment;
     }
-
+//establish all the elements that the code will interact with in layout
     Context context;
     EditText dataEdt1;
     Button highGoal;
@@ -52,7 +52,7 @@ public class TeleOp extends Fragment implements View.OnClickListener {
     Button downed;
     Button undo;
     TextView downedTimer;
-
+//establishes all the variables
     int highGoalCount;
     int lowGoalCount;
     boolean ampedBool;
