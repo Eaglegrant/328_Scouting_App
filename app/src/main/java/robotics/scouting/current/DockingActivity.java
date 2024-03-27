@@ -23,7 +23,7 @@ public class DockingActivity extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
+    int endgamePoints;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -108,33 +108,35 @@ public class DockingActivity extends Fragment {
         int chainHangValue = 3;
         int parkedValue = 1; // Value to add if "If not hang, they parked" is selected
 
-        // Initialize total points
-        int totalPoints = 0;
+        // Initialize total points and endgame points
+        int totalPoints = MainActivity.getTotalPoints();
+        int previousEndgamePoints = MainActivity.getEndgamePoints();
+        int endgamePoints = 0;
 
         // Check each checkbox and add corresponding values to total points
         CheckBox harmonyCheckBox = getView().findViewById(R.id.checkbox_harmony);
         if (harmonyCheckBox.isChecked()) {
-            totalPoints += harmonyValue;
+            endgamePoints += harmonyValue;
         }
 
         CheckBox trapCheckBox = getView().findViewById(R.id.checkbox_trap);
         if (trapCheckBox.isChecked()) {
-            totalPoints += trapValue;
+            endgamePoints += trapValue;
         }
 
         CheckBox spotlightCheckBox = getView().findViewById(R.id.checkbox_spot);
         if (spotlightCheckBox.isChecked()) {
-            totalPoints += spotlightValue;
+            endgamePoints += spotlightValue;
         }
 
         CheckBox hangCheckBox = getView().findViewById(R.id.checkbox_hang);
         if (hangCheckBox.isChecked()) {
-            totalPoints += chainHangValue;
+            endgamePoints += chainHangValue;
         }
 
         CheckBox parkedCheckBox = getView().findViewById(R.id.checkbox_hang345);
         if (parkedCheckBox.isChecked()) {
-            totalPoints += parkedValue;
+            endgamePoints += parkedValue;
         }
 
         CheckBox firstCheckBox = getView().findViewById(R.id.checkbox_trap_2);
@@ -143,10 +145,17 @@ public class DockingActivity extends Fragment {
         }
 
         // Display the calculated points
-        TextView totalPointsView = getView().findViewById(R.id.total_points);
-        totalPointsView.setText("Total Points: " + totalPoints);
-        // Return the calculated total points
-        return totalPoints;
+        TextView endgamePointsView = getView().findViewById(R.id.total_points);
+        endgamePointsView.setText("Endgame Points: " + endgamePoints);
+        // Calculate the difference between new endgame points and previous endgame points
+        int endgamePointsDifference = endgamePoints - previousEndgamePoints;
+        // Apply the difference to total points
+        totalPoints += endgamePointsDifference;
+        //Sends the total points and endgame to main activity
+        MainActivity.setTotalPoints(totalPoints);
+        MainActivity.setEndgamePoints(endgamePoints);
+        // Return the calculated endgame points
+        return endgamePoints;
     }
 
     public void clearData() {

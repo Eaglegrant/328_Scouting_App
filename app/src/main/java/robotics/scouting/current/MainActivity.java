@@ -440,7 +440,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static void setAutoMissCount(int value) {autoMissCount = value;}
     public static int getTeleOpMissCount() {return teleOpMissCount;}
     public static void setTeleOpMissCount(int value) {teleOpMissCount = value;}
-    public static int getEndgamePoints() {return endgamePoints;}
+    public static void setEndgamePoints(int value) {endgamePoints = value;}
+    public static  int getEndgamePoints() {return endgamePoints;}
     public static void setRedAlliance(boolean value) { redAlliance = value;}
     public static void setBlueAlliance(boolean value) { blueAlliance = value; }
     public static String getIntakeOrder() {return intakeOrder;}

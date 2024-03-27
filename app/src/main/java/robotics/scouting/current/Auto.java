@@ -139,7 +139,7 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
         highCount = MainActivity.getAutoHighCount();
         lowCount = MainActivity.getAutoLowCount();
         totalCount = MainActivity.getTotalCount();
-        //sets ;isteners for all the buttons
+        //sets listeners for all the buttons
         speaker.setOnClickListener(this);
         amp.setOnClickListener(this);
         amped.setOnClickListener(this);
@@ -325,7 +325,7 @@ public class Auto extends Fragment implements View.OnClickListener, View.OnFocus
                 }
                 break;
             case R.id.AmpedButton:
-                //if thsi bool is active, it means it is amped
+                //if this bool is active, it means it is amped
                 ampedBool = !ampedBool;
                 if (ampedBool) {
                     amped.setText("AMPED!!!!");

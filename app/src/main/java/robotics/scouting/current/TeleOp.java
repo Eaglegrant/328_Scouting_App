@@ -115,20 +115,23 @@ public class TeleOp extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_tele_op, container, false);
         context = container.getContext();
+        //Links all the elements to the layout so they can interact
         resetButton = root.findViewById(R.id.ResetButton);
         highGoal = root.findViewById(R.id.HighGoalButton);
         lowGoal = root.findViewById(R.id.LowGoalButton);
         amped = root.findViewById(R.id.AmpedButton);
+        miss = root.findViewById(R.id.MissButton);
+        downed = root.findViewById(R.id.DownedButton);
+        undo = root.findViewById(R.id.UndoButton);
+        downedTimer = root.findViewById(R.id.DownedTime);
+        //set variables to the ones stored in main activity
         missCount = MainActivity.getMissCount();
         teleOpMissCount = MainActivity.getTeleOpMissCount();
         totalPoints = MainActivity.getTotalPoints();
         teleOpPoints = MainActivity.getTeleOpPoints();
         highGoalCount = MainActivity.getTeleOpHighCount();
         lowGoalCount = MainActivity.getTeleOpLowCount();
-        miss = root.findViewById(R.id.MissButton);
-        downed = root.findViewById(R.id.DownedButton);
-        undo = root.findViewById(R.id.UndoButton);
-        downedTimer = root.findViewById(R.id.DownedTime);
+        //sets listeners for all the buttons
         highGoal.setOnClickListener(this);
         lowGoal.setOnClickListener(this);
         amped.setOnClickListener(this);
@@ -136,6 +139,7 @@ public class TeleOp extends Fragment implements View.OnClickListener {
         downed.setOnClickListener(this);
         undo.setOnClickListener(this);
         resetButton.setOnClickListener(this);
+        //sets the text of the buttons to the count stored in main activity
         highGoal.setText("High Goal: " + highGoalCount);
         lowGoal.setText("Low Goal: " + lowGoalCount);
         runTimer();
@@ -219,6 +223,7 @@ public class TeleOp extends Fragment implements View.OnClickListener {
         MaterialButton image = (MaterialButton) v;
         switch (v.getId()) {
             case R.id.HighGoalButton:
+                //Update the value of goals by one, and records points and other information to main activity depending on whether amped is active or not
                 highGoalCount = updater(highGoalCount, highGoal, "High Goal: ");
                 if (ampedBool == true){
                     totalPoints = totalPoints + 5;
@@ -234,6 +239,7 @@ public class TeleOp extends Fragment implements View.OnClickListener {
                 MainActivity.setTeleOpHighCount(highGoalCount);
                 break;
             case R.id.LowGoalButton:
+                //Same as the last one, but for the amp goal
                 lowGoalCount = updater(lowGoalCount, lowGoal, "Low Goal: ");
                 undoValue = 3;
                 totalPoints = totalPoints + 1;
@@ -243,6 +249,7 @@ public class TeleOp extends Fragment implements View.OnClickListener {
                 MainActivity.setTeleOpLowCount(lowGoalCount);
                 break;
             case R.id.MissButton:
+                //records the number of misses
                 teleOpMissCount = updater(teleOpMissCount, miss, "Miss: ");
                 MainActivity.setTeleOpMissCount(teleOpMissCount);
                 missCount ++;
@@ -250,6 +257,7 @@ public class TeleOp extends Fragment implements View.OnClickListener {
                 undoValue = 4;
                 break;
             case R.id.UndoButton:
+                //undoes an action based on undo value, which is specific for each button
                 if (undoValue == 1) {
                     highGoalCount = updaterMinus(highGoalCount, highGoal, "High Goal: ");
                     totalPoints = totalPoints - 5;
@@ -280,6 +288,7 @@ public class TeleOp extends Fragment implements View.OnClickListener {
                 }
                 break;
             case R.id.AmpedButton:
+                //if this bool is active, it means it is amped
                 ampedBool = !ampedBool;
                 if (ampedBool) {
                     amped.setText("AMPED!!!!");
@@ -290,6 +299,7 @@ public class TeleOp extends Fragment implements View.OnClickListener {
                 }
                 break;
             case R.id.DownedButton:
+                //this records how long a robot was downed
                 downedBool = !downedBool;
                 if (downedBool) {
                     downed.setText("Working?");
